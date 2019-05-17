@@ -1,0 +1,45 @@
+TCP/IP The agreement is explained as follows
+　　TCP/IP The protocol family contains a number of sub-protocols with different functions. To this end we also use the layered approach described above to dissect its structure. TCP/IP hierarchical model
+
+It is divided into four layers: application layer, transport layer, network layer, and data link layer. 
+
+TCP/IP Network protocol TCP/IP（Transmission Control Protocol/Internet Protocol，Transmission Control Protocol/Internet Protocol is the most widely used protocol in the world.
+，Its popularity is closely related to the rapid development of the Internet - TCP/IP was originally designed for the prototype ARPANET of the Internet.
+，The goal is to provide a convenient set of protocols that can be applied to multiple networks. 
+It turns out that TCP/IP does this, it makes network interconnection easier, and more and more networks are added to it.，Become the de facto standard of the Internet.
+
+
+　　* Application layer—The application layer is the collective name for all applications that users are targeting.
+    The ICP/IP protocol family has many protocols at this level to support different applications, and many of the familiar Internet-based applications are inseparable from these protocols. 
+	For example, we use the HTTP protocol, the FTP protocol for file transfer, the SMTP for email transmission, the DNS protocol for domain name resolution, the Telnet protocol for remote login, etc., all of which belong to the TCP/IP application layer.
+    As far as the user is concerned, most of the graphical user interfaces are constructed by one piece of software, and the actual protocol is the above protocol.
+　　* Transport layer—The function of this layer is mainly to provide communication between applications. The TCP/IP protocol family has TCP and UDP protocols at this layer.
+　　* Network layer—is a very important layer in the TCP/IP protocol family.
+    It mainly defines the IP address format, so that data of different application types can be smoothly transmitted on the Internet. The IP protocol is a network layer protocol.
+　　* Network Interface Layer—This is the lowest layer of TCP/IP software. 
+    It is responsible for receiving IP packets and sending them over the network, or receiving physical frames from the network, extracting IP datagrams, and handing them over to the IP layer.
+　　1.TCP/UDP protocol TCP （Transmission Control Protocol） with UDP（User Datagram Protocol）The protocol is a transport layer protocol.
+  TCP provides reliable transmission of data in an IP environment.It provides services such as data streaming, reliability, efficient flow control, full-duplex operation and multiplexing. Through connection oriented、
+  End-to-end and reliable packet delivery. Generally speaking, it is to open a connected channel for the transmitted data in advance, and then send the data；UDP does not provide reliability, flow control or error recovery for IP. Generally speaking,
+  TCP corresponds to applications with high reliability requirements, while UDP corresponds to applications with low reliability requirements and economical transmission. The application protocols supported by TCP mainly include：
+  Telnet、FTP、SMTP Wait；UDP Supported application layer protocols mainly have：NFS（Network file system）、SNMP、DNS、TFTP（Universal file transfer protocol）.
+  Definition of IP protocol, classification and characteristics of IP address What is IP protocol, how to represent IP address, divided into several categories, what are the characteristics of each?？
+　　In order to facilitate the addressing and hierarchical construction of the network,IP addresses are classified into five categories: A, B, C, D, and E. Only A, B, and C are used in commercial applications.
+IP Protocol (Internet Protocol), also known as the Internet Protocol, is a datagram protocol that supports interconnection between networks.
+Together with the TCP protocol (Transmission Control Protocol), it forms the core of the TCP/IP protocol suite. It provides comprehensive functionality for inter-network connectivity, including IP datagrams that specify the IP address format within the interconnection network.
+ On the Internet，In order to achieve communication between nodes connected to the Internet，An address must be assigned to each node (the computer that is connected to the network)，
+ And should ensure that this address is unique across the network, this is the IP address. The current IP address (IPv4: IP version 4) is represented by 32 binary digits, each 8-bit binary number is an integer, and the middle is separated by a decimal point, such as 159.226.41.98.
+ The entire IP address space has four sets of 8-bit binary numbers, which are composed of the address of the network where the host is located (similar to the number of the unit) and the identity of the host in the network (like the number of the soldier in the unit). In order to facilitate the addressing and hierarchical construction of the network,
+ IP地址被分为A、B、C、D、E五类，商业应用中只用到A、B、C三类。
+* Class A address: The network identifier of the Class A address is represented by the first set of 8-bit binary numbers. The host identifier in the network occupies 3 groups of 8-bit binary numbers. The class A address is characterized by the value of the first binary digit of the network identifier. Must be "0".
+It is not difficult to calculate that Class A addresses allow 126 network segments, and each network allows approximately 16.7 million hosts, usually assigned to networks with a large number of hosts (such as backbone networks).
+* Class B address: The network identifier of the class B address is represented by the first two sets of 8-bit binary numbers. The host identifier in the network occupies two sets of 8-bit binary numbers. The class B address is characterized by the value of the first two-digit binary number of the network identifier. It is "10".
+Class B addresses allow 16384 network segments, and each network allows 65,533 hosts, which is suitable for networks with more nodes (such as regional networks).
+　　* Class C address: The network identifier of the class C address is represented by the first three groups of 8-bit binary numbers. The host ID of the network occupies a group of 8-bit binary numbers. The C-type address is characterized by the value of the first three digits of the network identifier. "110".
+A network with a Class C address allows for 254 hosts for networks with fewer nodes (such as campus networks).
+ In order to facilitate the memory, it is customary to use four decimal numbers to represent an IP address, and the decimal numbers are separated by a period "."
+ This method of representing an IP address is also called a dotted decimal method. As indicated in this way, the IP address range of the class A network is 1.0.0.1-127.255.255.254;
+ The IP address range of the class B network is: 128.1.0.1-191.255.255.254; the IP address range of the class C network is: 192.0.0.1.23.255.255.254.
+ Because the network address is tight and the host address is relatively excessive, the subnet mask is used to specify the network segment number.
+ The TCP/IP protocol is independent of the lower layer data link layer and physical layer, which is also an important feature of TCP/IP.
+ Because of this, it can broadly support physical network structures consisting of low-level two-layer protocols. Currently, TCP/IP has been used to connect to the intercontinental network, the national network and the inter-regional network.
