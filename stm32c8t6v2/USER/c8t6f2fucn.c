@@ -4,118 +4,61 @@
 
 #include "loopback.h"
 #include "socket.h"
-#include "wizchip_conf.h"
+#include "w5500lib_init.h"
+#include "w5500cn.h"
+#include "loopback.h"
+//#include "spi.h"
+/////////////////////////////////////////
+// SOCKET NUMBER DEFINION for Examples //
+/////////////////////////////////////////
+#define SOCK_TCPS        1
+#define SOCK_UDPS        0
+////////////////////////////////////////////////
+// Shared Buffer Definition for LOOPBACK TEST //
+////////////////////////////////////////////////
 
-//===========================================================================//
-void chip_on(void){
-  GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS); 
-}
-//===========================================================================//
-void chip_off(void){
-  GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS); 
-}
-//===========================================================================//
-uint8_t SPI_SendReceiveByte(void)
+uint8_t gDATABUF[DATA_BUF_SIZE];
+int32_t ret = 0;
+wiz_NetInfo MyNetInfo ;
+
+void loadNetParas(void)
 {
-  while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
-  SPI_I2S_SendData(SPI1, 0xFF);
-  while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET) ;
-  return SPI_I2S_ReceiveData(SPI1);
+  //Load physical address
+	MyNetInfo.mac[0] = 0x0c;
+	MyNetInfo.mac[1] = 0x29;
+	MyNetInfo.mac[2] = 0x34;
+	MyNetInfo.mac[3] = 0x7c;
+	MyNetInfo.mac[4] = 0x01;
+	MyNetInfo.mac[5] = 0x64;
+	//Load local IP address
+	MyNetInfo.ip[0] = 192;
+	MyNetInfo.ip[1] = 168;
+	MyNetInfo.ip[2] = 1;
+	MyNetInfo.ip[3] = 3;
+	//Load gateway parameters
+	MyNetInfo.gw[0] = 192;
+	MyNetInfo.gw[1] = 168;
+	MyNetInfo.gw[2] = 1;
+	MyNetInfo.gw[3] = 1;
+	//Load subnet mask
+	MyNetInfo.sn[0] = 255;
+	MyNetInfo.sn[1] = 255;
+	MyNetInfo.sn[2] = 255;
+	MyNetInfo.sn[3] = 0;
+	//Load DNS
+	MyNetInfo.dns[0] = 8;
+	MyNetInfo.dns[1] = 8;
+	MyNetInfo.dns[2] = 8;
+	MyNetInfo.dns[3] = 8;
+	//Static IP configuration by manually.
+	MyNetInfo.dhcp = NETINFO_STATIC;
 }
-//===========================================================================//
-void senddata(uint8_t data){	
-while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
-SPI_I2S_SendData(SPI1, data);
-while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET) ;
-SPI_I2S_ReceiveData(SPI1);	
-	}
-//===========================================================================//
-void w5500_ini(void){
-  uint8_t temp;
-  uint8_t W5500FifoSize[2][8] = {{2, 2, 2, 2, 2, 2, 2, 2, }, {2, 2, 2, 2, 2, 2, 2, 2}};
+uint8_t tmpstr[6] = {0,};
+wiz_NetInfo netinfo;
+//#define	USE_TQ_LIB
+#ifdef USE_TQ_LIB
 
-  chip_off();	
- /*pass the read function to the driver*/
-  reg_wizchip_spi_cbfunc(SPI_SendReceiveByte, senddata);
-
-  /* CS function register */
-   reg_wizchip_cs_cbfunc(chip_on,chip_off);
-
-  if (ctlwizchip(CW_INIT_WIZCHIP, (void*)W5500FifoSize) == -1){
-    printf("W5500 initialized fail.\r\n");
-      while(1);
-  }
-//    check phy status
-  do
-  {
-		//GPIOC->ODR ^= GPIO_Pin_13;
-		
-    if (ctlwizchip(CW_GET_PHYLINK, (void*)&temp) == -1)
-    {
-       // GPIOC->ODR ^= GPIO_Pin_13;    
-			printf("Unknown PHY link status.\r\n");
-    }
-  } while (temp == PHY_LINK_OFF);
-	printf("W5500 ok?\r\n");
-}
-/*
-int32_t loopback_udps(uint8_t sn, uint8_t* buf, uint16_t port)
-{
-   int32_t  ret;
-   uint16_t size, sentsize;
-   uint8_t  destip[4];
-   uint16_t destport;
-
-   switch(getSn_SR(sn))
-   {
-      case SOCK_UDP :
-         if((size = getSn_RX_RSR(sn)) > 0)
-         {
-            if(size > DATA_BUF_SIZE) size = DATA_BUF_SIZE;
-            ret = recvfrom(sn, buf, size, destip, (uint16_t*)&destport);
-            if(ret <= 0)
-            {
-#ifdef _LOOPBACK_DEBUG_
-               printf("%d: recvfrom error. %d\r\n",sn,ret);
-#endif
-               return ret;
-            }
-            size = (uint16_t) ret;
-            sentsize = 0;
-            while(sentsize != size)
-            {
-               ret = sendto(sn, buf+sentsize, size-sentsize, destip, destport);
-               if(ret < 0)
-               {
-#ifdef _LOOPBACK_DEBUG_
-                  printf("%d: sendto error. %d\r\n",sn,ret);
-#endif
-                  return ret;
-               }
-               sentsize += ret; // Don't care SOCKERR_BUSY, because it is zero.
-            }
-         }
-         break;
-      case SOCK_CLOSED:
-#ifdef _LOOPBACK_DEBUG_
-         //printf("%d:UDP loopback start\r\n",sn);
-#endif
-         if((ret = socket(sn, Sn_MR_UDP, port, 0x00)) != sn)
-            return ret;
-#ifdef _LOOPBACK_DEBUG_
-         printf("%d:Opened, UDP loopback, port [%d]\r\n", sn, port);
-#endif
-         break;
-      default :
-         break;
-   }
-   return 1;
-}
-*/
 u32 W5500_Send_Delay=0; //W5500 Send delay count variable(ms)
-
-
-
 
 //Load network parameters
 //Description: Gateway, subnet mask, physical address, local IP address, local port number, destination IP address, destination port number, port working mode
@@ -158,9 +101,12 @@ void Load_Net_Parameters(void)
 //W5500 Initial configuration
 void W5500_Initialization(void)
 {
+	//printf("W5500 read reg :%d %d %d %d\r\n",Read_W5500_1Byte(0),Read_W5500_1Byte(1),Read_W5500_1Byte(2),Read_W5500_1Byte(3));
+	//printf("W5500 read reg :%d\r\n",Read_W5500_1Byte(VERR));
 	W5500_Init();		//Initialize the W5500 register
 	if(Detect_Gateway()) printf("TRUE");	//Check the gateway server 
 	Socket_Init(0);		//Specify Socket (0~7) initialization, initialize port 0
+	
 }
 
 
@@ -223,7 +169,10 @@ void W5500_Socket_Set(void)
 void Process_Socket_Data(SOCKET s)
 {
 	u16 size;
-	size=Read_SOCK_Data_Buffer(s, Rx_Buffer);
+	if((size = getSn_RX_RSR(s)) > 0) printf("size1 : %d--",size);
+	
+	size = Read_SOCK_Data_Buffer(s, Rx_Buffer);
+	printf("size2 : %d; ",size);
 	UDP_DIPR[0] = Rx_Buffer[0];
 	UDP_DIPR[1] = Rx_Buffer[1];
 	UDP_DIPR[2] = Rx_Buffer[2];
@@ -231,7 +180,7 @@ void Process_Socket_Data(SOCKET s)
 
 	UDP_DPORT[0] = Rx_Buffer[4];
 	UDP_DPORT[1] = Rx_Buffer[5];
-	memcpy(Tx_Buffer, Rx_Buffer+8, size-8);			
+	memcpy(Tx_Buffer, Rx_Buffer+8, size-8);	
 	Write_SOCK_Data_Buffer(s, Tx_Buffer, size);
 }
 
@@ -242,12 +191,11 @@ void Process_Socket_Data(SOCKET s)
   */
 void w5500_run(void)
 {
-		W5500_Socket_Set();//W5500 port initialization configuration
+	  W5500_Socket_Set();//W5500 port initialization configuration
 
 		if(W5500_Interrupt)//Handling W5500 interrupts		
 		{
 			W5500_Interrupt_Process();//W5500 interrupt handler framework
-			printf("Ngat\r\n");
 		}
 		if((S0_Data & S_RECEIVE) == S_RECEIVE)//If Socket0 receives data
 		{
@@ -258,16 +206,16 @@ void w5500_run(void)
 		{
 			if(S0_State == (S_INIT|S_CONN))
 			{
-				S0_Data&=~S_TRANSMITOK;
-				memcpy(Tx_Buffer, "\r\nW5500 UDP IP:192.168.1.246:5000 \r\n", 45);	
-				Write_SOCK_Data_Buffer(0, Tx_Buffer, 45);//Specify Socket (0~7) to send data processing, port 0 to send 30 bytes of data
+				//S0_Data&=~S_TRANSMITOK;
+				//memcpy(Tx_Buffer, "\r\nW5500 UDP IP:192.168.1.246:5000 \r\n", 35);	
+				//Write_SOCK_Data_Buffer(0, Tx_Buffer, 35);//Specify Socket (0~7) to send data processing, port 0 to send 30 bytes of data
 			}
 			W5500_Send_Delay=0;
 		}	
 
 		W5500_Send_Delay++;
 }
-
+#endif
 /*******************************************************************************/
 /**
   * @brief  Watch D0G
@@ -515,8 +463,13 @@ int16_t adc0, adc1, adc2, adc3;
 		#endif
 
   
-    //w5500_run();
-		
+    #ifdef USE_TQ_LIB
+		w5500_run();
+		#endif
+		// TCP server loopback test
+    	if( (ret = loopback_tcps(SOCK_TCPS, gDATABUF, 5000)) < 0) {
+			printf("SOCKET ERROR : %d\r\n", ret);
+		}
 }
 
 
@@ -642,19 +595,59 @@ void hardware_init(void)
 		//if(ADS1115_init() ==1) printf("ADS1115 init done!\r\n");;
 		
 	#endif
+#ifdef USE_TQ_LIB
 /* Initialize the SPI w5500 driver ----------------------------------------*/
-	SPI1_Init();	 //Initialize SPI1  PA5 PA6 PA7 IO is SPI mode
-	SPI1_SetSpeed(SPI_BaudRatePrescaler_2);	 //Configure SPI1 speed to be the highest
-  /*
-	W5500_GPIO_Init();//Initialize W5500  RST INT SCS corresponds to GPIO status And configure INT interrupt mode
+  //SPI1_W5500_Init();
+	//SPI1_Init();	 //Initialize SPI1  PA5 PA6 PA7 IO is SPI mode
+	//SPI1_SetSpeed(SPI_BaudRatePrescaler_2);	 //Configure SPI1 speed to be the highest  
+	//W5500_GPIO_Init();//Initialize W5500  RST INT SCS corresponds to GPIO status And configure INT interrupt mode
+	W5500_GPIO_Init2();
+	//W5500_GPIO_Init2();
+	
 	Load_Net_Parameters();		//Load network parameters	
 	printf("\r\nwaiting for Ethernet connection to complete...nho cam day mang\r\n");
 	W5500_Hardware_Reset();		//Hardware reset W5500
 	W5500_Initialization();		//W5500 initial configuration
 	printf("\r\nLoad W5500 config!\r\n");
-	*/
-	w5500_ini();
+	#endif
+	
+	
+	W5500_GPIO_Init2();
+	w5500_lib_init();
+	//W5500_Init();
+	
+	//printf("\r\nW5500\r\n");
+	loadNetParas();
+	
+	
+	
+	//printf("\r\nw5500_lib_init\r\n");
+	// Set Network information from netinfo structure
+	ctlnetwork(CN_SET_NETINFO, (void*)&MyNetInfo);
+	printf("\r\nSet Network information\r\n");
+	
+		// Get Network information
+	ctlnetwork(CN_GET_NETINFO, (void*)&netinfo);
+
+	// Display Network Information
+	ctlwizchip(CW_GET_ID,(void*)tmpstr);
+
+	printf("Ko co dong nay k chay???W5500 MR :%d\r\n",Read_W5500_1Byte(0));
+
+	//printf("W5500 getway :%d %d %d %d\r\n",Read_W5500_1Byte(0xF),Read_W5500_1Byte(0x10),Read_W5500_1Byte(0x11),Read_W5500_1Byte(0x12));
+
+	if(netinfo.dhcp == NETINFO_DHCP) printf("\r\n=== %s NET CONF : DHCP ===\r\n",(char*)tmpstr);
+	else printf("\r\n=== %s NET CONF : Static ===\r\n",(char*)tmpstr);
+
+	printf("MAC: %02X:%02X:%02X:%02X:%02X:%02X\r\n",netinfo.mac[0],netinfo.mac[1],netinfo.mac[2],netinfo.mac[3],netinfo.mac[4],netinfo.mac[5]);
+	printf("SIP: %d.%d.%d.%d\r\n", netinfo.ip[0],netinfo.ip[1],netinfo.ip[2],netinfo.ip[3]);
+	printf("GAR: %d.%d.%d.%d\r\n", netinfo.gw[0],netinfo.gw[1],netinfo.gw[2],netinfo.gw[3]);
+	printf("SUB: %d.%d.%d.%d\r\n", netinfo.sn[0],netinfo.sn[1],netinfo.sn[2],netinfo.sn[3]);
+	printf("DNS: %d.%d.%d.%d\r\n", netinfo.dns[0],netinfo.dns[1],netinfo.dns[2],netinfo.dns[3]);
+	printf("===============END=============\r\n");
 }
+
+
 			
 
 

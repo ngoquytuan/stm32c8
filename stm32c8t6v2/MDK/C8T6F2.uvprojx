@@ -392,6 +392,11 @@
               <FileType>1</FileType>
               <FilePath>..\USER\c8t6f2main.c</FilePath>
             </File>
+            <File>
+              <FileName>loopback.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\loopback.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -561,6 +566,11 @@
               <FileName>w5500.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\w5500g\Ethernet\W5500\w5500.c</FilePath>
+            </File>
+            <File>
+              <FileName>w5500lib_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\w5500\w5500lib_init.c</FilePath>
             </File>
           </Files>
         </Group>

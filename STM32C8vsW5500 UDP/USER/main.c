@@ -157,6 +157,7 @@ void Process_Socket_Data(SOCKET s)
 {
 	u16 size;
 	size=Read_SOCK_Data_Buffer(s, Rx_Buffer);
+	printf("RX:%d ",size);
 	UDP_DIPR[0] = Rx_Buffer[0];
 	UDP_DIPR[1] = Rx_Buffer[1];
 	UDP_DIPR[2] = Rx_Buffer[2];

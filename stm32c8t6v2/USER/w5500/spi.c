@@ -18,8 +18,8 @@ void SPI1_Init(void)
 //	RCC_APB2PeriphClockCmd(	RCC_APB2Periph_GPIOA, ENABLE );//PORTB  
 //	RCC_APB2PeriphClockCmd(	RCC_APB2Periph_SPI1,  ENABLE );//SPI2  	
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_SPI1 | RCC_APB2Periph_AFIO, ENABLE);
- 
+	//RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_SPI1 | RCC_APB2Periph_AFIO, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_SPI1 , ENABLE);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;  //PB13/14/15 Multiplexed push-pull output 
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -42,7 +42,9 @@ void SPI1_Init(void)
  
 	SPI_Cmd(SPI1, ENABLE); //Enable SPI peripherals
 	
-//	SPI1_ReadWriteByte(0xff);//Start transfer		 
+//	SPI1_ReadWriteByte(0xff);//Start transfer	
+
+
  
 
 }   

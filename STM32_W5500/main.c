@@ -117,10 +117,10 @@ timer4_ini();
 	
 //==================================DHCP-====================================================//
  // must be set the default mac before DHCP started.
-	setSHAR(gWIZNETINFO.mac);//настройка 
-	DHCP_init(SOCK_DHCP, gDATABUF);//передаем номер сокета 
-	reg_dhcp_cbfunc(my_ip_assign, my_ip_assign, my_ip_conflict);//передаем функции
-	//	которые будут вызваны при разных событияx DHCP(назначение,смена ip,конфликт ip)
+	setSHAR(gWIZNETINFO.mac);//tuning 
+	DHCP_init(SOCK_DHCP, gDATABUF);//pass the socket number
+	reg_dhcp_cbfunc(my_ip_assign, my_ip_assign, my_ip_conflict);//pass functions
+	//	that will be caused by different DHCP events (assignment, ip change, ip conflict)
 //=================================END_DHCP===============================//
   while (1)
   {

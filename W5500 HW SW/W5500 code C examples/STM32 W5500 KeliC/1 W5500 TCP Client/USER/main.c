@@ -51,7 +51,7 @@ void Load_Net_Parameters(void)
 {
 	Gateway_IP[0] = 192;//Load gateway parameters
 	Gateway_IP[1] = 168;
-	Gateway_IP[2] = 0;
+	Gateway_IP[2] = 1;
 	Gateway_IP[3] = 1;
 
 	Sub_Mask[0]=255;//Load subnet mask
@@ -68,7 +68,7 @@ void Load_Net_Parameters(void)
 
 	IP_Addr[0]=192;//加载本机IP地址
 	IP_Addr[1]=168;
-	IP_Addr[2]=0;
+	IP_Addr[2]=1;
 	IP_Addr[3]=246;
 
 	S0_Port[0] = 0x13;//加载端口0的端口号5000 
@@ -76,7 +76,7 @@ void Load_Net_Parameters(void)
 
 	S0_DIP[0]=192;//加载端口0的目的IP地址
 	S0_DIP[1]=168;
-	S0_DIP[2]=0;
+	S0_DIP[2]=1;
 	S0_DIP[3]=149;
 	
 	S0_DPort[0] = 0x17;//加载端口0的目的端口号6000

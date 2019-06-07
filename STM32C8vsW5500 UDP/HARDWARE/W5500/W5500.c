@@ -681,7 +681,7 @@ u8 Socket_UDP(SOCKET s)
 {
 	Write_W5500_SOCK_1Byte(s,Sn_MR,MR_UDP);//设置Socket为UDP模式*/
 	Write_W5500_SOCK_1Byte(s,Sn_CR,OPEN);//打开Socket*/
-	delay_ms(5Write data low);//延时5ms
+	delay_ms(5);//Write data low);//延时5ms
 	if(Read_W5500_SOCK_1Byte(s,Sn_SR)!=SOCK_UDP)//如果Socket打开失败
 	{
 		Write_W5500_SOCK_1Byte(s,Sn_CR,CLOSE);//打开不成功,关闭Socket

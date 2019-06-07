@@ -5,7 +5,7 @@ W5500 Network module main code
 
 #include "stm32f10x.h"
 #include "spi.h"				
-#include "W5500.h"
+#include "W5500cn.h"
 #include "delay.h"	
 
 
@@ -115,7 +115,8 @@ void W5500_GPIO_Init(void)
 	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
 	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStructure);
-
+	
+  
 }
 
 
@@ -151,7 +152,17 @@ void SPI1_Send_Short(u16 dat)
 }
 
 
+void spiburst_wb2(uint8_t *pBuf, uint16_t len)
+{
+	u16 i;
+	GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//CS chip selection W5500
+	for(i=0;i<len;i++)//The loop writes the size bytes of the buffer to the W5500.
+	{
+		SPI1_Send_Byte(*pBuf++);//Write a byte of data
+	}
+	GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS); //Pull high CS to cancel the chip selection
 
+}
 
 //Write 1 byte data to the W5500 specified address register via SPI1
 // reg:16 Bit register address, dat:Data to be written
@@ -257,24 +268,24 @@ void Write_W5500_SOCK_4Byte(SOCKET s, u16 reg, u8 *dat_ptr)
 
 
 
-//读取W5500指定地址寄存器的1个字节数据
-//reg:16位寄存器地址
-//返回:读取到寄存器的1个字节数据
+// Read the 1 byte data of the W5500 specified address register
+// reg: 16-bit register address
+// Return: read 1 byte of data into the register
 u8 Read_W5500_1Byte(u16 reg)
 {
 	u8 i;
 
-	GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//拉低CS CS chip selection W5500
+	GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//Pull down CS, CS chip selection W5500
 			
 	SPI1_Send_Short(reg);  //Write 16-bit register address via SPI1
-	SPI1_Send_Byte(FDM1|RWB_READ|COMMON_R);//Write control byte via SPI1,1Byte data length,Reading data,选择通用寄存器
+	SPI1_Send_Byte(FDM1|RWB_READ|COMMON_R);//Write control byte via SPI1,1Byte data length,Reading data,Select general purpose register
 
 	i=SPI_I2S_ReceiveData(SPI1);
-	SPI1_Send_Byte(0x00);//发送空数据 等待返回数据
-	i=SPI_I2S_ReceiveData(SPI1);//读取1个字节数据
+	SPI1_Send_Byte(0x00);//Send empty data, wait for return data
+	i=SPI_I2S_ReceiveData(SPI1);//Read 1 byte of data
 
 	GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS);//Pull high CS to cancel the chip selection
-	return i;//返回读取到的寄存器数据
+	return i;//Return the read register data
 }
 
 
@@ -292,11 +303,11 @@ u8 Read_W5500_SOCK_1Byte(SOCKET s, u16 reg)
 	SPI1_Send_Byte(FDM1|RWB_READ|(s*0x20+0x08));//Write control byte via SPI1,1Byte data length,Reading data,Select port s register
 
 	i=SPI_I2S_ReceiveData(SPI1);
-	SPI1_Send_Byte(0x00);   //发送空数据 等待返回数据
+	SPI1_Send_Byte(0x00);   //Send empty data, wait for return data
 	i=SPI_I2S_ReceiveData(SPI1);//读取1个字节数据
 
 	GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS);  //Pull high CS to cancel the chip selection
-	return i;//返回读取到的寄存器数据
+	return i;//Return the read register data
 }
 
 
@@ -314,22 +325,22 @@ u16 Read_W5500_SOCK_2Byte(SOCKET s, u16 reg)
 	SPI1_Send_Byte(FDM2|RWB_READ|(s*0x20+0x08));//Write control byte via SPI1,2Byte data length,Reading data,Select port s register
 
 	i=SPI_I2S_ReceiveData(SPI1);
-	SPI1_Send_Byte(0x00);//发送空数据 等待返回数据
-	i=SPI_I2S_ReceiveData(SPI1);//读取高位数据
-	SPI1_Send_Byte(0x00);//发送空数据 等待返回数据
+	SPI1_Send_Byte(0x00);//Send empty data, wait for return data
+	i=SPI_I2S_ReceiveData(SPI1);//Read high data
+	SPI1_Send_Byte(0x00);//Send empty data, wait for return data
 	i*=256;
-	i+=SPI_I2S_ReceiveData(SPI1);//读取低位数据
+	i+=SPI_I2S_ReceiveData(SPI1);//Read low order data
 
 	GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS);//Pull high CS to cancel the chip selection
-	return i;//返回读取到的寄存器数据
+	return i;//Return the read register data
 }
 
 
 
 
-//从W5500接收数据缓冲区中读取数据
-//s:端口号,*dat_ptr:数据保存缓冲区指针
-//返回值:读取到的数据长度,rx_size个字节
+//Read data from the W5500 receive data buffer
+//s: port number, *dat_ptr: data save buffer pointer
+//Return value: the length of the read data, rx_size bytes
 u16 Read_SOCK_Data_Buffer(SOCKET s, u8 *dat_ptr)
 {
 	u16 rx_size;
@@ -338,48 +349,48 @@ u16 Read_SOCK_Data_Buffer(SOCKET s, u8 *dat_ptr)
 	u8 j;
 
 	rx_size=Read_W5500_SOCK_2Byte(s,Sn_RX_RSR);
-	if(rx_size==0) return 0;  //没接收到数据则返回
+	if(rx_size==0) return 0;  //Return if no data is received
 	if(rx_size>1460) rx_size=1460;
 
 	offset=Read_W5500_SOCK_2Byte(s,Sn_RX_RD);
 	offset1=offset;
-	offset&=(S_RX_SIZE-1);    //计算实际的物理地址
+	offset&=(S_RX_SIZE-1);    //Calculate the actual physical address
 
-	GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//拉低CS CS chip selection W5500
+	GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//CS chip selection W5500
 
-	SPI1_Send_Short(offset);//写16位地址
-	SPI1_Send_Byte(VDM|RWB_READ|(s*0x20+0x18));//写控制字节,NByte data length,Reading data,Select port s register
+	SPI1_Send_Short(offset);//Write 16-bit address
+	SPI1_Send_Byte(VDM|RWB_READ|(s*0x20+0x18));//Write control byte,NByte data length,Reading data,Select port s register
 	j=SPI_I2S_ReceiveData(SPI1);
 	
-	if((offset+rx_size)<S_RX_SIZE)//如果最大地址未超过W5500接收缓冲区寄存器的最大地址
+	if((offset+rx_size)<S_RX_SIZE)//If the maximum address does not exceed the maximum address of the W5500 receive buffer register
 	{
-		for(i=0;i<rx_size;i++)//循环读取rx_size个字节数据
+		for(i=0;i<rx_size;i++)//Loop reading rx_size bytes of data
 		{
-			SPI1_Send_Byte(0x00);//发送一个哑数据
-			j=SPI_I2S_ReceiveData(SPI1);//读取1个字节数据
-			*dat_ptr=j;//将读取到的数据保存到数据保存缓冲区
-			dat_ptr++;//数据保存缓冲区指针地址自增1
+			SPI1_Send_Byte(0x00);//Send a dummy data
+			j=SPI_I2S_ReceiveData(SPI1);//Read 1 byte of data
+			*dat_ptr=j;//Save the read data to the data save buffer
+			dat_ptr++;//Data save buffer pointer address is incremented by 1
 		}
 	}
-	else//如果最大地址超过W5500接收缓冲区寄存器的最大地址
+	else//If the maximum address exceeds the maximum address of the W5500 receive buffer register
 	{
 		offset=S_RX_SIZE-offset;
 		for(i=0;i<offset;i++)//循环读取出前offset个字节数据
 		{
-			SPI1_Send_Byte(0x00);//发送一个哑数据
-			j=SPI_I2S_ReceiveData(SPI1);//读取1个字节数据
-			*dat_ptr=j;//将读取到的数据保存到数据保存缓冲区
-			dat_ptr++;//数据保存缓冲区指针地址自增1
+			SPI1_Send_Byte(0x00);//Send a dummy data
+			j=SPI_I2S_ReceiveData(SPI1);//Read 1 byte of data
+			*dat_ptr=j;//Save the read data to the data save buffer
+			dat_ptr++;//Data save buffer pointer address is incremented by 1
 		}
 		GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS);  //Pull high CS to cancel the chip selection
 
 		GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//拉低CS CS chip selection W5500
 
 		SPI1_Send_Short(0x00);//写16位地址
-		SPI1_Send_Byte(VDM|RWB_READ|(s*0x20+0x18));//写控制字节,NByte data length,Reading data,Select port s register
+		SPI1_Send_Byte(VDM|RWB_READ|(s*0x20+0x18));//Write control byte,NByte data length,Reading data,Select port s register
 		j=SPI_I2S_ReceiveData(SPI1);
 
-		for(;i<rx_size;i++)//循环读取后rx_size-offset个字节数据
+		for(;i<rx_size;i++)//Rx_size-offset bytes of data after cyclic reading
 		{
 			SPI1_Send_Byte(0x00);//发送一个哑数据
 			j=SPI_I2S_ReceiveData(SPI1);//读取1个字节数据
@@ -389,26 +400,26 @@ u16 Read_SOCK_Data_Buffer(SOCKET s, u8 *dat_ptr)
 	}
 	GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS); //Pull high CS to cancel the chip selection
 
-	offset1+=rx_size;//更新实际物理地址,即下次读取接收到的数据的起始地址
+	offset1+=rx_size;//Update the actual physical address, that is, the starting address of the received data next time.
 	Write_W5500_SOCK_2Byte(s, Sn_RX_RD, offset1);
-	Write_W5500_SOCK_1Byte(s, Sn_CR, RECV);//发送启动接收命令
+	Write_W5500_SOCK_1Byte(s, Sn_CR, RECV);//Send start receive command
 	return rx_size;//Returns the length of the received data
 }
 
 
 
-//将数据写入W5500的数据发送缓冲区
-//s:端口号,*dat_ptr:数据保存缓冲区指针,size:待写入数据的长度
+// Write data to the W5500 data send buffer
+// s: port number, *dat_ptr: data save buffer pointer, size: length of data to be written
 void Write_SOCK_Data_Buffer(SOCKET s, u8 *dat_ptr, u16 size)
 {
 	u16 offset,offset1;
 	u16 i;
 
 	//If it is UDP mode, you can set the IP and port number of the destination host here.
-	if((Read_W5500_SOCK_1Byte(s,Sn_MR)&0x0f) == MR_UDP)//如果是UDP模式将接收到的主机地址和端口更新到模块端口中
+	if((Read_W5500_SOCK_1Byte(s,Sn_MR)&0x0f) == MR_UDP)//If it is UDP mode, update the received host address and port to the module port.
 	{													
-		Write_W5500_SOCK_4Byte(s, Sn_DIPR, UDP_DIPR);//设置目的主机IP  		
-		Write_W5500_SOCK_2Byte(s, Sn_DPORTR, UDP_DPORT[0]*256+UDP_DPORT[1]);//设置目的主机端口号				
+		Write_W5500_SOCK_4Byte(s, Sn_DIPR, UDP_DIPR);//Set the destination host IP  		
+		Write_W5500_SOCK_2Byte(s, Sn_DPORTR, UDP_DPORT[0]*256+UDP_DPORT[1]);//Set the destination host port number				
 	}
 
 	offset=Read_W5500_SOCK_2Byte(s,Sn_TX_WR);
@@ -417,36 +428,36 @@ void Write_SOCK_Data_Buffer(SOCKET s, u8 *dat_ptr, u16 size)
 
 	GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//Chip selection
 
-	SPI1_Send_Short(offset);//写16位地址
-	SPI1_Send_Byte(VDM|RWB_WRITE|(s*0x20+0x10));//写控制字节,NByte data length,Write data,Select port s register
+	SPI1_Send_Short(offset);//Write 16-bit address
+	SPI1_Send_Byte(VDM|RWB_WRITE|(s*0x20+0x10));//Write control byte,NByte data length,Write data,Select port s register
 
-	if((offset+size)<S_TX_SIZE)//如果最大地址未超过W5500发送缓冲区寄存器的最大地址
+	if((offset+size)<S_TX_SIZE)//If the maximum address does not exceed the maximum address of the W5500 Transmit Buffer Register
 	{
-		for(i=0;i<size;i++)//循环写入size个字节数据
+		for(i=0;i<size;i++)//Cyclicly write size bytes of data
 		{
-			SPI1_Send_Byte(*dat_ptr++);//写入一个字节的数据		
+			SPI1_Send_Byte(*dat_ptr++);//Write one byte of data		
 		}
 	}
-	else//如果最大地址超过W5500发送缓冲区寄存器的最大地址
+	else//If the maximum address exceeds the maximum address of the W5500 Transmit Buffer Register
 	{
 		offset=S_TX_SIZE-offset;
-		for(i=0;i<offset;i++)//循环写入前offset个字节数据
+		for(i=0;i<offset;i++)//Offset byte data before loop write
 		{
-			SPI1_Send_Byte(*dat_ptr++);//写入一个字节的数据
+			SPI1_Send_Byte(*dat_ptr++);//Write one byte of data
 		}
-		GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS); //置W5500的SCS为高电平
+		GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS); //Set the SCS of the W5500 to a high level
 
-		GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//置W5500的SCS为低电平
+		GPIO_ResetBits(W5500_SCS_GPIO, W5500_SCS);//Set the SCS of the W5500 to a low level
 
-		SPI1_Send_Short(0x00);//写16位地址
-		SPI1_Send_Byte(VDM|RWB_WRITE|(s*0x20+0x10));//写控制字节,NByte data length,Write data,Select port s register
+		SPI1_Send_Short(0x00);//Write 16-bit address
+		SPI1_Send_Byte(VDM|RWB_WRITE|(s*0x20+0x10));//Write control byte,NByte data length,Write data,Select port s register
 
-		for(;i<size;i++)//循环写入size-offset个字节数据
+		for(;i<size;i++)//Loop write size-offset bytes of data
 		{
 			SPI1_Send_Byte(*dat_ptr++);//write one byte of data
 		}
 	}
-	GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS); //置W5500的SCS为高电平
+	GPIO_SetBits(W5500_SCS_GPIO, W5500_SCS); //Set the SCS of the W5500 to a high level
 
 	offset1+=size;//Update the actual physical address, that is, the starting address of the next time the data to be sent is sent to the transmit data buffer.
 	Write_W5500_SOCK_2Byte(s, Sn_TX_WR, offset1);
@@ -674,27 +685,27 @@ u8 Socket_Listen(SOCKET s)
 
 
 
-//设置指定Socket(0~7)为UDP模式
-//s:待设定的端口
-//返回值:成功返回TRUE(0xFF),失败返回FALSE(0x00)
-//说明  :如果Socket工作在UDP模式,引用该程序,在UDP模式下,Socket通信不需要建立连接
-//		 该程序只调用一次，就使W5500设置为UDP模式
+// Set the specified Socket (0 ~ 7) to UDP mode
+//s: the port to be set
+// Return value: success returns TRUE (0xFF), failure returns FALSE (0x00)
+// Description: If the Socket works in UDP mode, refer to the program, in UDP mode, Socket communication does not need to establish a connection
+// The program is called only once, setting W5500 to UDP mode.
 u8 Socket_UDP(SOCKET s)
 {
-	Write_W5500_SOCK_1Byte(s,Sn_MR,MR_UDP);//设置Socket为UDP模式*/
-	Write_W5500_SOCK_1Byte(s,Sn_CR,OPEN);//打开Socket*/
-	delay_ms(5);//延时5ms
-	if(Read_W5500_SOCK_1Byte(s,Sn_SR)!=SOCK_UDP)//如果Socket打开失败
+	Write_W5500_SOCK_1Byte(s,Sn_MR,MR_UDP);//Set Socket to UDP mode*/
+	Write_W5500_SOCK_1Byte(s,Sn_CR,OPEN);//Open Socket*/
+	delay_ms(5);
+	if(Read_W5500_SOCK_1Byte(s,Sn_SR)!=SOCK_UDP)//If Socket fails to open
 	{
-		Write_W5500_SOCK_1Byte(s,Sn_CR,CLOSE);//打开不成功,关闭Socket
-		return FALSE;//返回FALSE(0x00)
+		Write_W5500_SOCK_1Byte(s,Sn_CR,CLOSE);//Open unsuccessful, close Socket
+		return FALSE;//Return FALSE (0x00)
 	}
 	else
 		return TRUE;
 
-	//至此完成了Socket的打开和UDP模式设置,在这种模式下它不需要与远程主机建立连接
-	//因为Socket不需要建立连接,所以在发送数据前都可以设置目的主机IP和目的Socket的端口号
-	//如果目的主机IP和目的Socket的端口号是固定的,在运行过程中没有改变,那么也可以在这里设置
+	//This completes the Socket open and UDP mode settings, in which it does not need to establish a connection with the remote host.
+	//Because Socket does not need to establish a connection, you can set the port number of the destination host IP and destination Socket before sending data.
+	//If the port number of the destination host IP and destination Socket is fixed and has not changed during the running process, it can also be set here.
 }
 
 
@@ -714,7 +725,7 @@ Here:
 	W5500_Interrupt=0;//Clear interrupt flag
 	i = Read_W5500_1Byte(IR);//Read interrupt flag register
 	Write_W5500_1Byte(IR, (i&0xf0));//Write back clear interrupt flag
-
+	
 //	if((i & CONFLICT) == CONFLICT)//IP Address conflict exception handling
 //	{
 //		 //Add code yourself
@@ -725,36 +736,46 @@ Here:
 //		//Add code yourself
 //	}
 
-	i=Read_W5500_1Byte(SIR);//Read port interrupt flag register	
+	i=Read_W5500_1Byte(SIR);//Read port interrupt flag register
+  	
 	if((i & S0_INT) == S0_INT)//Socket0 Event processing
 	{
+		
 		j=Read_W5500_SOCK_1Byte(0,Sn_IR); //Read Socket0 interrupt flag register
+		//printf("Sn_IR truoc:%d\r\n",j);
 		Write_W5500_SOCK_1Byte(0,Sn_IR,j);//Write back clear interrupt flag
-
+		
+		
 		if(j&IR_CON)//In TCP mode, Socket0 is successfully connected. 
 		{
 			S0_State|=S_CONN;//Network connection status 0x02, the port is connected, and the data can be transmitted normally.
+			printf("TCP S0 is connected\r\n");
 		}
 		if(j&IR_DISCON)//Socket disconnection processing in TCP mode
 		{
 			Write_W5500_SOCK_1Byte(0,Sn_CR,CLOSE);//Close the port and wait for the connection to be reopened
 			Socket_Init(0);		//Specify Socket (0~7) initialization, initialize port 0
 			S0_State=0;//Network connection status 0x00, port connection failed
+			printf("S0 tcp disconnect\r\n");
 		}
 		if(j&IR_SEND_OK)//Socket0 data transmission is completed, you can start the S_tx_process() function to send data again. 
 		{
 			S0_Data|=S_TRANSMITOK;//The port sends a packet to complete 
+			printf("S0 TRANSMIT OK\r\n");
 		}
 		if(j&IR_RECV)//Socket receives the data, you can start the S_rx_process () function 
 		{
 			S0_Data|=S_RECEIVE;//The port received a packet
+			printf("S0 0 received\r\n");
 		}
 		if(j&IR_TIMEOUT)//Socket connection or data transfer timeout processing 
 		{
 			Write_W5500_SOCK_1Byte(0,Sn_CR,CLOSE);// Close the port and wait for the connection to be reopened
 			S0_State=0;//Network connection status 0x00, port connection failed
+			printf("Socket timeout\r\n");
 		}
 	}
+	else printf("else\r\n");
 
 	if(Read_W5500_1Byte(SIR) != 0) 
 		goto Here;

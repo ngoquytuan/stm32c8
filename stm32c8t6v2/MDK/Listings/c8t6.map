@@ -4,58 +4,8 @@ Component: ARM Compiler 6.12 Tool: armlink [5d624300]
 
 Section Cross References
 
-    c8t6f2fucn.o(.text.chip_on) refers to stm32f10x_gpio.o(.text.GPIO_ResetBits) for GPIO_ResetBits
-    c8t6f2fucn.o(.ARM.exidx.text.chip_on) refers to c8t6f2fucn.o(.text.chip_on) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.chip_off) refers to stm32f10x_gpio.o(.text.GPIO_SetBits) for GPIO_SetBits
-    c8t6f2fucn.o(.ARM.exidx.text.chip_off) refers to c8t6f2fucn.o(.text.chip_off) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.SPI_SendReceiveByte) refers to stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
-    c8t6f2fucn.o(.text.SPI_SendReceiveByte) refers to stm32f10x_spi.o(.text.SPI_I2S_SendData) for SPI_I2S_SendData
-    c8t6f2fucn.o(.text.SPI_SendReceiveByte) refers to stm32f10x_spi.o(.text.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
-    c8t6f2fucn.o(.ARM.exidx.text.SPI_SendReceiveByte) refers to c8t6f2fucn.o(.text.SPI_SendReceiveByte) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.senddata) refers to stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
-    c8t6f2fucn.o(.text.senddata) refers to stm32f10x_spi.o(.text.SPI_I2S_SendData) for SPI_I2S_SendData
-    c8t6f2fucn.o(.text.senddata) refers to stm32f10x_spi.o(.text.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
-    c8t6f2fucn.o(.ARM.exidx.text.senddata) refers to c8t6f2fucn.o(.text.senddata) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.w5500_ini) refers to c8t6f2fucn.o(.text.chip_off) for chip_off
-    c8t6f2fucn.o(.text.w5500_ini) refers to wizchip_conf.o(.text.reg_wizchip_spi_cbfunc) for reg_wizchip_spi_cbfunc
-    c8t6f2fucn.o(.text.w5500_ini) refers to wizchip_conf.o(.text.reg_wizchip_cs_cbfunc) for reg_wizchip_cs_cbfunc
-    c8t6f2fucn.o(.text.w5500_ini) refers to wizchip_conf.o(.text.ctlwizchip) for ctlwizchip
-    c8t6f2fucn.o(.text.w5500_ini) refers to puts.o(i.puts) for puts
-    c8t6f2fucn.o(.text.w5500_ini) refers to c8t6f2fucn.o(.text.SPI_SendReceiveByte) for SPI_SendReceiveByte
-    c8t6f2fucn.o(.text.w5500_ini) refers to c8t6f2fucn.o(.text.senddata) for senddata
-    c8t6f2fucn.o(.text.w5500_ini) refers to c8t6f2fucn.o(.text.chip_on) for chip_on
-    c8t6f2fucn.o(.ARM.exidx.text.w5500_ini) refers to c8t6f2fucn.o(.text.w5500_ini) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.Load_Net_Parameters) refers to w5500tq.o(.bss..L_MergedGlobals) for Gateway_IP
-    c8t6f2fucn.o(.text.Load_Net_Parameters) refers to w5500tq.o(.data.S0_Mode) for S0_Mode
-    c8t6f2fucn.o(.ARM.exidx.text.Load_Net_Parameters) refers to c8t6f2fucn.o(.text.Load_Net_Parameters) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.W5500_Initialization) refers to w5500tq.o(.text.W5500_Init) for W5500_Init
-    c8t6f2fucn.o(.text.W5500_Initialization) refers to w5500tq.o(.text.Detect_Gateway) for Detect_Gateway
-    c8t6f2fucn.o(.text.W5500_Initialization) refers to printfa.o(i.__0printf) for __2printf
-    c8t6f2fucn.o(.text.W5500_Initialization) refers to w5500tq.o(.text.Socket_Init) for Socket_Init
-    c8t6f2fucn.o(.ARM.exidx.text.W5500_Initialization) refers to c8t6f2fucn.o(.text.W5500_Initialization) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.W5500_Socket_Set) refers to w5500tq.o(.text.Socket_Listen) for Socket_Listen
-    c8t6f2fucn.o(.text.W5500_Socket_Set) refers to w5500tq.o(.text.Socket_Connect) for Socket_Connect
-    c8t6f2fucn.o(.text.W5500_Socket_Set) refers to w5500tq.o(.text.Socket_UDP) for Socket_UDP
-    c8t6f2fucn.o(.text.W5500_Socket_Set) refers to w5500tq.o(.bss..L_MergedGlobals) for S0_State
-    c8t6f2fucn.o(.text.W5500_Socket_Set) refers to w5500tq.o(.data.S0_Mode) for S0_Mode
-    c8t6f2fucn.o(.ARM.exidx.text.W5500_Socket_Set) refers to c8t6f2fucn.o(.text.W5500_Socket_Set) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.Process_Socket_Data) refers to w5500tq.o(.text.Read_SOCK_Data_Buffer) for Read_SOCK_Data_Buffer
-    c8t6f2fucn.o(.text.Process_Socket_Data) refers to memcpya.o(.text) for __aeabi_memcpy
-    c8t6f2fucn.o(.text.Process_Socket_Data) refers to w5500tq.o(.text.Write_SOCK_Data_Buffer) for Write_SOCK_Data_Buffer
-    c8t6f2fucn.o(.text.Process_Socket_Data) refers to w5500tq.o(.bss.Rx_Buffer) for Rx_Buffer
-    c8t6f2fucn.o(.text.Process_Socket_Data) refers to w5500tq.o(.bss..L_MergedGlobals) for UDP_DIPR
-    c8t6f2fucn.o(.text.Process_Socket_Data) refers to w5500tq.o(.bss.Tx_Buffer) for Tx_Buffer
-    c8t6f2fucn.o(.ARM.exidx.text.Process_Socket_Data) refers to c8t6f2fucn.o(.text.Process_Socket_Data) for [Anonymous Symbol]
-    c8t6f2fucn.o(.text.w5500_run) refers to c8t6f2fucn.o(.text.W5500_Socket_Set) for W5500_Socket_Set
-    c8t6f2fucn.o(.text.w5500_run) refers to w5500tq.o(.text.W5500_Interrupt_Process) for W5500_Interrupt_Process
-    c8t6f2fucn.o(.text.w5500_run) refers to puts.o(i.puts) for puts
-    c8t6f2fucn.o(.text.w5500_run) refers to memcpya.o(.text) for __aeabi_memcpy
-    c8t6f2fucn.o(.text.w5500_run) refers to w5500tq.o(.text.Write_SOCK_Data_Buffer) for Write_SOCK_Data_Buffer
-    c8t6f2fucn.o(.text.w5500_run) refers to c8t6f2fucn.o(.text.Process_Socket_Data) for Process_Socket_Data
-    c8t6f2fucn.o(.text.w5500_run) refers to w5500tq.o(.bss..L_MergedGlobals) for W5500_Interrupt
-    c8t6f2fucn.o(.text.w5500_run) refers to c8t6f2fucn.o(.bss.W5500_Send_Delay) for W5500_Send_Delay
-    c8t6f2fucn.o(.text.w5500_run) refers to w5500tq.o(.bss.Tx_Buffer) for Tx_Buffer
-    c8t6f2fucn.o(.ARM.exidx.text.w5500_run) refers to c8t6f2fucn.o(.text.w5500_run) for [Anonymous Symbol]
+    c8t6f2fucn.o(.text.loadNetParas) refers to c8t6f2fucn.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
+    c8t6f2fucn.o(.ARM.exidx.text.loadNetParas) refers to c8t6f2fucn.o(.text.loadNetParas) for [Anonymous Symbol]
     c8t6f2fucn.o(.text.WWDG_Init) refers to stm32f10x_wwdg.o(.text.WWDG_SetPrescaler) for WWDG_SetPrescaler
     c8t6f2fucn.o(.text.WWDG_Init) refers to stm32f10x_wwdg.o(.text.WWDG_SetWindowValue) for WWDG_SetWindowValue
     c8t6f2fucn.o(.text.WWDG_Init) refers to stm32f10x_rcc.o(.text.RCC_APB1PeriphClockCmd) for RCC_APB1PeriphClockCmd
@@ -67,9 +17,12 @@ Section Cross References
     c8t6f2fucn.o(.text.GPIO_config) refers to gpio_stm32f10x.o(.text.GPIO_PinConfigure) for GPIO_PinConfigure
     c8t6f2fucn.o(.ARM.exidx.text.GPIO_config) refers to c8t6f2fucn.o(.text.GPIO_config) for [Anonymous Symbol]
     c8t6f2fucn.o(.text.tasks) refers to printfa.o(i.__0printf) for __2printf
+    c8t6f2fucn.o(.text.tasks) refers to loopback.o(.text.loopback_tcps) for loopback_tcps
     c8t6f2fucn.o(.text.tasks) refers to stm32f10x_it.o(.data..L_MergedGlobals) for task100ms
     c8t6f2fucn.o(.text.tasks) refers to stm32f10x_it.o(.bss..L_MergedGlobals.1) for USART1_rx_data_buff
     c8t6f2fucn.o(.text.tasks) refers to stm32f10x_it.o(.rodata.RX_BUFFER_SIZE0) for RX_BUFFER_SIZE0
+    c8t6f2fucn.o(.text.tasks) refers to c8t6f2fucn.o(.bss.gDATABUF) for gDATABUF
+    c8t6f2fucn.o(.text.tasks) refers to c8t6f2fucn.o(.bss.ret) for ret
     c8t6f2fucn.o(.ARM.exidx.text.tasks) refers to c8t6f2fucn.o(.text.tasks) for [Anonymous Symbol]
     c8t6f2fucn.o(.text.hardware_init) refers to system_stm32f10x.o(.text.SystemInit) for SystemInit
     c8t6f2fucn.o(.text.hardware_init) refers to system_stm32f10x.o(.text.SystemCoreClockUpdate) for SystemCoreClockUpdate
@@ -78,14 +31,17 @@ Section Cross References
     c8t6f2fucn.o(.text.hardware_init) refers to stm32f10x_rcc.o(.text.RCC_ClearFlag) for RCC_ClearFlag
     c8t6f2fucn.o(.text.hardware_init) refers to uart.o(.text.USART1_Init) for USART1_Init
     c8t6f2fucn.o(.text.hardware_init) refers to delay.o(.text.delay_ms) for delay_ms
-    c8t6f2fucn.o(.text.hardware_init) refers to uart.o(.text.USART1_SendStr_) for USART1_SendStr_
-    c8t6f2fucn.o(.text.hardware_init) refers to stm32f10x_rcc.o(.text.RCC_GetClocksFreq) for RCC_GetClocksFreq
+    c8t6f2fucn.o(.text.hardware_init) refers to w5500lib_init.o(.text.W5500_GPIO_Init2) for W5500_GPIO_Init2
+    c8t6f2fucn.o(.text.hardware_init) refers to w5500lib_init.o(.text.w5500_lib_init) for w5500_lib_init
+    c8t6f2fucn.o(.text.hardware_init) refers to c8t6f2fucn.o(.text.loadNetParas) for loadNetParas
+    c8t6f2fucn.o(.text.hardware_init) refers to wizchip_conf.o(.text.ctlnetwork) for ctlnetwork
+    c8t6f2fucn.o(.text.hardware_init) refers to puts.o(i.puts) for puts
+    c8t6f2fucn.o(.text.hardware_init) refers to wizchip_conf.o(.text.ctlwizchip) for ctlwizchip
+    c8t6f2fucn.o(.text.hardware_init) refers to w5500tq.o(.text.Read_W5500_1Byte) for Read_W5500_1Byte
     c8t6f2fucn.o(.text.hardware_init) refers to printfa.o(i.__0printf) for __2printf
-    c8t6f2fucn.o(.text.hardware_init) refers to spi.o(.text.SPI1_Init) for SPI1_Init
-    c8t6f2fucn.o(.text.hardware_init) refers to spi.o(.text.SPI1_SetSpeed) for SPI1_SetSpeed
-    c8t6f2fucn.o(.text.hardware_init) refers to c8t6f2fucn.o(.text.w5500_ini) for w5500_ini
     c8t6f2fucn.o(.text.hardware_init) refers to system_stm32f10x.o(.data.SystemCoreClock) for SystemCoreClock
-    c8t6f2fucn.o(.text.hardware_init) refers to c8t6f2fucn.o(.bss.mcu_clk) for mcu_clk
+    c8t6f2fucn.o(.text.hardware_init) refers to c8t6f2fucn.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
+    c8t6f2fucn.o(.text.hardware_init) refers to c8t6f2fucn.o(.rodata.str1.1) for .L.str.6
     c8t6f2fucn.o(.ARM.exidx.text.hardware_init) refers to c8t6f2fucn.o(.text.hardware_init) for [Anonymous Symbol]
     c8t6f2main.o(.text.fputc) refers to stm32f10x_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
     c8t6f2main.o(.text.fputc) refers to stm32f10x_usart.o(.text.USART_SendData) for USART_SendData
@@ -94,6 +50,39 @@ Section Cross References
     c8t6f2main.o(.text.main) refers to stm32f10x_wwdg.o(.text.WWDG_SetCounter) for WWDG_SetCounter
     c8t6f2main.o(.text.main) refers to c8t6f2fucn.o(.text.tasks) for tasks
     c8t6f2main.o(.ARM.exidx.text.main) refers to c8t6f2main.o(.text.main) for [Anonymous Symbol]
+    loopback.o(.text.loopback_tcps) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    loopback.o(.text.loopback_tcps) refers to w5500.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
+    loopback.o(.text.loopback_tcps) refers to printfa.o(i.__0printf) for __2printf
+    loopback.o(.text.loopback_tcps) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    loopback.o(.text.loopback_tcps) refers to w5500.o(.text.getSn_RX_RSR) for getSn_RX_RSR
+    loopback.o(.text.loopback_tcps) refers to socket.o(.text.recv) for recv
+    loopback.o(.text.loopback_tcps) refers to socket.o(.text.send) for send
+    loopback.o(.text.loopback_tcps) refers to socket.o(.text.socket) for socket
+    loopback.o(.text.loopback_tcps) refers to socket.o(.text.listen) for listen
+    loopback.o(.text.loopback_tcps) refers to socket.o(.text.disconnect) for disconnect
+    loopback.o(.text.loopback_tcps) refers to socket.o(.text.close) for close
+    loopback.o(.text.loopback_tcps) refers to loopback.o(.rodata.str1.1) for .L.str.1
+    loopback.o(.ARM.exidx.text.loopback_tcps) refers to loopback.o(.text.loopback_tcps) for [Anonymous Symbol]
+    loopback.o(.text.loopback_tcpc) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    loopback.o(.text.loopback_tcpc) refers to printfa.o(i.__0printf) for __2printf
+    loopback.o(.text.loopback_tcpc) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    loopback.o(.text.loopback_tcpc) refers to w5500.o(.text.getSn_RX_RSR) for getSn_RX_RSR
+    loopback.o(.text.loopback_tcpc) refers to socket.o(.text.recv) for recv
+    loopback.o(.text.loopback_tcpc) refers to socket.o(.text.send) for send
+    loopback.o(.text.loopback_tcpc) refers to socket.o(.text.close) for close
+    loopback.o(.text.loopback_tcpc) refers to socket.o(.text.socket) for socket
+    loopback.o(.text.loopback_tcpc) refers to socket.o(.text.connect) for connect
+    loopback.o(.text.loopback_tcpc) refers to socket.o(.text.disconnect) for disconnect
+    loopback.o(.text.loopback_tcpc) refers to loopback.o(.data.loopback_tcpc.any_port) for [Anonymous Symbol]
+    loopback.o(.text.loopback_tcpc) refers to loopback.o(.rodata.str1.1) for .L.str.1
+    loopback.o(.ARM.exidx.text.loopback_tcpc) refers to loopback.o(.text.loopback_tcpc) for [Anonymous Symbol]
+    loopback.o(.text.loopback_udps) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    loopback.o(.text.loopback_udps) refers to w5500.o(.text.getSn_RX_RSR) for getSn_RX_RSR
+    loopback.o(.text.loopback_udps) refers to socket.o(.text.recvfrom) for recvfrom
+    loopback.o(.text.loopback_udps) refers to socket.o(.text.sendto) for sendto
+    loopback.o(.text.loopback_udps) refers to socket.o(.text.socket) for socket
+    loopback.o(.text.loopback_udps) refers to printfa.o(i.__0printf) for __2printf
+    loopback.o(.ARM.exidx.text.loopback_udps) refers to loopback.o(.text.loopback_udps) for [Anonymous Symbol]
     delay.o(.ARM.exidx.text.delay) refers to delay.o(.text.delay) for [Anonymous Symbol]
     delay.o(.ARM.exidx.text.delay_ms) refers to delay.o(.text.delay_ms) for [Anonymous Symbol]
     delay.o(.ARM.exidx.text.delay_us) refers to delay.o(.text.delay_us) for [Anonymous Symbol]
@@ -563,6 +552,10 @@ Section Cross References
     w5500tq.o(.ARM.exidx.text.SPI1_Send_Byte) refers to w5500tq.o(.text.SPI1_Send_Byte) for [Anonymous Symbol]
     w5500tq.o(.text.SPI1_Send_Short) refers to w5500tq.o(.text.SPI1_Send_Byte) for SPI1_Send_Byte
     w5500tq.o(.ARM.exidx.text.SPI1_Send_Short) refers to w5500tq.o(.text.SPI1_Send_Short) for [Anonymous Symbol]
+    w5500tq.o(.text.spiburst_wb2) refers to stm32f10x_gpio.o(.text.GPIO_ResetBits) for GPIO_ResetBits
+    w5500tq.o(.text.spiburst_wb2) refers to w5500tq.o(.text.SPI1_Send_Byte) for SPI1_Send_Byte
+    w5500tq.o(.text.spiburst_wb2) refers to stm32f10x_gpio.o(.text.GPIO_SetBits) for GPIO_SetBits
+    w5500tq.o(.ARM.exidx.text.spiburst_wb2) refers to w5500tq.o(.text.spiburst_wb2) for [Anonymous Symbol]
     w5500tq.o(.text.Write_W5500_1Byte) refers to stm32f10x_gpio.o(.text.GPIO_ResetBits) for GPIO_ResetBits
     w5500tq.o(.text.Write_W5500_1Byte) refers to w5500tq.o(.text.SPI1_Send_Short) for SPI1_Send_Short
     w5500tq.o(.text.Write_W5500_1Byte) refers to w5500tq.o(.text.SPI1_Send_Byte) for SPI1_Send_Byte
@@ -669,6 +662,7 @@ Section Cross References
     w5500tq.o(.text.W5500_Interrupt_Process) refers to w5500tq.o(.text.Write_W5500_1Byte) for Write_W5500_1Byte
     w5500tq.o(.text.W5500_Interrupt_Process) refers to w5500tq.o(.text.Read_W5500_SOCK_1Byte) for Read_W5500_SOCK_1Byte
     w5500tq.o(.text.W5500_Interrupt_Process) refers to w5500tq.o(.text.Write_W5500_SOCK_1Byte) for Write_W5500_SOCK_1Byte
+    w5500tq.o(.text.W5500_Interrupt_Process) refers to puts.o(i.puts) for puts
     w5500tq.o(.text.W5500_Interrupt_Process) refers to w5500tq.o(.text.Socket_Init) for Socket_Init
     w5500tq.o(.text.W5500_Interrupt_Process) refers to w5500tq.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     w5500tq.o(.ARM.exidx.text.W5500_Interrupt_Process) refers to w5500tq.o(.text.W5500_Interrupt_Process) for [Anonymous Symbol]
@@ -708,8 +702,8 @@ Section Cross References
     wizchip_conf.o(.text.ctlwizchip) refers to wizchip_conf.o(.text.wizchip_clrinterrupt) for wizchip_clrinterrupt
     wizchip_conf.o(.text.ctlwizchip) refers to wizchip_conf.o(.text.wizchip_setinterruptmask) for wizchip_setinterruptmask
     wizchip_conf.o(.text.ctlwizchip) refers to wizchip_conf.o(.text.wizchip_getinterruptmask) for wizchip_getinterruptmask
-    wizchip_conf.o(.text.ctlwizchip) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    wizchip_conf.o(.text.ctlwizchip) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.ctlwizchip) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.ctlwizchip) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.text.ctlwizchip) refers to wizchip_conf.o(.text.wizphy_reset) for wizphy_reset
     wizchip_conf.o(.text.ctlwizchip) refers to wizchip_conf.o(.text.wizphy_setphyconf) for wizphy_setphyconf
     wizchip_conf.o(.text.ctlwizchip) refers to wizchip_conf.o(.text.wizphy_getphyconf) for wizphy_getphyconf
@@ -718,37 +712,37 @@ Section Cross References
     wizchip_conf.o(.text.ctlwizchip) refers to wizchip_conf.o(.text.wizphy_getphylink) for wizphy_getphylink
     wizchip_conf.o(.text.ctlwizchip) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
     wizchip_conf.o(.ARM.exidx.text.ctlwizchip) refers to wizchip_conf.o(.text.ctlwizchip) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_sw_reset) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    wizchip_conf.o(.text.wizchip_sw_reset) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    wizchip_conf.o(.text.wizchip_sw_reset) refers to w5500_1.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
-    wizchip_conf.o(.text.wizchip_sw_reset) refers to w5500_1.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
+    wizchip_conf.o(.text.wizchip_sw_reset) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizchip_sw_reset) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizchip_sw_reset) refers to w5500.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
+    wizchip_conf.o(.text.wizchip_sw_reset) refers to w5500.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
     wizchip_conf.o(.ARM.exidx.text.wizchip_sw_reset) refers to wizchip_conf.o(.text.wizchip_sw_reset) for [Anonymous Symbol]
     wizchip_conf.o(.text.wizchip_init) refers to wizchip_conf.o(.text.wizchip_sw_reset) for wizchip_sw_reset
-    wizchip_conf.o(.text.wizchip_init) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizchip_init) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     wizchip_conf.o(.ARM.exidx.text.wizchip_init) refers to wizchip_conf.o(.text.wizchip_init) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_clrinterrupt) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizchip_clrinterrupt) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     wizchip_conf.o(.ARM.exidx.text.wizchip_clrinterrupt) refers to wizchip_conf.o(.text.wizchip_clrinterrupt) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_getinterrupt) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizchip_getinterrupt) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.ARM.exidx.text.wizchip_getinterrupt) refers to wizchip_conf.o(.text.wizchip_getinterrupt) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_setinterruptmask) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizchip_setinterruptmask) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     wizchip_conf.o(.ARM.exidx.text.wizchip_setinterruptmask) refers to wizchip_conf.o(.text.wizchip_setinterruptmask) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_getinterruptmask) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizchip_getinterruptmask) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.ARM.exidx.text.wizchip_getinterruptmask) refers to wizchip_conf.o(.text.wizchip_getinterruptmask) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizphy_reset) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    wizchip_conf.o(.text.wizphy_reset) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizphy_reset) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizphy_reset) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     wizchip_conf.o(.ARM.exidx.text.wizphy_reset) refers to wizchip_conf.o(.text.wizphy_reset) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizphy_setphyconf) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizphy_setphyconf) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     wizchip_conf.o(.text.wizphy_setphyconf) refers to wizchip_conf.o(.text.wizphy_reset) for wizphy_reset
     wizchip_conf.o(.ARM.exidx.text.wizphy_setphyconf) refers to wizchip_conf.o(.text.wizphy_setphyconf) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizphy_getphyconf) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizphy_getphyconf) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.ARM.exidx.text.wizphy_getphyconf) refers to wizchip_conf.o(.text.wizphy_getphyconf) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizphy_setphypmode) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    wizchip_conf.o(.text.wizphy_setphypmode) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizphy_setphypmode) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizphy_setphypmode) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     wizchip_conf.o(.text.wizphy_setphypmode) refers to wizchip_conf.o(.text.wizphy_reset) for wizphy_reset
     wizchip_conf.o(.ARM.exidx.text.wizphy_setphypmode) refers to wizchip_conf.o(.text.wizphy_setphypmode) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizphy_getphypmode) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizphy_getphypmode) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.ARM.exidx.text.wizphy_getphypmode) refers to wizchip_conf.o(.text.wizphy_getphypmode) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizphy_getphylink) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizphy_getphylink) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.ARM.exidx.text.wizphy_getphylink) refers to wizchip_conf.o(.text.wizphy_getphylink) for [Anonymous Symbol]
     wizchip_conf.o(.text.ctlnetwork) refers to wizchip_conf.o(.text.wizchip_setnetinfo) for wizchip_setnetinfo
     wizchip_conf.o(.text.ctlnetwork) refers to wizchip_conf.o(.text.wizchip_getnetinfo) for wizchip_getnetinfo
@@ -757,22 +751,22 @@ Section Cross References
     wizchip_conf.o(.text.ctlnetwork) refers to wizchip_conf.o(.text.wizchip_settimeout) for wizchip_settimeout
     wizchip_conf.o(.text.ctlnetwork) refers to wizchip_conf.o(.text.wizchip_gettimeout) for wizchip_gettimeout
     wizchip_conf.o(.ARM.exidx.text.ctlnetwork) refers to wizchip_conf.o(.text.ctlnetwork) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_setnetinfo) refers to w5500_1.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
+    wizchip_conf.o(.text.wizchip_setnetinfo) refers to w5500.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
     wizchip_conf.o(.text.wizchip_setnetinfo) refers to wizchip_conf.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     wizchip_conf.o(.ARM.exidx.text.wizchip_setnetinfo) refers to wizchip_conf.o(.text.wizchip_setnetinfo) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_getnetinfo) refers to w5500_1.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
+    wizchip_conf.o(.text.wizchip_getnetinfo) refers to w5500.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
     wizchip_conf.o(.text.wizchip_getnetinfo) refers to wizchip_conf.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     wizchip_conf.o(.ARM.exidx.text.wizchip_getnetinfo) refers to wizchip_conf.o(.text.wizchip_getnetinfo) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_setnetmode) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    wizchip_conf.o(.text.wizchip_setnetmode) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizchip_setnetmode) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizchip_setnetmode) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     wizchip_conf.o(.ARM.exidx.text.wizchip_setnetmode) refers to wizchip_conf.o(.text.wizchip_setnetmode) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_getnetmode) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizchip_getnetmode) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.ARM.exidx.text.wizchip_getnetmode) refers to wizchip_conf.o(.text.wizchip_getnetmode) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_settimeout) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    wizchip_conf.o(.text.wizchip_settimeout) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     wizchip_conf.o(.ARM.exidx.text.wizchip_settimeout) refers to wizchip_conf.o(.text.wizchip_settimeout) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizchip_gettimeout) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizchip_gettimeout) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.ARM.exidx.text.wizchip_gettimeout) refers to wizchip_conf.o(.text.wizchip_gettimeout) for [Anonymous Symbol]
-    wizchip_conf.o(.text.wizphy_getphystat) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    wizchip_conf.o(.text.wizphy_getphystat) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     wizchip_conf.o(.ARM.exidx.text.wizphy_getphystat) refers to wizchip_conf.o(.text.wizphy_getphystat) for [Anonymous Symbol]
     wizchip_conf.o(.data.WIZCHIP) refers to wizchip_conf.o(.text.wizchip_cris_enter) for wizchip_cris_enter
     wizchip_conf.o(.data.WIZCHIP) refers to wizchip_conf.o(.text.wizchip_cris_exit) for wizchip_cris_exit
@@ -780,98 +774,163 @@ Section Cross References
     wizchip_conf.o(.data.WIZCHIP) refers to wizchip_conf.o(.text.wizchip_cs_deselect) for wizchip_cs_deselect
     wizchip_conf.o(.data.WIZCHIP) refers to wizchip_conf.o(.text.wizchip_bus_readdata) for wizchip_bus_readdata
     wizchip_conf.o(.data.WIZCHIP) refers to wizchip_conf.o(.text.wizchip_bus_writedata) for wizchip_bus_writedata
-    socket.o(.text.socket) refers to w5500_1.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
+    socket.o(.text.socket) refers to w5500.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
     socket.o(.text.socket) refers to socket.o(.text.close) for close
-    socket.o(.text.socket) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    socket.o(.text.socket) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.socket) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.socket) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     socket.o(.text.socket) refers to socket.o(.data.sock_any_port) for [Anonymous Symbol]
     socket.o(.text.socket) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.socket) refers to socket.o(.text.socket) for [Anonymous Symbol]
-    socket.o(.text.close) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    socket.o(.text.close) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.close) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.close) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     socket.o(.text.close) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.close) refers to socket.o(.text.close) for [Anonymous Symbol]
-    socket.o(.text.listen) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    socket.o(.text.listen) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.listen) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.listen) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     socket.o(.text.listen) refers to socket.o(.text.close) for close
     socket.o(.ARM.exidx.text.listen) refers to socket.o(.text.listen) for [Anonymous Symbol]
-    socket.o(.text.connect) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    socket.o(.text.connect) refers to w5500_1.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
-    socket.o(.text.connect) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.connect) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.connect) refers to w5500.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
+    socket.o(.text.connect) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     socket.o(.text.connect) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.connect) refers to socket.o(.text.connect) for [Anonymous Symbol]
-    socket.o(.text.disconnect) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    socket.o(.text.disconnect) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.disconnect) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.disconnect) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     socket.o(.text.disconnect) refers to socket.o(.text.close) for close
     socket.o(.text.disconnect) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.disconnect) refers to socket.o(.text.disconnect) for [Anonymous Symbol]
-    socket.o(.text.send) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.send) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     socket.o(.text.send) refers to socket.o(.text.close) for close
-    socket.o(.text.send) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    socket.o(.text.send) refers to w5500_1.o(.text.getSn_TX_FSR) for getSn_TX_FSR
-    socket.o(.text.send) refers to w5500_1.o(.text.wiz_send_data) for wiz_send_data
+    socket.o(.text.send) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.send) refers to w5500.o(.text.getSn_TX_FSR) for getSn_TX_FSR
+    socket.o(.text.send) refers to w5500.o(.text.wiz_send_data) for wiz_send_data
     socket.o(.text.send) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.send) refers to socket.o(.text.send) for [Anonymous Symbol]
-    socket.o(.text.recv) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    socket.o(.text.recv) refers to w5500_1.o(.text.getSn_RX_RSR) for getSn_RX_RSR
-    socket.o(.text.recv) refers to w5500_1.o(.text.getSn_TX_FSR) for getSn_TX_FSR
+    socket.o(.text.recv) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.recv) refers to w5500.o(.text.getSn_RX_RSR) for getSn_RX_RSR
+    socket.o(.text.recv) refers to w5500.o(.text.getSn_TX_FSR) for getSn_TX_FSR
     socket.o(.text.recv) refers to socket.o(.text.close) for close
-    socket.o(.text.recv) refers to w5500_1.o(.text.wiz_recv_data) for wiz_recv_data
-    socket.o(.text.recv) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.recv) refers to w5500.o(.text.wiz_recv_data) for wiz_recv_data
+    socket.o(.text.recv) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     socket.o(.text.recv) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.recv) refers to socket.o(.text.recv) for [Anonymous Symbol]
-    socket.o(.text.sendto) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    socket.o(.text.sendto) refers to w5500_1.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
-    socket.o(.text.sendto) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    socket.o(.text.sendto) refers to w5500_1.o(.text.getSn_TX_FSR) for getSn_TX_FSR
-    socket.o(.text.sendto) refers to w5500_1.o(.text.wiz_send_data) for wiz_send_data
+    socket.o(.text.sendto) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.sendto) refers to w5500.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
+    socket.o(.text.sendto) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.sendto) refers to w5500.o(.text.getSn_TX_FSR) for getSn_TX_FSR
+    socket.o(.text.sendto) refers to w5500.o(.text.wiz_send_data) for wiz_send_data
     socket.o(.text.sendto) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.sendto) refers to socket.o(.text.sendto) for [Anonymous Symbol]
-    socket.o(.text.recvfrom) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    socket.o(.text.recvfrom) refers to w5500_1.o(.text.wiz_recv_data) for wiz_recv_data
-    socket.o(.text.recvfrom) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    socket.o(.text.recvfrom) refers to w5500_1.o(.text.getSn_RX_RSR) for getSn_RX_RSR
+    socket.o(.text.recvfrom) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.recvfrom) refers to w5500.o(.text.wiz_recv_data) for wiz_recv_data
+    socket.o(.text.recvfrom) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.recvfrom) refers to w5500.o(.text.getSn_RX_RSR) for getSn_RX_RSR
     socket.o(.text.recvfrom) refers to socket.o(.text.close) for close
-    socket.o(.text.recvfrom) refers to w5500_1.o(.text.wiz_recv_ignore) for wiz_recv_ignore
+    socket.o(.text.recvfrom) refers to w5500.o(.text.wiz_recv_ignore) for wiz_recv_ignore
     socket.o(.text.recvfrom) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.recvfrom) refers to socket.o(.text.recvfrom) for [Anonymous Symbol]
-    socket.o(.text.ctlsocket) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    socket.o(.text.ctlsocket) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.ctlsocket) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.ctlsocket) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
     socket.o(.text.ctlsocket) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.ctlsocket) refers to socket.o(.text.ctlsocket) for [Anonymous Symbol]
-    socket.o(.text.setsockopt) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    socket.o(.text.setsockopt) refers to w5500_1.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
-    socket.o(.text.setsockopt) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.setsockopt) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    socket.o(.text.setsockopt) refers to w5500.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
+    socket.o(.text.setsockopt) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
     socket.o(.ARM.exidx.text.setsockopt) refers to socket.o(.text.setsockopt) for [Anonymous Symbol]
-    socket.o(.text.getsockopt) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    socket.o(.text.getsockopt) refers to w5500_1.o(.text.getSn_RX_RSR) for getSn_RX_RSR
-    socket.o(.text.getsockopt) refers to w5500_1.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
-    socket.o(.text.getsockopt) refers to w5500_1.o(.text.getSn_TX_FSR) for getSn_TX_FSR
+    socket.o(.text.getsockopt) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    socket.o(.text.getsockopt) refers to w5500.o(.text.getSn_RX_RSR) for getSn_RX_RSR
+    socket.o(.text.getsockopt) refers to w5500.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
+    socket.o(.text.getsockopt) refers to w5500.o(.text.getSn_TX_FSR) for getSn_TX_FSR
     socket.o(.text.getsockopt) refers to socket.o(.bss..L_MergedGlobals) for [Anonymous Symbol]
     socket.o(.ARM.exidx.text.getsockopt) refers to socket.o(.text.getsockopt) for [Anonymous Symbol]
-    w5500_1.o(.text.WIZCHIP_READ) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
-    w5500_1.o(.ARM.exidx.text.WIZCHIP_READ) refers to w5500_1.o(.text.WIZCHIP_READ) for [Anonymous Symbol]
-    w5500_1.o(.text.WIZCHIP_WRITE) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
-    w5500_1.o(.ARM.exidx.text.WIZCHIP_WRITE) refers to w5500_1.o(.text.WIZCHIP_WRITE) for [Anonymous Symbol]
-    w5500_1.o(.text.WIZCHIP_READ_BUF) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
-    w5500_1.o(.ARM.exidx.text.WIZCHIP_READ_BUF) refers to w5500_1.o(.text.WIZCHIP_READ_BUF) for [Anonymous Symbol]
-    w5500_1.o(.text.WIZCHIP_WRITE_BUF) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
-    w5500_1.o(.ARM.exidx.text.WIZCHIP_WRITE_BUF) refers to w5500_1.o(.text.WIZCHIP_WRITE_BUF) for [Anonymous Symbol]
-    w5500_1.o(.text.getSn_TX_FSR) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    w5500_1.o(.ARM.exidx.text.getSn_TX_FSR) refers to w5500_1.o(.text.getSn_TX_FSR) for [Anonymous Symbol]
-    w5500_1.o(.text.getSn_RX_RSR) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    w5500_1.o(.ARM.exidx.text.getSn_RX_RSR) refers to w5500_1.o(.text.getSn_RX_RSR) for [Anonymous Symbol]
-    w5500_1.o(.text.wiz_send_data) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    w5500_1.o(.text.wiz_send_data) refers to w5500_1.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
-    w5500_1.o(.text.wiz_send_data) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    w5500_1.o(.ARM.exidx.text.wiz_send_data) refers to w5500_1.o(.text.wiz_send_data) for [Anonymous Symbol]
-    w5500_1.o(.text.wiz_recv_data) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    w5500_1.o(.text.wiz_recv_data) refers to w5500_1.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
-    w5500_1.o(.text.wiz_recv_data) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    w5500_1.o(.ARM.exidx.text.wiz_recv_data) refers to w5500_1.o(.text.wiz_recv_data) for [Anonymous Symbol]
-    w5500_1.o(.text.wiz_recv_ignore) refers to w5500_1.o(.text.WIZCHIP_READ) for WIZCHIP_READ
-    w5500_1.o(.text.wiz_recv_ignore) refers to w5500_1.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
-    w5500_1.o(.ARM.exidx.text.wiz_recv_ignore) refers to w5500_1.o(.text.wiz_recv_ignore) for [Anonymous Symbol]
+    w5500.o(.text.WIZCHIP_READ) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
+    w5500.o(.ARM.exidx.text.WIZCHIP_READ) refers to w5500.o(.text.WIZCHIP_READ) for [Anonymous Symbol]
+    w5500.o(.text.WIZCHIP_WRITE) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
+    w5500.o(.ARM.exidx.text.WIZCHIP_WRITE) refers to w5500.o(.text.WIZCHIP_WRITE) for [Anonymous Symbol]
+    w5500.o(.text.WIZCHIP_READ_BUF) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
+    w5500.o(.ARM.exidx.text.WIZCHIP_READ_BUF) refers to w5500.o(.text.WIZCHIP_READ_BUF) for [Anonymous Symbol]
+    w5500.o(.text.WIZCHIP_WRITE_BUF) refers to wizchip_conf.o(.data.WIZCHIP) for WIZCHIP
+    w5500.o(.ARM.exidx.text.WIZCHIP_WRITE_BUF) refers to w5500.o(.text.WIZCHIP_WRITE_BUF) for [Anonymous Symbol]
+    w5500.o(.text.getSn_TX_FSR) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    w5500.o(.ARM.exidx.text.getSn_TX_FSR) refers to w5500.o(.text.getSn_TX_FSR) for [Anonymous Symbol]
+    w5500.o(.text.getSn_RX_RSR) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    w5500.o(.ARM.exidx.text.getSn_RX_RSR) refers to w5500.o(.text.getSn_RX_RSR) for [Anonymous Symbol]
+    w5500.o(.text.wiz_send_data) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    w5500.o(.text.wiz_send_data) refers to w5500.o(.text.WIZCHIP_WRITE_BUF) for WIZCHIP_WRITE_BUF
+    w5500.o(.text.wiz_send_data) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    w5500.o(.ARM.exidx.text.wiz_send_data) refers to w5500.o(.text.wiz_send_data) for [Anonymous Symbol]
+    w5500.o(.text.wiz_recv_data) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    w5500.o(.text.wiz_recv_data) refers to w5500.o(.text.WIZCHIP_READ_BUF) for WIZCHIP_READ_BUF
+    w5500.o(.text.wiz_recv_data) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    w5500.o(.ARM.exidx.text.wiz_recv_data) refers to w5500.o(.text.wiz_recv_data) for [Anonymous Symbol]
+    w5500.o(.text.wiz_recv_ignore) refers to w5500.o(.text.WIZCHIP_READ) for WIZCHIP_READ
+    w5500.o(.text.wiz_recv_ignore) refers to w5500.o(.text.WIZCHIP_WRITE) for WIZCHIP_WRITE
+    w5500.o(.ARM.exidx.text.wiz_recv_ignore) refers to w5500.o(.text.wiz_recv_ignore) for [Anonymous Symbol]
+    w5500lib_init.o(.text.spi1_wb) refers to stm32f10x_spi.o(.text.SPI_I2S_SendData) for SPI_I2S_SendData
+    w5500lib_init.o(.text.spi1_wb) refers to stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
+    w5500lib_init.o(.ARM.exidx.text.spi1_wb) refers to w5500lib_init.o(.text.spi1_wb) for [Anonymous Symbol]
+    w5500lib_init.o(.text.spi1_rb) refers to stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
+    w5500lib_init.o(.text.spi1_rb) refers to stm32f10x_spi.o(.text.SPI_I2S_SendData) for SPI_I2S_SendData
+    w5500lib_init.o(.text.spi1_rb) refers to stm32f10x_spi.o(.text.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
+    w5500lib_init.o(.ARM.exidx.text.spi1_rb) refers to w5500lib_init.o(.text.spi1_rb) for [Anonymous Symbol]
+    w5500lib_init.o(.text.cs_sel) refers to stm32f10x_gpio.o(.text.GPIO_ResetBits) for GPIO_ResetBits
+    w5500lib_init.o(.ARM.exidx.text.cs_sel) refers to w5500lib_init.o(.text.cs_sel) for [Anonymous Symbol]
+    w5500lib_init.o(.text.cs_desel) refers to stm32f10x_gpio.o(.text.GPIO_SetBits) for GPIO_SetBits
+    w5500lib_init.o(.ARM.exidx.text.cs_desel) refers to w5500lib_init.o(.text.cs_desel) for [Anonymous Symbol]
+    w5500lib_init.o(.text.spi1burst_wb) refers to w5500lib_init.o(.text.spi1_wb) for spi1_wb
+    w5500lib_init.o(.ARM.exidx.text.spi1burst_wb) refers to w5500lib_init.o(.text.spi1burst_wb) for [Anonymous Symbol]
+    w5500lib_init.o(.text.spi1burst_rb) refers to stm32f10x_spi.o(.text.SPI_I2S_SendData) for SPI_I2S_SendData
+    w5500lib_init.o(.text.spi1burst_rb) refers to stm32f10x_spi.o(.text.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
+    w5500lib_init.o(.ARM.exidx.text.spi1burst_rb) refers to w5500lib_init.o(.text.spi1burst_rb) for [Anonymous Symbol]
+    w5500lib_init.o(.text.chip_on) refers to stm32f10x_gpio.o(.text.GPIO_ResetBits) for GPIO_ResetBits
+    w5500lib_init.o(.ARM.exidx.text.chip_on) refers to w5500lib_init.o(.text.chip_on) for [Anonymous Symbol]
+    w5500lib_init.o(.text.chip_off) refers to stm32f10x_gpio.o(.text.GPIO_SetBits) for GPIO_SetBits
+    w5500lib_init.o(.ARM.exidx.text.chip_off) refers to w5500lib_init.o(.text.chip_off) for [Anonymous Symbol]
+    w5500lib_init.o(.text.W5500_GPIO_Init2) refers to stm32f10x_rcc.o(.text.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    w5500lib_init.o(.text.W5500_GPIO_Init2) refers to stm32f10x_gpio.o(.text.GPIO_ResetBits) for GPIO_ResetBits
+    w5500lib_init.o(.text.W5500_GPIO_Init2) refers to stm32f10x_gpio.o(.text.GPIO_SetBits) for GPIO_SetBits
+    w5500lib_init.o(.text.W5500_GPIO_Init2) refers to misc.o(.text.NVIC_Init) for NVIC_Init
+    w5500lib_init.o(.text.W5500_GPIO_Init2) refers to stm32f10x_gpio.o(.text.GPIO_EXTILineConfig) for GPIO_EXTILineConfig
+    w5500lib_init.o(.text.W5500_GPIO_Init2) refers to stm32f10x_exti.o(.text.EXTI_Init) for EXTI_Init
+    w5500lib_init.o(.text.W5500_GPIO_Init2) refers to w5500lib_init.o(.text.SPI1_W5500_Init) for SPI1_W5500_Init
+    w5500lib_init.o(.text.W5500_GPIO_Init2) refers to stm32f10x_gpio.o(.text.GPIO_Init) for GPIO_Init
+    w5500lib_init.o(.ARM.exidx.text.W5500_GPIO_Init2) refers to w5500lib_init.o(.text.W5500_GPIO_Init2) for [Anonymous Symbol]
+    w5500lib_init.o(.text.SPI1_W5500_Init) refers to stm32f10x_rcc.o(.text.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
+    w5500lib_init.o(.text.SPI1_W5500_Init) refers to stm32f10x_gpio.o(.text.GPIO_Init) for GPIO_Init
+    w5500lib_init.o(.text.SPI1_W5500_Init) refers to stm32f10x_gpio.o(.text.GPIO_SetBits) for GPIO_SetBits
+    w5500lib_init.o(.text.SPI1_W5500_Init) refers to stm32f10x_spi.o(.text.SPI_Init) for SPI_Init
+    w5500lib_init.o(.text.SPI1_W5500_Init) refers to stm32f10x_spi.o(.text.SPI_Cmd) for SPI_Cmd
+    w5500lib_init.o(.ARM.exidx.text.SPI1_W5500_Init) refers to w5500lib_init.o(.text.SPI1_W5500_Init) for [Anonymous Symbol]
+    w5500lib_init.o(.text.SPI_SendReceiveByte) refers to stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
+    w5500lib_init.o(.text.SPI_SendReceiveByte) refers to stm32f10x_spi.o(.text.SPI_I2S_SendData) for SPI_I2S_SendData
+    w5500lib_init.o(.text.SPI_SendReceiveByte) refers to stm32f10x_spi.o(.text.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
+    w5500lib_init.o(.ARM.exidx.text.SPI_SendReceiveByte) refers to w5500lib_init.o(.text.SPI_SendReceiveByte) for [Anonymous Symbol]
+    w5500lib_init.o(.text.senddata) refers to stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
+    w5500lib_init.o(.text.senddata) refers to stm32f10x_spi.o(.text.SPI_I2S_SendData) for SPI_I2S_SendData
+    w5500lib_init.o(.text.senddata) refers to stm32f10x_spi.o(.text.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
+    w5500lib_init.o(.ARM.exidx.text.senddata) refers to w5500lib_init.o(.text.senddata) for [Anonymous Symbol]
+    w5500lib_init.o(.text.spiburst_wb) refers to w5500lib_init.o(.text.chip_on) for chip_on
+    w5500lib_init.o(.text.spiburst_wb) refers to w5500lib_init.o(.text.senddata) for senddata
+    w5500lib_init.o(.text.spiburst_wb) refers to w5500lib_init.o(.text.chip_off) for chip_off
+    w5500lib_init.o(.ARM.exidx.text.spiburst_wb) refers to w5500lib_init.o(.text.spiburst_wb) for [Anonymous Symbol]
+    w5500lib_init.o(.text.spiburst_rb) refers to w5500lib_init.o(.text.chip_on) for chip_on
+    w5500lib_init.o(.text.spiburst_rb) refers to stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
+    w5500lib_init.o(.text.spiburst_rb) refers to stm32f10x_spi.o(.text.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
+    w5500lib_init.o(.text.spiburst_rb) refers to w5500lib_init.o(.text.chip_off) for chip_off
+    w5500lib_init.o(.ARM.exidx.text.spiburst_rb) refers to w5500lib_init.o(.text.spiburst_rb) for [Anonymous Symbol]
+    w5500lib_init.o(.text.w5500_lib_init) refers to wizchip_conf.o(.text.reg_wizchip_cs_cbfunc) for reg_wizchip_cs_cbfunc
+    w5500lib_init.o(.text.w5500_lib_init) refers to wizchip_conf.o(.text.reg_wizchip_spi_cbfunc) for reg_wizchip_spi_cbfunc
+    w5500lib_init.o(.text.w5500_lib_init) refers to wizchip_conf.o(.text.reg_wizchip_spiburst_cbfunc) for reg_wizchip_spiburst_cbfunc
+    w5500lib_init.o(.text.w5500_lib_init) refers to stm32f10x_gpio.o(.text.GPIO_SetBits) for GPIO_SetBits
+    w5500lib_init.o(.text.w5500_lib_init) refers to wizchip_conf.o(.text.ctlwizchip) for ctlwizchip
+    w5500lib_init.o(.text.w5500_lib_init) refers to puts.o(i.puts) for puts
+    w5500lib_init.o(.text.w5500_lib_init) refers to w5500lib_init.o(.text.cs_sel) for cs_sel
+    w5500lib_init.o(.text.w5500_lib_init) refers to w5500lib_init.o(.text.cs_desel) for cs_desel
+    w5500lib_init.o(.text.w5500_lib_init) refers to w5500lib_init.o(.text.spi1_rb) for spi1_rb
+    w5500lib_init.o(.text.w5500_lib_init) refers to w5500lib_init.o(.text.spi1_wb) for spi1_wb
+    w5500lib_init.o(.text.w5500_lib_init) refers to w5500lib_init.o(.text.spi1burst_rb) for spi1burst_rb
+    w5500lib_init.o(.text.w5500_lib_init) refers to w5500lib_init.o(.text.spi1burst_wb) for spi1burst_wb
+    w5500lib_init.o(.ARM.exidx.text.w5500_lib_init) refers to w5500lib_init.o(.text.w5500_lib_init) for [Anonymous Symbol]
     misc.o(.ARM.exidx.text.NVIC_PriorityGroupConfig) refers to misc.o(.text.NVIC_PriorityGroupConfig) for [Anonymous Symbol]
     misc.o(.ARM.exidx.text.NVIC_Init) refers to misc.o(.text.NVIC_Init) for [Anonymous Symbol]
     misc.o(.ARM.exidx.text.NVIC_SetVectorTable) refers to misc.o(.text.NVIC_SetVectorTable) for [Anonymous Symbol]
@@ -1701,21 +1760,7 @@ Section Cross References
 Removing Unused input sections from the image.
 
     Removing c8t6f2fucn.o(.text), (0 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.chip_on), (8 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.chip_off), (8 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.SPI_SendReceiveByte), (8 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.senddata), (8 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.w5500_ini), (8 bytes).
-    Removing c8t6f2fucn.o(.text.Load_Net_Parameters), (84 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.Load_Net_Parameters), (8 bytes).
-    Removing c8t6f2fucn.o(.text.W5500_Initialization), (36 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.W5500_Initialization), (8 bytes).
-    Removing c8t6f2fucn.o(.text.W5500_Socket_Set), (64 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.W5500_Socket_Set), (8 bytes).
-    Removing c8t6f2fucn.o(.text.Process_Socket_Data), (72 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.Process_Socket_Data), (8 bytes).
-    Removing c8t6f2fucn.o(.text.w5500_run), (180 bytes).
-    Removing c8t6f2fucn.o(.ARM.exidx.text.w5500_run), (8 bytes).
+    Removing c8t6f2fucn.o(.ARM.exidx.text.loadNetParas), (8 bytes).
     Removing c8t6f2fucn.o(.text.WWDG_Init), (36 bytes).
     Removing c8t6f2fucn.o(.ARM.exidx.text.WWDG_Init), (8 bytes).
     Removing c8t6f2fucn.o(.text.crc8), (38 bytes).
@@ -1725,11 +1770,18 @@ Removing Unused input sections from the image.
     Removing c8t6f2fucn.o(.ARM.exidx.text.GPIO_config), (8 bytes).
     Removing c8t6f2fucn.o(.ARM.exidx.text.tasks), (8 bytes).
     Removing c8t6f2fucn.o(.ARM.exidx.text.hardware_init), (8 bytes).
-    Removing c8t6f2fucn.o(.bss.W5500_Send_Delay), (4 bytes).
+    Removing c8t6f2fucn.o(.bss.mcu_clk), (20 bytes).
     Removing c8t6f2main.o(.text), (0 bytes).
     Removing c8t6f2main.o(.ARM.exidx.text.fputc), (8 bytes).
     Removing c8t6f2main.o(.ARM.exidx.text.main), (8 bytes).
     Removing c8t6f2main.o(.ARM.use_no_argv), (4 bytes).
+    Removing loopback.o(.text), (0 bytes).
+    Removing loopback.o(.ARM.exidx.text.loopback_tcps), (8 bytes).
+    Removing loopback.o(.text.loopback_tcpc), (380 bytes).
+    Removing loopback.o(.ARM.exidx.text.loopback_tcpc), (8 bytes).
+    Removing loopback.o(.text.loopback_udps), (280 bytes).
+    Removing loopback.o(.ARM.exidx.text.loopback_udps), (8 bytes).
+    Removing loopback.o(.data.loopback_tcpc.any_port), (2 bytes).
     Removing delay.o(.text), (0 bytes).
     Removing delay.o(.text.delay), (36 bytes).
     Removing delay.o(.ARM.exidx.text.delay), (8 bytes).
@@ -1760,7 +1812,9 @@ Removing Unused input sections from the image.
     Removing uart.o(.text), (0 bytes).
     Removing uart.o(.ARM.exidx.text.USART1_Init), (8 bytes).
     Removing uart.o(.ARM.exidx.text.USER_UART_NVIC), (8 bytes).
+    Removing uart.o(.text.USART1_SendChar_), (36 bytes).
     Removing uart.o(.ARM.exidx.text.USART1_SendChar_), (8 bytes).
+    Removing uart.o(.text.USART1_SendStr_), (20 bytes).
     Removing uart.o(.ARM.exidx.text.USART1_SendStr_), (8 bytes).
     Removing uart.o(.text.USART2_Init), (148 bytes).
     Removing uart.o(.ARM.exidx.text.USART2_Init), (8 bytes).
@@ -1944,7 +1998,9 @@ Removing Unused input sections from the image.
     Removing ads1015.o(.ARM.exidx.text.readADC_SingleEnded), (8 bytes).
     Removing ads1015.o(.bss..L_MergedGlobals), (6 bytes).
     Removing spi.o(.text), (0 bytes).
+    Removing spi.o(.text.SPI1_Init), (100 bytes).
     Removing spi.o(.ARM.exidx.text.SPI1_Init), (8 bytes).
+    Removing spi.o(.text.SPI1_SetSpeed), (28 bytes).
     Removing spi.o(.ARM.exidx.text.SPI1_SetSpeed), (8 bytes).
     Removing spi.o(.text.SPI1_ReadWriteByte), (76 bytes).
     Removing spi.o(.ARM.exidx.text.SPI1_ReadWriteByte), (8 bytes).
@@ -1952,10 +2008,10 @@ Removing Unused input sections from the image.
     Removing w5500tq.o(.text.W5500_GPIO_Init), (144 bytes).
     Removing w5500tq.o(.ARM.exidx.text.W5500_GPIO_Init), (8 bytes).
     Removing w5500tq.o(.ARM.exidx.text.EXTI3_IRQHandler), (8 bytes).
-    Removing w5500tq.o(.text.SPI1_Send_Byte), (32 bytes).
     Removing w5500tq.o(.ARM.exidx.text.SPI1_Send_Byte), (8 bytes).
-    Removing w5500tq.o(.text.SPI1_Send_Short), (20 bytes).
     Removing w5500tq.o(.ARM.exidx.text.SPI1_Send_Short), (8 bytes).
+    Removing w5500tq.o(.text.spiburst_wb2), (52 bytes).
+    Removing w5500tq.o(.ARM.exidx.text.spiburst_wb2), (8 bytes).
     Removing w5500tq.o(.text.Write_W5500_1Byte), (52 bytes).
     Removing w5500tq.o(.ARM.exidx.text.Write_W5500_1Byte), (8 bytes).
     Removing w5500tq.o(.text.Write_W5500_2Byte), (52 bytes).
@@ -1968,7 +2024,6 @@ Removing Unused input sections from the image.
     Removing w5500tq.o(.ARM.exidx.text.Write_W5500_SOCK_2Byte), (8 bytes).
     Removing w5500tq.o(.text.Write_W5500_SOCK_4Byte), (72 bytes).
     Removing w5500tq.o(.ARM.exidx.text.Write_W5500_SOCK_4Byte), (8 bytes).
-    Removing w5500tq.o(.text.Read_W5500_1Byte), (68 bytes).
     Removing w5500tq.o(.ARM.exidx.text.Read_W5500_1Byte), (8 bytes).
     Removing w5500tq.o(.text.Read_W5500_SOCK_1Byte), (72 bytes).
     Removing w5500tq.o(.ARM.exidx.text.Read_W5500_SOCK_1Byte), (8 bytes).
@@ -1992,7 +2047,7 @@ Removing Unused input sections from the image.
     Removing w5500tq.o(.ARM.exidx.text.Socket_Listen), (8 bytes).
     Removing w5500tq.o(.text.Socket_UDP), (58 bytes).
     Removing w5500tq.o(.ARM.exidx.text.Socket_UDP), (8 bytes).
-    Removing w5500tq.o(.text.W5500_Interrupt_Process), (144 bytes).
+    Removing w5500tq.o(.text.W5500_Interrupt_Process), (308 bytes).
     Removing w5500tq.o(.ARM.exidx.text.W5500_Interrupt_Process), (8 bytes).
     Removing w5500tq.o(.data.S0_Mode), (1 bytes).
     Removing w5500tq.o(.bss.Rx_Buffer), (2048 bytes).
@@ -2006,9 +2061,7 @@ Removing Unused input sections from the image.
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_bus_writedata), (8 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_spi_readbyte), (8 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_spi_writebyte), (8 bytes).
-    Removing wizchip_conf.o(.text.wizchip_spi_readburst), (2 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_spi_readburst), (8 bytes).
-    Removing wizchip_conf.o(.text.wizchip_spi_writeburst), (2 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_spi_writeburst), (8 bytes).
     Removing wizchip_conf.o(.text.reg_wizchip_cris_cbfunc), (52 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.reg_wizchip_cris_cbfunc), (8 bytes).
@@ -2016,7 +2069,6 @@ Removing Unused input sections from the image.
     Removing wizchip_conf.o(.text.reg_wizchip_bus_cbfunc), (64 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.reg_wizchip_bus_cbfunc), (8 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.reg_wizchip_spi_cbfunc), (8 bytes).
-    Removing wizchip_conf.o(.text.reg_wizchip_spiburst_cbfunc), (64 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.reg_wizchip_spiburst_cbfunc), (8 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.ctlwizchip), (8 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_sw_reset), (8 bytes).
@@ -2031,37 +2083,23 @@ Removing Unused input sections from the image.
     Removing wizchip_conf.o(.ARM.exidx.text.wizphy_setphypmode), (8 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizphy_getphypmode), (8 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizphy_getphylink), (8 bytes).
-    Removing wizchip_conf.o(.text.ctlnetwork), (76 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.ctlnetwork), (8 bytes).
-    Removing wizchip_conf.o(.text.wizchip_setnetinfo), (84 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_setnetinfo), (8 bytes).
-    Removing wizchip_conf.o(.text.wizchip_getnetinfo), (84 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_getnetinfo), (8 bytes).
-    Removing wizchip_conf.o(.text.wizchip_setnetmode), (36 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_setnetmode), (8 bytes).
-    Removing wizchip_conf.o(.text.wizchip_getnetmode), (6 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_getnetmode), (8 bytes).
-    Removing wizchip_conf.o(.text.wizchip_settimeout), (40 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_settimeout), (8 bytes).
-    Removing wizchip_conf.o(.text.wizchip_gettimeout), (40 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizchip_gettimeout), (8 bytes).
     Removing wizchip_conf.o(.text.wizphy_getphystat), (26 bytes).
     Removing wizchip_conf.o(.ARM.exidx.text.wizphy_getphystat), (8 bytes).
-    Removing wizchip_conf.o(.bss..L_MergedGlobals), (5 bytes).
     Removing socket.o(.text), (0 bytes).
-    Removing socket.o(.text.socket), (280 bytes).
     Removing socket.o(.ARM.exidx.text.socket), (8 bytes).
-    Removing socket.o(.text.close), (112 bytes).
     Removing socket.o(.ARM.exidx.text.close), (8 bytes).
-    Removing socket.o(.text.listen), (102 bytes).
     Removing socket.o(.ARM.exidx.text.listen), (8 bytes).
     Removing socket.o(.text.connect), (216 bytes).
     Removing socket.o(.ARM.exidx.text.connect), (8 bytes).
-    Removing socket.o(.text.disconnect), (128 bytes).
     Removing socket.o(.ARM.exidx.text.disconnect), (8 bytes).
-    Removing socket.o(.text.send), (280 bytes).
     Removing socket.o(.ARM.exidx.text.send), (8 bytes).
-    Removing socket.o(.text.recv), (240 bytes).
     Removing socket.o(.ARM.exidx.text.recv), (8 bytes).
     Removing socket.o(.text.sendto), (336 bytes).
     Removing socket.o(.ARM.exidx.text.sendto), (8 bytes).
@@ -2073,23 +2111,39 @@ Removing Unused input sections from the image.
     Removing socket.o(.ARM.exidx.text.setsockopt), (8 bytes).
     Removing socket.o(.text.getsockopt), (264 bytes).
     Removing socket.o(.ARM.exidx.text.getsockopt), (8 bytes).
-    Removing socket.o(.data.sock_any_port), (2 bytes).
-    Removing socket.o(.bss..L_MergedGlobals), (28 bytes).
-    Removing w5500_1.o(.text), (0 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.WIZCHIP_READ), (8 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.WIZCHIP_WRITE), (8 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.WIZCHIP_READ_BUF), (8 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.WIZCHIP_WRITE_BUF), (8 bytes).
-    Removing w5500_1.o(.text.getSn_TX_FSR), (68 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.getSn_TX_FSR), (8 bytes).
-    Removing w5500_1.o(.text.getSn_RX_RSR), (68 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.getSn_RX_RSR), (8 bytes).
-    Removing w5500_1.o(.text.wiz_send_data), (84 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.wiz_send_data), (8 bytes).
-    Removing w5500_1.o(.text.wiz_recv_data), (84 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.wiz_recv_data), (8 bytes).
-    Removing w5500_1.o(.text.wiz_recv_ignore), (60 bytes).
-    Removing w5500_1.o(.ARM.exidx.text.wiz_recv_ignore), (8 bytes).
+    Removing w5500.o(.text), (0 bytes).
+    Removing w5500.o(.ARM.exidx.text.WIZCHIP_READ), (8 bytes).
+    Removing w5500.o(.ARM.exidx.text.WIZCHIP_WRITE), (8 bytes).
+    Removing w5500.o(.ARM.exidx.text.WIZCHIP_READ_BUF), (8 bytes).
+    Removing w5500.o(.ARM.exidx.text.WIZCHIP_WRITE_BUF), (8 bytes).
+    Removing w5500.o(.ARM.exidx.text.getSn_TX_FSR), (8 bytes).
+    Removing w5500.o(.ARM.exidx.text.getSn_RX_RSR), (8 bytes).
+    Removing w5500.o(.ARM.exidx.text.wiz_send_data), (8 bytes).
+    Removing w5500.o(.ARM.exidx.text.wiz_recv_data), (8 bytes).
+    Removing w5500.o(.text.wiz_recv_ignore), (60 bytes).
+    Removing w5500.o(.ARM.exidx.text.wiz_recv_ignore), (8 bytes).
+    Removing w5500lib_init.o(.text), (0 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.spi1_wb), (8 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.spi1_rb), (8 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.cs_sel), (8 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.cs_desel), (8 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.spi1burst_wb), (8 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.spi1burst_rb), (8 bytes).
+    Removing w5500lib_init.o(.text.chip_on), (12 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.chip_on), (8 bytes).
+    Removing w5500lib_init.o(.text.chip_off), (12 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.chip_off), (8 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.W5500_GPIO_Init2), (8 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.SPI1_W5500_Init), (8 bytes).
+    Removing w5500lib_init.o(.text.SPI_SendReceiveByte), (52 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.SPI_SendReceiveByte), (8 bytes).
+    Removing w5500lib_init.o(.text.senddata), (52 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.senddata), (8 bytes).
+    Removing w5500lib_init.o(.text.spiburst_wb), (38 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.spiburst_wb), (8 bytes).
+    Removing w5500lib_init.o(.text.spiburst_rb), (60 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.spiburst_rb), (8 bytes).
+    Removing w5500lib_init.o(.ARM.exidx.text.w5500_lib_init), (8 bytes).
     Removing misc.o(.text), (0 bytes).
     Removing misc.o(.ARM.exidx.text.NVIC_PriorityGroupConfig), (8 bytes).
     Removing misc.o(.ARM.exidx.text.NVIC_Init), (8 bytes).
@@ -2346,7 +2400,6 @@ Removing Unused input sections from the image.
     Removing stm32f10x_exti.o(.text), (0 bytes).
     Removing stm32f10x_exti.o(.text.EXTI_DeInit), (28 bytes).
     Removing stm32f10x_exti.o(.ARM.exidx.text.EXTI_DeInit), (8 bytes).
-    Removing stm32f10x_exti.o(.text.EXTI_Init), (100 bytes).
     Removing stm32f10x_exti.o(.ARM.exidx.text.EXTI_Init), (8 bytes).
     Removing stm32f10x_exti.o(.text.EXTI_StructInit), (14 bytes).
     Removing stm32f10x_exti.o(.ARM.exidx.text.EXTI_StructInit), (8 bytes).
@@ -2484,7 +2537,6 @@ Removing Unused input sections from the image.
     Removing stm32f10x_gpio.o(.ARM.exidx.text.GPIO_EventOutputCmd), (8 bytes).
     Removing stm32f10x_gpio.o(.text.GPIO_PinRemapConfig), (112 bytes).
     Removing stm32f10x_gpio.o(.ARM.exidx.text.GPIO_PinRemapConfig), (8 bytes).
-    Removing stm32f10x_gpio.o(.text.GPIO_EXTILineConfig), (44 bytes).
     Removing stm32f10x_gpio.o(.ARM.exidx.text.GPIO_EXTILineConfig), (8 bytes).
     Removing stm32f10x_gpio.o(.text.GPIO_ETH_MediaInterfaceConfig), (12 bytes).
     Removing stm32f10x_gpio.o(.ARM.exidx.text.GPIO_ETH_MediaInterfaceConfig), (8 bytes).
@@ -3042,7 +3094,7 @@ Removing Unused input sections from the image.
     Removing d2f.o(.text), (56 bytes).
     Removing fepilogue.o(.text), (110 bytes).
 
-1341 unused section(s) (total 40087 bytes) removed from the image.
+1334 unused section(s) (total 38856 bytes) removed from the image.
 
 ==============================================================================
 
@@ -3085,8 +3137,6 @@ Image Symbol Table
     ../clib/microlib/stdio/puts.c            0x00000000   Number         0  puts.o ABSOLUTE
     ../clib/microlib/stdio/puts.c            0x00000000   Number         0  puts_e.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../fplib/microlib/d2f.c                  0x00000000   Number         0  d2f.o ABSOLUTE
@@ -3118,6 +3168,7 @@ Image Symbol Table
     i2c.c                                    0x00000000   Number         0  i2c.o ABSOLUTE
     init.s                                   0x00000000   Number         0  init.o ABSOLUTE
     lcd16x2.c                                0x00000000   Number         0  lcd16x2.o ABSOLUTE
+    loopback.c                               0x00000000   Number         0  loopback.o ABSOLUTE
     misc.c                                   0x00000000   Number         0  misc.o ABSOLUTE
     modbus_appphy.c                          0x00000000   Number         0  modbus_appphy.o ABSOLUTE
     modbus_slave.c                           0x00000000   Number         0  modbus_slave.o ABSOLUTE
@@ -3150,7 +3201,8 @@ Image Symbol Table
     system_stm32f10x.c                       0x00000000   Number         0  system_stm32f10x.o ABSOLUTE
     tim.c                                    0x00000000   Number         0  tim.o ABSOLUTE
     uart.c                                   0x00000000   Number         0  uart.o ABSOLUTE
-    w5500.c                                  0x00000000   Number         0  w5500_1.o ABSOLUTE
+    w5500.c                                  0x00000000   Number         0  w5500.o ABSOLUTE
+    w5500lib_init.c                          0x00000000   Number         0  w5500lib_init.o ABSOLUTE
     wizchip_conf.c                           0x00000000   Number         0  wizchip_conf.o ABSOLUTE
     RESET                                    0x08000000   Section      236  startup_stm32f10x_md.o(RESET)
     .ARM.Collect$$$$00000000                 0x080000ec   Section        0  entry.o(.ARM.Collect$$$$00000000)
@@ -3184,177 +3236,257 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08000684   Section        0  stm32f10x_exti.o(.text.EXTI_ClearITPendingBit)
     __arm_cp.7_0                             0x0800068c   Number         4  stm32f10x_exti.o(.text.EXTI_ClearITPendingBit)
     [Anonymous Symbol]                       0x08000690   Section        0  stm32f10x_exti.o(.text.EXTI_GetITStatus)
-    __arm_cp.6_0                             0x080006a8   Number         4  stm32f10x_exti.o(.text.EXTI_GetITStatus)
-    [Anonymous Symbol]                       0x080006ac   Section        0  gpio_stm32f10x.o(.text.GPIO_GetPortClockState)
-    __arm_cp.1_0                             0x080006d0   Number         4  gpio_stm32f10x.o(.text.GPIO_GetPortClockState)
-    [Anonymous Symbol]                       0x080006f0   Section        0  stm32f10x_gpio.o(.text.GPIO_Init)
-    [Anonymous Symbol]                       0x080007a8   Section        0  gpio_stm32f10x.o(.text.GPIO_PinConfigure)
-    [Anonymous Symbol]                       0x08000818   Section        0  gpio_stm32f10x.o(.text.GPIO_PortClock)
-    __arm_cp.0_1                             0x080008e4   Number         4  gpio_stm32f10x.o(.text.GPIO_PortClock)
-    [Anonymous Symbol]                       0x080008e8   Section        0  stm32f10x_gpio.o(.text.GPIO_ResetBits)
-    [Anonymous Symbol]                       0x080008ec   Section        0  stm32f10x_gpio.o(.text.GPIO_SetBits)
-    [Anonymous Symbol]                       0x080008f0   Section        0  c8t6f2fucn.o(.text.GPIO_config)
-    [Anonymous Symbol]                       0x08000910   Section        0  stm32f10x_it.o(.text.HardFault_Handler)
-    [Anonymous Symbol]                       0x08000912   Section        0  stm32f10x_it.o(.text.MemManage_Handler)
-    [Anonymous Symbol]                       0x08000914   Section        0  stm32f10x_it.o(.text.NMI_Handler)
-    [Anonymous Symbol]                       0x08000918   Section        0  misc.o(.text.NVIC_Init)
-    __arm_cp.1_0                             0x0800096c   Number         4  misc.o(.text.NVIC_Init)
-    [Anonymous Symbol]                       0x08000970   Section        0  misc.o(.text.NVIC_PriorityGroupConfig)
-    __arm_cp.0_0                             0x0800097c   Number         4  misc.o(.text.NVIC_PriorityGroupConfig)
-    __arm_cp.0_1                             0x08000980   Number         4  misc.o(.text.NVIC_PriorityGroupConfig)
-    [Anonymous Symbol]                       0x08000984   Section        0  stm32f10x_it.o(.text.PendSV_Handler)
-    [Anonymous Symbol]                       0x08000988   Section        0  stm32f10x_rcc.o(.text.RCC_APB1PeriphResetCmd)
-    __arm_cp.25_0                            0x0800099c   Number         4  stm32f10x_rcc.o(.text.RCC_APB1PeriphResetCmd)
-    [Anonymous Symbol]                       0x080009a0   Section        0  stm32f10x_rcc.o(.text.RCC_APB2PeriphClockCmd)
-    __arm_cp.22_0                            0x080009b4   Number         4  stm32f10x_rcc.o(.text.RCC_APB2PeriphClockCmd)
-    [Anonymous Symbol]                       0x080009b8   Section        0  stm32f10x_rcc.o(.text.RCC_APB2PeriphResetCmd)
-    __arm_cp.24_0                            0x080009cc   Number         4  stm32f10x_rcc.o(.text.RCC_APB2PeriphResetCmd)
-    [Anonymous Symbol]                       0x080009d0   Section        0  stm32f10x_rcc.o(.text.RCC_ClearFlag)
-    __arm_cp.29_0                            0x080009dc   Number         4  stm32f10x_rcc.o(.text.RCC_ClearFlag)
-    [Anonymous Symbol]                       0x080009e0   Section        0  stm32f10x_rcc.o(.text.RCC_GetClocksFreq)
-    __arm_cp.20_3                            0x08000a50   Number         4  stm32f10x_rcc.o(.text.RCC_GetClocksFreq)
-    __arm_cp.20_4                            0x08000a54   Number         4  stm32f10x_rcc.o(.text.RCC_GetClocksFreq)
-    [Anonymous Symbol]                       0x08000a58   Section        0  stm32f10x_rcc.o(.text.RCC_GetFlagStatus)
-    [Anonymous Symbol]                       0x08000a80   Section        0  spi.o(.text.SPI1_Init)
-    __arm_cp.0_0                             0x08000ad8   Number         4  spi.o(.text.SPI1_Init)
-    __arm_cp.0_1                             0x08000adc   Number         4  spi.o(.text.SPI1_Init)
-    __arm_cp.0_2                             0x08000ae0   Number         4  spi.o(.text.SPI1_Init)
-    [Anonymous Symbol]                       0x08000ae4   Section        0  spi.o(.text.SPI1_SetSpeed)
-    [Anonymous Symbol]                       0x08000afc   Section        0  stm32f10x_spi.o(.text.SPI_Cmd)
-    [Anonymous Symbol]                       0x08000b0e   Section        0  stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus)
-    [Anonymous Symbol]                       0x08000b18   Section        0  stm32f10x_spi.o(.text.SPI_I2S_ReceiveData)
-    [Anonymous Symbol]                       0x08000b1c   Section        0  stm32f10x_spi.o(.text.SPI_I2S_SendData)
-    [Anonymous Symbol]                       0x08000b20   Section        0  stm32f10x_spi.o(.text.SPI_Init)
-    [Anonymous Symbol]                       0x08000b58   Section        0  c8t6f2fucn.o(.text.SPI_SendReceiveByte)
-    __arm_cp.2_0                             0x08000b88   Number         4  c8t6f2fucn.o(.text.SPI_SendReceiveByte)
-    [Anonymous Symbol]                       0x08000b8c   Section        0  stm32f10x_it.o(.text.SVC_Handler)
-    [Anonymous Symbol]                       0x08000b90   Section        0  stm32f10x_it.o(.text.SysTick_Handler)
-    __arm_cp.8_0                             0x08000bcc   Number         4  stm32f10x_it.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x08000bd0   Section        0  system_stm32f10x.o(.text.SystemCoreClockUpdate)
-    __arm_cp.1_0                             0x08000c10   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
-    __arm_cp.1_1                             0x08000c14   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
-    __arm_cp.1_2                             0x08000c18   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
-    __arm_cp.1_3                             0x08000c1c   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
-    __arm_cp.1_4                             0x08000c20   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
-    [Anonymous Symbol]                       0x08000c24   Section        0  system_stm32f10x.o(.text.SystemInit)
-    __arm_cp.0_0                             0x08000d00   Number         4  system_stm32f10x.o(.text.SystemInit)
-    __arm_cp.0_1                             0x08000d04   Number         4  system_stm32f10x.o(.text.SystemInit)
-    __arm_cp.0_2                             0x08000d08   Number         4  system_stm32f10x.o(.text.SystemInit)
-    __arm_cp.0_3                             0x08000d0c   Number         4  system_stm32f10x.o(.text.SystemInit)
-    __arm_cp.0_4                             0x08000d10   Number         4  system_stm32f10x.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x08000d14   Section        0  stm32f10x_it.o(.text.TIM2_IRQHandler)
-    [Anonymous Symbol]                       0x08000d18   Section        0  stm32f10x_it.o(.text.USART1_IRQHandler)
-    __arm_cp.9_2                             0x08000d48   Number         4  stm32f10x_it.o(.text.USART1_IRQHandler)
-    [Anonymous Symbol]                       0x08000d4c   Section        0  uart.o(.text.USART1_Init)
-    __arm_cp.0_0                             0x08000dc0   Number         4  uart.o(.text.USART1_Init)
-    [Anonymous Symbol]                       0x08000dc4   Section        0  uart.o(.text.USART1_SendChar_)
-    [Anonymous Symbol]                       0x08000de4   Section        0  uart.o(.text.USART1_SendStr_)
-    [Anonymous Symbol]                       0x08000df8   Section        0  stm32f10x_it.o(.text.USART2_IRQHandler)
-    __arm_cp.10_1                            0x08000e4c   Number         4  stm32f10x_it.o(.text.USART2_IRQHandler)
-    __arm_cp.10_2                            0x08000e50   Number         4  stm32f10x_it.o(.text.USART2_IRQHandler)
-    __arm_cp.10_3                            0x08000e54   Number         4  stm32f10x_it.o(.text.USART2_IRQHandler)
-    [Anonymous Symbol]                       0x08000e58   Section        0  stm32f10x_usart.o(.text.USART_Cmd)
-    [Anonymous Symbol]                       0x08000e6c   Section        0  stm32f10x_usart.o(.text.USART_DeInit)
-    __arm_cp.0_0                             0x08000ef0   Number         4  stm32f10x_usart.o(.text.USART_DeInit)
-    __arm_cp.0_1                             0x08000ef4   Number         4  stm32f10x_usart.o(.text.USART_DeInit)
-    __arm_cp.0_2                             0x08000ef8   Number         4  stm32f10x_usart.o(.text.USART_DeInit)
-    __arm_cp.0_3                             0x08000efc   Number         4  stm32f10x_usart.o(.text.USART_DeInit)
-    [Anonymous Symbol]                       0x08000f00   Section        0  stm32f10x_usart.o(.text.USART_GetFlagStatus)
-    [Anonymous Symbol]                       0x08000f0a   Section        0  stm32f10x_usart.o(.text.USART_GetITStatus)
-    [Anonymous Symbol]                       0x08000f4c   Section        0  stm32f10x_usart.o(.text.USART_ITConfig)
-    [Anonymous Symbol]                       0x08000f7c   Section        0  stm32f10x_usart.o(.text.USART_Init)
-    __arm_cp.1_0                             0x0800101c   Number         4  stm32f10x_usart.o(.text.USART_Init)
-    [Anonymous Symbol]                       0x08001020   Section        0  stm32f10x_usart.o(.text.USART_SendData)
-    [Anonymous Symbol]                       0x08001028   Section        0  uart.o(.text.USER_UART_NVIC)
-    [Anonymous Symbol]                       0x08001048   Section        0  stm32f10x_it.o(.text.UsageFault_Handler)
-    [Anonymous Symbol]                       0x0800104c   Section        0  w5500_1.o(.text.WIZCHIP_READ)
-    [Anonymous Symbol]                       0x080010a8   Section        0  w5500_1.o(.text.WIZCHIP_READ_BUF)
-    [Anonymous Symbol]                       0x08001114   Section        0  w5500_1.o(.text.WIZCHIP_WRITE)
-    [Anonymous Symbol]                       0x08001170   Section        0  w5500_1.o(.text.WIZCHIP_WRITE_BUF)
-    [Anonymous Symbol]                       0x080011e4   Section        0  stm32f10x_wwdg.o(.text.WWDG_SetCounter)
-    __arm_cp.4_0                             0x080011f0   Number         4  stm32f10x_wwdg.o(.text.WWDG_SetCounter)
-    [Anonymous Symbol]                       0x080011f4   Section        0  c8t6f2fucn.o(.text.chip_off)
-    [Anonymous Symbol]                       0x080011fc   Section        0  c8t6f2fucn.o(.text.chip_on)
-    __arm_cp.0_0                             0x08001204   Number         4  c8t6f2fucn.o(.text.chip_on)
-    [Anonymous Symbol]                       0x08001208   Section        0  wizchip_conf.o(.text.ctlwizchip)
-    __arm_cp.15_0                            0x080012e0   Number         4  wizchip_conf.o(.text.ctlwizchip)
-    [Anonymous Symbol]                       0x080012e4   Section        0  delay.o(.text.delay_ms)
-    [Anonymous Symbol]                       0x08001308   Section        0  c8t6f2main.o(.text.fputc)
-    __arm_cp.0_0                             0x08001328   Number         4  c8t6f2main.o(.text.fputc)
-    [Anonymous Symbol]                       0x0800132c   Section        0  c8t6f2fucn.o(.text.hardware_init)
-    __arm_cp.15_0                            0x080013bc   Number         4  c8t6f2fucn.o(.text.hardware_init)
-    __arm_cp.15_1                            0x080013c0   Number         4  c8t6f2fucn.o(.text.hardware_init)
-    __arm_cp.15_2                            0x080013c4   Number         4  c8t6f2fucn.o(.text.hardware_init)
-    __arm_cp.15_3                            0x080013c8   Number         4  c8t6f2fucn.o(.text.hardware_init)
-    __arm_cp.15_5                            0x080013e8   Number         4  c8t6f2fucn.o(.text.hardware_init)
-    [Anonymous Symbol]                       0x0800142c   Section        0  c8t6f2main.o(.text.main)
-    [Anonymous Symbol]                       0x0800143c   Section        0  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
-    __arm_cp.11_0                            0x08001464   Number         4  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
-    __arm_cp.11_1                            0x08001468   Number         4  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
-    __arm_cp.11_2                            0x0800146c   Number         4  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
-    [Anonymous Symbol]                       0x08001470   Section        0  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
-    __arm_cp.13_0                            0x080014a4   Number         4  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
-    __arm_cp.13_1                            0x080014a8   Number         4  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
-    __arm_cp.13_2                            0x080014ac   Number         4  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
-    [Anonymous Symbol]                       0x080014b0   Section        0  c8t6f2fucn.o(.text.senddata)
-    __arm_cp.3_0                             0x080014e0   Number         4  c8t6f2fucn.o(.text.senddata)
-    [Anonymous Symbol]                       0x080014e4   Section        0  c8t6f2fucn.o(.text.tasks)
-    __arm_cp.14_0                            0x08001528   Number         4  c8t6f2fucn.o(.text.tasks)
-    __arm_cp.14_1                            0x0800152c   Number         4  c8t6f2fucn.o(.text.tasks)
-    __arm_cp.14_3                            0x0800153c   Number         4  c8t6f2fucn.o(.text.tasks)
-    __arm_cp.14_4                            0x08001540   Number         4  c8t6f2fucn.o(.text.tasks)
-    __arm_cp.14_5                            0x08001544   Number         4  c8t6f2fucn.o(.text.tasks)
-    [Anonymous Symbol]                       0x08001548   Section        0  c8t6f2fucn.o(.text.w5500_ini)
-    __arm_cp.4_0                             0x080015ac   Number         4  c8t6f2fucn.o(.text.w5500_ini)
-    __arm_cp.4_1                             0x080015b0   Number         4  c8t6f2fucn.o(.text.w5500_ini)
-    __arm_cp.4_2                             0x080015b4   Number         4  c8t6f2fucn.o(.text.w5500_ini)
-    __arm_cp.4_3                             0x080015b8   Number         4  c8t6f2fucn.o(.text.w5500_ini)
-    [Anonymous Symbol]                       0x08001600   Section        0  wizchip_conf.o(.text.wizchip_bus_readdata)
-    [Anonymous Symbol]                       0x08001604   Section        0  wizchip_conf.o(.text.wizchip_bus_writedata)
-    [Anonymous Symbol]                       0x08001608   Section        0  wizchip_conf.o(.text.wizchip_clrinterrupt)
-    [Anonymous Symbol]                       0x08001626   Section        0  wizchip_conf.o(.text.wizchip_cris_enter)
-    [Anonymous Symbol]                       0x08001628   Section        0  wizchip_conf.o(.text.wizchip_cris_exit)
-    [Anonymous Symbol]                       0x0800162a   Section        0  wizchip_conf.o(.text.wizchip_cs_deselect)
-    [Anonymous Symbol]                       0x0800162c   Section        0  wizchip_conf.o(.text.wizchip_cs_select)
-    [Anonymous Symbol]                       0x0800162e   Section        0  wizchip_conf.o(.text.wizchip_getinterrupt)
-    [Anonymous Symbol]                       0x0800164c   Section        0  wizchip_conf.o(.text.wizchip_getinterruptmask)
-    [Anonymous Symbol]                       0x08001666   Section        0  wizchip_conf.o(.text.wizchip_init)
-    [Anonymous Symbol]                       0x080016e2   Section        0  wizchip_conf.o(.text.wizchip_setinterruptmask)
-    [Anonymous Symbol]                       0x080016fe   Section        0  wizchip_conf.o(.text.wizchip_spi_readbyte)
-    [Anonymous Symbol]                       0x08001702   Section        0  wizchip_conf.o(.text.wizchip_spi_writebyte)
-    [Anonymous Symbol]                       0x08001704   Section        0  wizchip_conf.o(.text.wizchip_sw_reset)
-    __arm_cp.16_0                            0x0800177c   Number         4  wizchip_conf.o(.text.wizchip_sw_reset)
-    __arm_cp.16_1                            0x08001780   Number         4  wizchip_conf.o(.text.wizchip_sw_reset)
-    [Anonymous Symbol]                       0x08001784   Section        0  wizchip_conf.o(.text.wizphy_getphyconf)
-    __arm_cp.24_0                            0x080017e4   Number         4  wizchip_conf.o(.text.wizphy_getphyconf)
-    __arm_cp.24_1                            0x080017e8   Number         4  wizchip_conf.o(.text.wizphy_getphyconf)
-    [Anonymous Symbol]                       0x080017ec   Section        0  wizchip_conf.o(.text.wizphy_getphylink)
-    [Anonymous Symbol]                       0x080017fc   Section        0  wizchip_conf.o(.text.wizphy_getphypmode)
-    [Anonymous Symbol]                       0x08001814   Section        0  wizchip_conf.o(.text.wizphy_reset)
-    [Anonymous Symbol]                       0x08001842   Section        0  wizchip_conf.o(.text.wizphy_setphyconf)
-    [Anonymous Symbol]                       0x0800188e   Section        0  wizchip_conf.o(.text.wizphy_setphypmode)
-    i.__0printf                              0x080018e0   Section        0  printfa.o(i.__0printf)
-    i.__scatterload_copy                     0x08001900   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x0800190e   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x08001910   Section       14  handlers.o(i.__scatterload_zeroinit)
-    _fp_digits                               0x08001921   Thumb Code   366  printfa.o(i._fp_digits)
-    i._fp_digits                             0x08001920   Section        0  printfa.o(i._fp_digits)
-    _printf_core                             0x08001aa5   Thumb Code  1744  printfa.o(i._printf_core)
-    i._printf_core                           0x08001aa4   Section        0  printfa.o(i._printf_core)
-    _printf_post_padding                     0x08002181   Thumb Code    36  printfa.o(i._printf_post_padding)
-    i._printf_post_padding                   0x08002180   Section        0  printfa.o(i._printf_post_padding)
-    _printf_pre_padding                      0x080021a5   Thumb Code    46  printfa.o(i._printf_pre_padding)
-    i._printf_pre_padding                    0x080021a4   Section        0  printfa.o(i._printf_pre_padding)
-    i.puts                                   0x080021d4   Section        0  puts.o(i.puts)
-    ADCPrescTable                            0x080021f8   Data           4  stm32f10x_rcc.o(.rodata.ADCPrescTable)
-    [Anonymous Symbol]                       0x080021f8   Section        0  stm32f10x_rcc.o(.rodata.ADCPrescTable)
-    APBAHBPrescTable                         0x0800220c   Data          16  stm32f10x_rcc.o(.rodata.APBAHBPrescTable)
-    [Anonymous Symbol]                       0x0800220c   Section        0  stm32f10x_rcc.o(.rodata.APBAHBPrescTable)
+    [Anonymous Symbol]                       0x080006a8   Section        0  stm32f10x_exti.o(.text.EXTI_Init)
+    __arm_cp.1_0                             0x08000708   Number         4  stm32f10x_exti.o(.text.EXTI_Init)
+    [Anonymous Symbol]                       0x0800070c   Section        0  stm32f10x_gpio.o(.text.GPIO_EXTILineConfig)
+    __arm_cp.16_0                            0x08000734   Number         4  stm32f10x_gpio.o(.text.GPIO_EXTILineConfig)
+    [Anonymous Symbol]                       0x08000738   Section        0  gpio_stm32f10x.o(.text.GPIO_GetPortClockState)
+    __arm_cp.1_0                             0x0800075c   Number         4  gpio_stm32f10x.o(.text.GPIO_GetPortClockState)
+    [Anonymous Symbol]                       0x0800077c   Section        0  stm32f10x_gpio.o(.text.GPIO_Init)
+    [Anonymous Symbol]                       0x08000834   Section        0  gpio_stm32f10x.o(.text.GPIO_PinConfigure)
+    [Anonymous Symbol]                       0x080008a4   Section        0  gpio_stm32f10x.o(.text.GPIO_PortClock)
+    __arm_cp.0_1                             0x08000970   Number         4  gpio_stm32f10x.o(.text.GPIO_PortClock)
+    [Anonymous Symbol]                       0x08000974   Section        0  stm32f10x_gpio.o(.text.GPIO_ResetBits)
+    [Anonymous Symbol]                       0x08000978   Section        0  stm32f10x_gpio.o(.text.GPIO_SetBits)
+    [Anonymous Symbol]                       0x0800097c   Section        0  c8t6f2fucn.o(.text.GPIO_config)
+    [Anonymous Symbol]                       0x0800099c   Section        0  stm32f10x_it.o(.text.HardFault_Handler)
+    [Anonymous Symbol]                       0x0800099e   Section        0  stm32f10x_it.o(.text.MemManage_Handler)
+    [Anonymous Symbol]                       0x080009a0   Section        0  stm32f10x_it.o(.text.NMI_Handler)
+    [Anonymous Symbol]                       0x080009a4   Section        0  misc.o(.text.NVIC_Init)
+    __arm_cp.1_0                             0x080009f8   Number         4  misc.o(.text.NVIC_Init)
+    [Anonymous Symbol]                       0x080009fc   Section        0  misc.o(.text.NVIC_PriorityGroupConfig)
+    __arm_cp.0_0                             0x08000a08   Number         4  misc.o(.text.NVIC_PriorityGroupConfig)
+    __arm_cp.0_1                             0x08000a0c   Number         4  misc.o(.text.NVIC_PriorityGroupConfig)
+    [Anonymous Symbol]                       0x08000a10   Section        0  stm32f10x_it.o(.text.PendSV_Handler)
+    [Anonymous Symbol]                       0x08000a14   Section        0  stm32f10x_rcc.o(.text.RCC_APB1PeriphResetCmd)
+    __arm_cp.25_0                            0x08000a28   Number         4  stm32f10x_rcc.o(.text.RCC_APB1PeriphResetCmd)
+    [Anonymous Symbol]                       0x08000a2c   Section        0  stm32f10x_rcc.o(.text.RCC_APB2PeriphClockCmd)
+    __arm_cp.22_0                            0x08000a40   Number         4  stm32f10x_rcc.o(.text.RCC_APB2PeriphClockCmd)
+    [Anonymous Symbol]                       0x08000a44   Section        0  stm32f10x_rcc.o(.text.RCC_APB2PeriphResetCmd)
+    __arm_cp.24_0                            0x08000a58   Number         4  stm32f10x_rcc.o(.text.RCC_APB2PeriphResetCmd)
+    [Anonymous Symbol]                       0x08000a5c   Section        0  stm32f10x_rcc.o(.text.RCC_ClearFlag)
+    __arm_cp.29_0                            0x08000a68   Number         4  stm32f10x_rcc.o(.text.RCC_ClearFlag)
+    [Anonymous Symbol]                       0x08000a6c   Section        0  stm32f10x_rcc.o(.text.RCC_GetClocksFreq)
+    __arm_cp.20_3                            0x08000adc   Number         4  stm32f10x_rcc.o(.text.RCC_GetClocksFreq)
+    __arm_cp.20_4                            0x08000ae0   Number         4  stm32f10x_rcc.o(.text.RCC_GetClocksFreq)
+    [Anonymous Symbol]                       0x08000ae4   Section        0  stm32f10x_rcc.o(.text.RCC_GetFlagStatus)
+    [Anonymous Symbol]                       0x08000b0c   Section        0  w5500tq.o(.text.Read_W5500_1Byte)
+    [Anonymous Symbol]                       0x08000b4c   Section        0  w5500tq.o(.text.SPI1_Send_Byte)
+    __arm_cp.2_0                             0x08000b68   Number         4  w5500tq.o(.text.SPI1_Send_Byte)
+    [Anonymous Symbol]                       0x08000b6c   Section        0  w5500tq.o(.text.SPI1_Send_Short)
+    [Anonymous Symbol]                       0x08000b80   Section        0  w5500lib_init.o(.text.SPI1_W5500_Init)
+    __arm_cp.9_0                             0x08000bd8   Number         4  w5500lib_init.o(.text.SPI1_W5500_Init)
+    __arm_cp.9_1                             0x08000bdc   Number         4  w5500lib_init.o(.text.SPI1_W5500_Init)
+    __arm_cp.9_2                             0x08000be0   Number         4  w5500lib_init.o(.text.SPI1_W5500_Init)
+    [Anonymous Symbol]                       0x08000be4   Section        0  stm32f10x_spi.o(.text.SPI_Cmd)
+    [Anonymous Symbol]                       0x08000bf6   Section        0  stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus)
+    [Anonymous Symbol]                       0x08000c00   Section        0  stm32f10x_spi.o(.text.SPI_I2S_ReceiveData)
+    [Anonymous Symbol]                       0x08000c04   Section        0  stm32f10x_spi.o(.text.SPI_I2S_SendData)
+    [Anonymous Symbol]                       0x08000c08   Section        0  stm32f10x_spi.o(.text.SPI_Init)
+    [Anonymous Symbol]                       0x08000c3e   Section        0  stm32f10x_it.o(.text.SVC_Handler)
+    [Anonymous Symbol]                       0x08000c40   Section        0  stm32f10x_it.o(.text.SysTick_Handler)
+    __arm_cp.8_0                             0x08000c7c   Number         4  stm32f10x_it.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x08000c80   Section        0  system_stm32f10x.o(.text.SystemCoreClockUpdate)
+    __arm_cp.1_0                             0x08000cc0   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
+    __arm_cp.1_1                             0x08000cc4   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
+    __arm_cp.1_2                             0x08000cc8   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
+    __arm_cp.1_3                             0x08000ccc   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
+    __arm_cp.1_4                             0x08000cd0   Number         4  system_stm32f10x.o(.text.SystemCoreClockUpdate)
+    [Anonymous Symbol]                       0x08000cd4   Section        0  system_stm32f10x.o(.text.SystemInit)
+    __arm_cp.0_0                             0x08000db0   Number         4  system_stm32f10x.o(.text.SystemInit)
+    __arm_cp.0_1                             0x08000db4   Number         4  system_stm32f10x.o(.text.SystemInit)
+    __arm_cp.0_2                             0x08000db8   Number         4  system_stm32f10x.o(.text.SystemInit)
+    __arm_cp.0_3                             0x08000dbc   Number         4  system_stm32f10x.o(.text.SystemInit)
+    __arm_cp.0_4                             0x08000dc0   Number         4  system_stm32f10x.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x08000dc4   Section        0  stm32f10x_it.o(.text.TIM2_IRQHandler)
+    [Anonymous Symbol]                       0x08000dc8   Section        0  stm32f10x_it.o(.text.USART1_IRQHandler)
+    __arm_cp.9_2                             0x08000df8   Number         4  stm32f10x_it.o(.text.USART1_IRQHandler)
+    [Anonymous Symbol]                       0x08000dfc   Section        0  uart.o(.text.USART1_Init)
+    __arm_cp.0_0                             0x08000e70   Number         4  uart.o(.text.USART1_Init)
+    [Anonymous Symbol]                       0x08000e74   Section        0  stm32f10x_it.o(.text.USART2_IRQHandler)
+    __arm_cp.10_1                            0x08000ec8   Number         4  stm32f10x_it.o(.text.USART2_IRQHandler)
+    __arm_cp.10_2                            0x08000ecc   Number         4  stm32f10x_it.o(.text.USART2_IRQHandler)
+    __arm_cp.10_3                            0x08000ed0   Number         4  stm32f10x_it.o(.text.USART2_IRQHandler)
+    [Anonymous Symbol]                       0x08000ed4   Section        0  stm32f10x_usart.o(.text.USART_Cmd)
+    [Anonymous Symbol]                       0x08000ee8   Section        0  stm32f10x_usart.o(.text.USART_DeInit)
+    __arm_cp.0_0                             0x08000f6c   Number         4  stm32f10x_usart.o(.text.USART_DeInit)
+    __arm_cp.0_1                             0x08000f70   Number         4  stm32f10x_usart.o(.text.USART_DeInit)
+    __arm_cp.0_2                             0x08000f74   Number         4  stm32f10x_usart.o(.text.USART_DeInit)
+    __arm_cp.0_3                             0x08000f78   Number         4  stm32f10x_usart.o(.text.USART_DeInit)
+    [Anonymous Symbol]                       0x08000f7c   Section        0  stm32f10x_usart.o(.text.USART_GetFlagStatus)
+    [Anonymous Symbol]                       0x08000f86   Section        0  stm32f10x_usart.o(.text.USART_GetITStatus)
+    [Anonymous Symbol]                       0x08000fc8   Section        0  stm32f10x_usart.o(.text.USART_ITConfig)
+    [Anonymous Symbol]                       0x08000ff8   Section        0  stm32f10x_usart.o(.text.USART_Init)
+    __arm_cp.1_0                             0x08001098   Number         4  stm32f10x_usart.o(.text.USART_Init)
+    [Anonymous Symbol]                       0x0800109c   Section        0  stm32f10x_usart.o(.text.USART_SendData)
+    [Anonymous Symbol]                       0x080010a4   Section        0  uart.o(.text.USER_UART_NVIC)
+    [Anonymous Symbol]                       0x080010c4   Section        0  stm32f10x_it.o(.text.UsageFault_Handler)
+    [Anonymous Symbol]                       0x080010c8   Section        0  w5500lib_init.o(.text.W5500_GPIO_Init2)
+    __arm_cp.8_0                             0x08001144   Number         4  w5500lib_init.o(.text.W5500_GPIO_Init2)
+    __arm_cp.8_1                             0x08001148   Number         4  w5500lib_init.o(.text.W5500_GPIO_Init2)
+    __arm_cp.8_2                             0x0800114c   Number         4  w5500lib_init.o(.text.W5500_GPIO_Init2)
+    __arm_cp.8_3                             0x08001150   Number         4  w5500lib_init.o(.text.W5500_GPIO_Init2)
+    __arm_cp.8_4                             0x08001154   Number         4  w5500lib_init.o(.text.W5500_GPIO_Init2)
+    __arm_cp.8_5                             0x08001158   Number         4  w5500lib_init.o(.text.W5500_GPIO_Init2)
+    [Anonymous Symbol]                       0x0800115c   Section        0  w5500.o(.text.WIZCHIP_READ)
+    [Anonymous Symbol]                       0x080011b8   Section        0  w5500.o(.text.WIZCHIP_READ_BUF)
+    [Anonymous Symbol]                       0x08001224   Section        0  w5500.o(.text.WIZCHIP_WRITE)
+    [Anonymous Symbol]                       0x08001280   Section        0  w5500.o(.text.WIZCHIP_WRITE_BUF)
+    [Anonymous Symbol]                       0x080012f4   Section        0  stm32f10x_wwdg.o(.text.WWDG_SetCounter)
+    __arm_cp.4_0                             0x08001300   Number         4  stm32f10x_wwdg.o(.text.WWDG_SetCounter)
+    [Anonymous Symbol]                       0x08001304   Section        0  socket.o(.text.close)
+    [Anonymous Symbol]                       0x08001370   Section        0  w5500lib_init.o(.text.cs_desel)
+    [Anonymous Symbol]                       0x08001378   Section        0  w5500lib_init.o(.text.cs_sel)
+    __arm_cp.2_0                             0x08001380   Number         4  w5500lib_init.o(.text.cs_sel)
+    [Anonymous Symbol]                       0x08001384   Section        0  wizchip_conf.o(.text.ctlnetwork)
+    [Anonymous Symbol]                       0x080013d0   Section        0  wizchip_conf.o(.text.ctlwizchip)
+    __arm_cp.15_0                            0x080014a8   Number         4  wizchip_conf.o(.text.ctlwizchip)
+    [Anonymous Symbol]                       0x080014ac   Section        0  delay.o(.text.delay_ms)
+    [Anonymous Symbol]                       0x080014d0   Section        0  socket.o(.text.disconnect)
+    __arm_cp.4_0                             0x0800154c   Number         4  socket.o(.text.disconnect)
+    [Anonymous Symbol]                       0x08001550   Section        0  c8t6f2main.o(.text.fputc)
+    __arm_cp.0_0                             0x08001570   Number         4  c8t6f2main.o(.text.fputc)
+    [Anonymous Symbol]                       0x08001574   Section        0  w5500.o(.text.getSn_RX_RSR)
+    [Anonymous Symbol]                       0x080015b8   Section        0  w5500.o(.text.getSn_TX_FSR)
+    [Anonymous Symbol]                       0x080015fc   Section        0  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_0                             0x08001724   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_1                             0x08001728   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_2                             0x0800172c   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_3                             0x08001730   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_4                             0x08001734   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_9                             0x080017c0   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_10                            0x080017c4   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_11                            0x080017c8   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_12                            0x080017cc   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_13                            0x080017d0   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_14                            0x080017d4   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    __arm_cp.6_15                            0x080017d8   Number         4  c8t6f2fucn.o(.text.hardware_init)
+    [Anonymous Symbol]                       0x080017dc   Section        0  socket.o(.text.listen)
+    [Anonymous Symbol]                       0x08001844   Section        0  c8t6f2fucn.o(.text.loadNetParas)
+    __arm_cp.0_0                             0x08001870   Number         4  c8t6f2fucn.o(.text.loadNetParas)
+    __arm_cp.0_1                             0x08001874   Number         4  c8t6f2fucn.o(.text.loadNetParas)
+    __arm_cp.0_2                             0x08001878   Number         4  c8t6f2fucn.o(.text.loadNetParas)
+    __arm_cp.0_3                             0x0800187c   Number         4  c8t6f2fucn.o(.text.loadNetParas)
+    [Anonymous Symbol]                       0x08001880   Section        0  loopback.o(.text.loopback_tcps)
+    __arm_cp.0_1                             0x080019c8   Number         4  loopback.o(.text.loopback_tcps)
+    [Anonymous Symbol]                       0x080019f0   Section        0  c8t6f2main.o(.text.main)
+    [Anonymous Symbol]                       0x08001a00   Section        0  socket.o(.text.recv)
+    [Anonymous Symbol]                       0x08001aec   Section        0  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
+    __arm_cp.11_0                            0x08001b14   Number         4  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
+    __arm_cp.11_2                            0x08001b18   Number         4  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
+    [Anonymous Symbol]                       0x08001b1c   Section        0  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
+    __arm_cp.13_1                            0x08001b50   Number         4  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
+    __arm_cp.13_2                            0x08001b54   Number         4  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
+    [Anonymous Symbol]                       0x08001b58   Section        0  wizchip_conf.o(.text.reg_wizchip_spiburst_cbfunc)
+    __arm_cp.14_0                            0x08001b8c   Number         4  wizchip_conf.o(.text.reg_wizchip_spiburst_cbfunc)
+    __arm_cp.14_1                            0x08001b90   Number         4  wizchip_conf.o(.text.reg_wizchip_spiburst_cbfunc)
+    __arm_cp.14_2                            0x08001b94   Number         4  wizchip_conf.o(.text.reg_wizchip_spiburst_cbfunc)
+    [Anonymous Symbol]                       0x08001b98   Section        0  socket.o(.text.send)
+    [Anonymous Symbol]                       0x08001cac   Section        0  socket.o(.text.socket)
+    __arm_cp.0_0                             0x08001db8   Number         4  socket.o(.text.socket)
+    __arm_cp.0_2                             0x08001dbc   Number         4  socket.o(.text.socket)
+    [Anonymous Symbol]                       0x08001dc0   Section        0  w5500lib_init.o(.text.spi1_rb)
+    [Anonymous Symbol]                       0x08001df0   Section        0  w5500lib_init.o(.text.spi1_wb)
+    [Anonymous Symbol]                       0x08001e0c   Section        0  w5500lib_init.o(.text.spi1burst_rb)
+    __arm_cp.5_0                             0x08001e44   Number         4  w5500lib_init.o(.text.spi1burst_rb)
+    [Anonymous Symbol]                       0x08001e48   Section        0  w5500lib_init.o(.text.spi1burst_wb)
+    [Anonymous Symbol]                       0x08001e64   Section        0  c8t6f2fucn.o(.text.tasks)
+    __arm_cp.5_0                             0x08001ec4   Number         4  c8t6f2fucn.o(.text.tasks)
+    __arm_cp.5_1                             0x08001ec8   Number         4  c8t6f2fucn.o(.text.tasks)
+    __arm_cp.5_3                             0x08001ed8   Number         4  c8t6f2fucn.o(.text.tasks)
+    __arm_cp.5_4                             0x08001edc   Number         4  c8t6f2fucn.o(.text.tasks)
+    __arm_cp.5_5                             0x08001ee0   Number         4  c8t6f2fucn.o(.text.tasks)
+    __arm_cp.5_6                             0x08001ee4   Number         4  c8t6f2fucn.o(.text.tasks)
+    __arm_cp.5_7                             0x08001ee8   Number         4  c8t6f2fucn.o(.text.tasks)
+    [Anonymous Symbol]                       0x08001f00   Section        0  w5500lib_init.o(.text.w5500_lib_init)
+    __arm_cp.14_0                            0x08001f70   Number         4  w5500lib_init.o(.text.w5500_lib_init)
+    __arm_cp.14_1                            0x08001f74   Number         4  w5500lib_init.o(.text.w5500_lib_init)
+    __arm_cp.14_2                            0x08001f78   Number         4  w5500lib_init.o(.text.w5500_lib_init)
+    __arm_cp.14_3                            0x08001f7c   Number         4  w5500lib_init.o(.text.w5500_lib_init)
+    __arm_cp.14_4                            0x08001f80   Number         4  w5500lib_init.o(.text.w5500_lib_init)
+    __arm_cp.14_5                            0x08001f84   Number         4  w5500lib_init.o(.text.w5500_lib_init)
+    __arm_cp.14_6                            0x08001f88   Number         4  w5500lib_init.o(.text.w5500_lib_init)
+    [Anonymous Symbol]                       0x08001fcc   Section        0  w5500.o(.text.wiz_recv_data)
+    [Anonymous Symbol]                       0x08002020   Section        0  w5500.o(.text.wiz_send_data)
+    [Anonymous Symbol]                       0x08002074   Section        0  wizchip_conf.o(.text.wizchip_bus_readdata)
+    [Anonymous Symbol]                       0x08002078   Section        0  wizchip_conf.o(.text.wizchip_bus_writedata)
+    [Anonymous Symbol]                       0x0800207c   Section        0  wizchip_conf.o(.text.wizchip_clrinterrupt)
+    [Anonymous Symbol]                       0x0800209a   Section        0  wizchip_conf.o(.text.wizchip_cris_enter)
+    [Anonymous Symbol]                       0x0800209c   Section        0  wizchip_conf.o(.text.wizchip_cris_exit)
+    [Anonymous Symbol]                       0x0800209e   Section        0  wizchip_conf.o(.text.wizchip_cs_deselect)
+    [Anonymous Symbol]                       0x080020a0   Section        0  wizchip_conf.o(.text.wizchip_cs_select)
+    [Anonymous Symbol]                       0x080020a2   Section        0  wizchip_conf.o(.text.wizchip_getinterrupt)
+    [Anonymous Symbol]                       0x080020c0   Section        0  wizchip_conf.o(.text.wizchip_getinterruptmask)
+    [Anonymous Symbol]                       0x080020dc   Section        0  wizchip_conf.o(.text.wizchip_getnetinfo)
+    [Anonymous Symbol]                       0x08002128   Section        0  wizchip_conf.o(.text.wizchip_getnetmode)
+    [Anonymous Symbol]                       0x08002130   Section        0  wizchip_conf.o(.text.wizchip_gettimeout)
+    __arm_cp.34_0                            0x08002154   Number         4  wizchip_conf.o(.text.wizchip_gettimeout)
+    [Anonymous Symbol]                       0x08002158   Section        0  wizchip_conf.o(.text.wizchip_init)
+    [Anonymous Symbol]                       0x080021d4   Section        0  wizchip_conf.o(.text.wizchip_setinterruptmask)
+    [Anonymous Symbol]                       0x080021f0   Section        0  wizchip_conf.o(.text.wizchip_setnetinfo)
+    __arm_cp.29_1                            0x0800223c   Number         4  wizchip_conf.o(.text.wizchip_setnetinfo)
+    [Anonymous Symbol]                       0x08002240   Section        0  wizchip_conf.o(.text.wizchip_setnetmode)
+    [Anonymous Symbol]                       0x08002264   Section        0  wizchip_conf.o(.text.wizchip_settimeout)
+    __arm_cp.33_0                            0x08002288   Number         4  wizchip_conf.o(.text.wizchip_settimeout)
+    [Anonymous Symbol]                       0x0800228c   Section        0  wizchip_conf.o(.text.wizchip_spi_readburst)
+    [Anonymous Symbol]                       0x0800228e   Section        0  wizchip_conf.o(.text.wizchip_spi_readbyte)
+    [Anonymous Symbol]                       0x08002292   Section        0  wizchip_conf.o(.text.wizchip_spi_writeburst)
+    [Anonymous Symbol]                       0x08002294   Section        0  wizchip_conf.o(.text.wizchip_spi_writebyte)
+    [Anonymous Symbol]                       0x08002298   Section        0  wizchip_conf.o(.text.wizchip_sw_reset)
+    __arm_cp.16_0                            0x08002310   Number         4  wizchip_conf.o(.text.wizchip_sw_reset)
+    __arm_cp.16_1                            0x08002314   Number         4  wizchip_conf.o(.text.wizchip_sw_reset)
+    [Anonymous Symbol]                       0x08002318   Section        0  wizchip_conf.o(.text.wizphy_getphyconf)
+    __arm_cp.24_0                            0x08002378   Number         4  wizchip_conf.o(.text.wizphy_getphyconf)
+    __arm_cp.24_1                            0x0800237c   Number         4  wizchip_conf.o(.text.wizphy_getphyconf)
+    [Anonymous Symbol]                       0x08002380   Section        0  wizchip_conf.o(.text.wizphy_getphylink)
+    [Anonymous Symbol]                       0x08002390   Section        0  wizchip_conf.o(.text.wizphy_getphypmode)
+    [Anonymous Symbol]                       0x080023a8   Section        0  wizchip_conf.o(.text.wizphy_reset)
+    [Anonymous Symbol]                       0x080023d6   Section        0  wizchip_conf.o(.text.wizphy_setphyconf)
+    [Anonymous Symbol]                       0x08002422   Section        0  wizchip_conf.o(.text.wizphy_setphypmode)
+    i.__0printf                              0x08002474   Section        0  printfa.o(i.__0printf)
+    i.__scatterload_copy                     0x08002494   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x080024a2   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x080024a4   Section       14  handlers.o(i.__scatterload_zeroinit)
+    _fp_digits                               0x080024b5   Thumb Code   366  printfa.o(i._fp_digits)
+    i._fp_digits                             0x080024b4   Section        0  printfa.o(i._fp_digits)
+    _printf_core                             0x08002639   Thumb Code  1744  printfa.o(i._printf_core)
+    i._printf_core                           0x08002638   Section        0  printfa.o(i._printf_core)
+    _printf_post_padding                     0x08002d15   Thumb Code    36  printfa.o(i._printf_post_padding)
+    i._printf_post_padding                   0x08002d14   Section        0  printfa.o(i._printf_post_padding)
+    _printf_pre_padding                      0x08002d39   Thumb Code    46  printfa.o(i._printf_pre_padding)
+    i._printf_pre_padding                    0x08002d38   Section        0  printfa.o(i._printf_pre_padding)
+    i.puts                                   0x08002d68   Section        0  puts.o(i.puts)
+    ADCPrescTable                            0x08002d8c   Data           4  stm32f10x_rcc.o(.rodata.ADCPrescTable)
+    [Anonymous Symbol]                       0x08002d8c   Section        0  stm32f10x_rcc.o(.rodata.ADCPrescTable)
+    APBAHBPrescTable                         0x08002da0   Data          16  stm32f10x_rcc.o(.rodata.APBAHBPrescTable)
+    [Anonymous Symbol]                       0x08002da0   Section        0  stm32f10x_rcc.o(.rodata.APBAHBPrescTable)
+    .L.str.6                                 0x08002db1   Data          37  c8t6f2fucn.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08002db1   Section        0  c8t6f2fucn.o(.rodata.str1.1)
+    .L.str.9                                 0x08002dd6   Data          19  c8t6f2fucn.o(.rodata.str1.1)
+    .L.str.7                                 0x08002de9   Data          19  c8t6f2fucn.o(.rodata.str1.1)
+    .L.str.8                                 0x08002dfc   Data          19  c8t6f2fucn.o(.rodata.str1.1)
+    .L.str.10                                0x08002e0f   Data          19  c8t6f2fucn.o(.rodata.str1.1)
+    .Lstr.12                                 0x08002e22   Data          33  c8t6f2fucn.o(.rodata.str1.1)
+    .L.str.1                                 0x08002e43   Data          19  loopback.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08002e43   Section        0  loopback.o(.rodata.str1.1)
     .data                                    0x20000000   Section        4  stdout.o(.data)
     [Anonymous Symbol]                       0x20000004   Section        0  stm32f10x_it.o(.data..L_MergedGlobals)
-    [Anonymous Symbol]                       0x20000048   Section        0  w5500tq.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x2000006b   Section        0  stm32f10x_it.o(.bss..L_MergedGlobals.1)
-    STACK                                    0x200000a8   Section     1024  startup_stm32f10x_md.o(STACK)
+    sock_any_port                            0x20000044   Data           2  socket.o(.data.sock_any_port)
+    [Anonymous Symbol]                       0x20000044   Section        0  socket.o(.data.sock_any_port)
+    [Anonymous Symbol]                       0x20000048   Section        0  c8t6f2fucn.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x2000007c   Section        0  w5500tq.o(.bss..L_MergedGlobals)
+    _DHCP_                                   0x2000009f   Data           1  wizchip_conf.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x2000009f   Section        0  wizchip_conf.o(.bss..L_MergedGlobals)
+    _DNS_.0                                  0x200000a0   Data           1  wizchip_conf.o(.bss..L_MergedGlobals)
+    _DNS_.1                                  0x200000a1   Data           1  wizchip_conf.o(.bss..L_MergedGlobals)
+    _DNS_.2                                  0x200000a2   Data           1  wizchip_conf.o(.bss..L_MergedGlobals)
+    _DNS_.3                                  0x200000a3   Data           1  wizchip_conf.o(.bss..L_MergedGlobals)
+    sock_io_mode                             0x200000a4   Data           2  socket.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x200000a4   Section        0  socket.o(.bss..L_MergedGlobals)
+    sock_is_sending                          0x200000a6   Data           2  socket.o(.bss..L_MergedGlobals)
+    sock_remained_size                       0x200000b0   Data          16  socket.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x200000c0   Section        0  stm32f10x_it.o(.bss..L_MergedGlobals.1)
+    STACK                                    0x200008f0   Section     1024  startup_stm32f10x_md.o(STACK)
 
     Global Symbols
 
@@ -3485,102 +3617,129 @@ Image Symbol Table
     EXTI3_IRQHandler                         0x08000669   Thumb Code    28  w5500tq.o(.text.EXTI3_IRQHandler)
     EXTI_ClearITPendingBit                   0x08000685   Thumb Code    12  stm32f10x_exti.o(.text.EXTI_ClearITPendingBit)
     EXTI_GetITStatus                         0x08000691   Thumb Code    28  stm32f10x_exti.o(.text.EXTI_GetITStatus)
-    GPIO_GetPortClockState                   0x080006ad   Thumb Code    72  gpio_stm32f10x.o(.text.GPIO_GetPortClockState)
-    GPIO_Init                                0x080006f1   Thumb Code   184  stm32f10x_gpio.o(.text.GPIO_Init)
-    GPIO_PinConfigure                        0x080007a9   Thumb Code   112  gpio_stm32f10x.o(.text.GPIO_PinConfigure)
-    GPIO_PortClock                           0x08000819   Thumb Code   216  gpio_stm32f10x.o(.text.GPIO_PortClock)
-    GPIO_ResetBits                           0x080008e9   Thumb Code     4  stm32f10x_gpio.o(.text.GPIO_ResetBits)
-    GPIO_SetBits                             0x080008ed   Thumb Code     4  stm32f10x_gpio.o(.text.GPIO_SetBits)
-    GPIO_config                              0x080008f1   Thumb Code    36  c8t6f2fucn.o(.text.GPIO_config)
-    HardFault_Handler                        0x08000911   Thumb Code     2  stm32f10x_it.o(.text.HardFault_Handler)
-    MemManage_Handler                        0x08000913   Thumb Code     2  stm32f10x_it.o(.text.MemManage_Handler)
-    NMI_Handler                              0x08000915   Thumb Code     2  stm32f10x_it.o(.text.NMI_Handler)
-    NVIC_Init                                0x08000919   Thumb Code    92  misc.o(.text.NVIC_Init)
-    NVIC_PriorityGroupConfig                 0x08000971   Thumb Code    20  misc.o(.text.NVIC_PriorityGroupConfig)
-    PendSV_Handler                           0x08000985   Thumb Code     2  stm32f10x_it.o(.text.PendSV_Handler)
-    RCC_APB1PeriphResetCmd                   0x08000989   Thumb Code    24  stm32f10x_rcc.o(.text.RCC_APB1PeriphResetCmd)
-    RCC_APB2PeriphClockCmd                   0x080009a1   Thumb Code    24  stm32f10x_rcc.o(.text.RCC_APB2PeriphClockCmd)
-    RCC_APB2PeriphResetCmd                   0x080009b9   Thumb Code    24  stm32f10x_rcc.o(.text.RCC_APB2PeriphResetCmd)
-    RCC_ClearFlag                            0x080009d1   Thumb Code    16  stm32f10x_rcc.o(.text.RCC_ClearFlag)
-    RCC_GetClocksFreq                        0x080009e1   Thumb Code   132  stm32f10x_rcc.o(.text.RCC_GetClocksFreq)
-    RCC_GetFlagStatus                        0x08000a59   Thumb Code    44  stm32f10x_rcc.o(.text.RCC_GetFlagStatus)
-    SPI1_Init                                0x08000a81   Thumb Code   100  spi.o(.text.SPI1_Init)
-    SPI1_SetSpeed                            0x08000ae5   Thumb Code    28  spi.o(.text.SPI1_SetSpeed)
-    SPI_Cmd                                  0x08000afd   Thumb Code    18  stm32f10x_spi.o(.text.SPI_Cmd)
-    SPI_I2S_GetFlagStatus                    0x08000b0f   Thumb Code    10  stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus)
-    SPI_I2S_ReceiveData                      0x08000b19   Thumb Code     4  stm32f10x_spi.o(.text.SPI_I2S_ReceiveData)
-    SPI_I2S_SendData                         0x08000b1d   Thumb Code     4  stm32f10x_spi.o(.text.SPI_I2S_SendData)
-    SPI_Init                                 0x08000b21   Thumb Code    54  stm32f10x_spi.o(.text.SPI_Init)
-    SPI_SendReceiveByte                      0x08000b59   Thumb Code    52  c8t6f2fucn.o(.text.SPI_SendReceiveByte)
-    SVC_Handler                              0x08000b8d   Thumb Code     2  stm32f10x_it.o(.text.SVC_Handler)
-    SysTick_Handler                          0x08000b91   Thumb Code    68  stm32f10x_it.o(.text.SysTick_Handler)
-    SystemCoreClockUpdate                    0x08000bd1   Thumb Code    84  system_stm32f10x.o(.text.SystemCoreClockUpdate)
-    SystemInit                               0x08000c25   Thumb Code   240  system_stm32f10x.o(.text.SystemInit)
-    TIM2_IRQHandler                          0x08000d15   Thumb Code     2  stm32f10x_it.o(.text.TIM2_IRQHandler)
-    USART1_IRQHandler                        0x08000d19   Thumb Code    60  stm32f10x_it.o(.text.USART1_IRQHandler)
-    USART1_Init                              0x08000d4d   Thumb Code   120  uart.o(.text.USART1_Init)
-    USART1_SendChar_                         0x08000dc5   Thumb Code    36  uart.o(.text.USART1_SendChar_)
-    USART1_SendStr_                          0x08000de5   Thumb Code    20  uart.o(.text.USART1_SendStr_)
-    USART2_IRQHandler                        0x08000df9   Thumb Code   100  stm32f10x_it.o(.text.USART2_IRQHandler)
-    USART_Cmd                                0x08000e59   Thumb Code    18  stm32f10x_usart.o(.text.USART_Cmd)
-    USART_DeInit                             0x08000e6d   Thumb Code   152  stm32f10x_usart.o(.text.USART_DeInit)
-    USART_GetFlagStatus                      0x08000f01   Thumb Code    10  stm32f10x_usart.o(.text.USART_GetFlagStatus)
-    USART_GetITStatus                        0x08000f0b   Thumb Code    66  stm32f10x_usart.o(.text.USART_GetITStatus)
-    USART_ITConfig                           0x08000f4d   Thumb Code    46  stm32f10x_usart.o(.text.USART_ITConfig)
-    USART_Init                               0x08000f7d   Thumb Code   164  stm32f10x_usart.o(.text.USART_Init)
-    USART_SendData                           0x08001021   Thumb Code     8  stm32f10x_usart.o(.text.USART_SendData)
-    USER_UART_NVIC                           0x08001029   Thumb Code    32  uart.o(.text.USER_UART_NVIC)
-    UsageFault_Handler                       0x08001049   Thumb Code     2  stm32f10x_it.o(.text.UsageFault_Handler)
-    WIZCHIP_READ                             0x0800104d   Thumb Code    96  w5500_1.o(.text.WIZCHIP_READ)
-    WIZCHIP_READ_BUF                         0x080010a9   Thumb Code   112  w5500_1.o(.text.WIZCHIP_READ_BUF)
-    WIZCHIP_WRITE                            0x08001115   Thumb Code    96  w5500_1.o(.text.WIZCHIP_WRITE)
-    WIZCHIP_WRITE_BUF                        0x08001171   Thumb Code   120  w5500_1.o(.text.WIZCHIP_WRITE_BUF)
-    WWDG_SetCounter                          0x080011e5   Thumb Code    16  stm32f10x_wwdg.o(.text.WWDG_SetCounter)
-    chip_off                                 0x080011f5   Thumb Code    12  c8t6f2fucn.o(.text.chip_off)
-    chip_on                                  0x080011fd   Thumb Code    12  c8t6f2fucn.o(.text.chip_on)
-    ctlwizchip                               0x08001209   Thumb Code   220  wizchip_conf.o(.text.ctlwizchip)
-    delay_ms                                 0x080012e5   Thumb Code    34  delay.o(.text.delay_ms)
-    fputc                                    0x08001309   Thumb Code    36  c8t6f2main.o(.text.fputc)
-    hardware_init                            0x0800132d   Thumb Code   256  c8t6f2fucn.o(.text.hardware_init)
-    main                                     0x0800142d   Thumb Code    16  c8t6f2main.o(.text.main)
-    reg_wizchip_cs_cbfunc                    0x0800143d   Thumb Code    52  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
-    reg_wizchip_spi_cbfunc                   0x08001471   Thumb Code    64  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
-    senddata                                 0x080014b1   Thumb Code    52  c8t6f2fucn.o(.text.senddata)
-    tasks                                    0x080014e5   Thumb Code   100  c8t6f2fucn.o(.text.tasks)
-    w5500_ini                                0x08001549   Thumb Code   184  c8t6f2fucn.o(.text.w5500_ini)
-    wizchip_bus_readdata                     0x08001601   Thumb Code     4  wizchip_conf.o(.text.wizchip_bus_readdata)
-    wizchip_bus_writedata                    0x08001605   Thumb Code     4  wizchip_conf.o(.text.wizchip_bus_writedata)
-    wizchip_clrinterrupt                     0x08001609   Thumb Code    30  wizchip_conf.o(.text.wizchip_clrinterrupt)
-    wizchip_cris_enter                       0x08001627   Thumb Code     2  wizchip_conf.o(.text.wizchip_cris_enter)
-    wizchip_cris_exit                        0x08001629   Thumb Code     2  wizchip_conf.o(.text.wizchip_cris_exit)
-    wizchip_cs_deselect                      0x0800162b   Thumb Code     2  wizchip_conf.o(.text.wizchip_cs_deselect)
-    wizchip_cs_select                        0x0800162d   Thumb Code     2  wizchip_conf.o(.text.wizchip_cs_select)
-    wizchip_getinterrupt                     0x0800162f   Thumb Code    30  wizchip_conf.o(.text.wizchip_getinterrupt)
-    wizchip_getinterruptmask                 0x0800164d   Thumb Code    26  wizchip_conf.o(.text.wizchip_getinterruptmask)
-    wizchip_init                             0x08001667   Thumb Code   124  wizchip_conf.o(.text.wizchip_init)
-    wizchip_setinterruptmask                 0x080016e3   Thumb Code    28  wizchip_conf.o(.text.wizchip_setinterruptmask)
-    wizchip_spi_readbyte                     0x080016ff   Thumb Code     4  wizchip_conf.o(.text.wizchip_spi_readbyte)
-    wizchip_spi_writebyte                    0x08001703   Thumb Code     2  wizchip_conf.o(.text.wizchip_spi_writebyte)
-    wizchip_sw_reset                         0x08001705   Thumb Code   128  wizchip_conf.o(.text.wizchip_sw_reset)
-    wizphy_getphyconf                        0x08001785   Thumb Code   104  wizchip_conf.o(.text.wizphy_getphyconf)
-    wizphy_getphylink                        0x080017ed   Thumb Code    16  wizchip_conf.o(.text.wizphy_getphylink)
-    wizphy_getphypmode                       0x080017fd   Thumb Code    24  wizchip_conf.o(.text.wizphy_getphypmode)
-    wizphy_reset                             0x08001815   Thumb Code    46  wizchip_conf.o(.text.wizphy_reset)
-    wizphy_setphyconf                        0x08001843   Thumb Code    76  wizchip_conf.o(.text.wizphy_setphyconf)
-    wizphy_setphypmode                       0x0800188f   Thumb Code    80  wizchip_conf.o(.text.wizphy_setphypmode)
-    __0printf                                0x080018e1   Thumb Code    22  printfa.o(i.__0printf)
-    __1printf                                0x080018e1   Thumb Code     0  printfa.o(i.__0printf)
-    __2printf                                0x080018e1   Thumb Code     0  printfa.o(i.__0printf)
-    __c89printf                              0x080018e1   Thumb Code     0  printfa.o(i.__0printf)
-    printf                                   0x080018e1   Thumb Code     0  printfa.o(i.__0printf)
-    __scatterload_copy                       0x08001901   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x0800190f   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x08001911   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    puts                                     0x080021d5   Thumb Code    30  puts.o(i.puts)
-    AHBPrescTable                            0x080021fc   Data          16  system_stm32f10x.o(.rodata.AHBPrescTable)
-    RX_BUFFER_SIZE0                          0x0800221c   Data           1  stm32f10x_it.o(.rodata.RX_BUFFER_SIZE0)
-    Region$$Table$$Base                      0x08002220   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08002240   Number         0  anon$$obj.o(Region$$Table)
+    EXTI_Init                                0x080006a9   Thumb Code   100  stm32f10x_exti.o(.text.EXTI_Init)
+    GPIO_EXTILineConfig                      0x0800070d   Thumb Code    44  stm32f10x_gpio.o(.text.GPIO_EXTILineConfig)
+    GPIO_GetPortClockState                   0x08000739   Thumb Code    72  gpio_stm32f10x.o(.text.GPIO_GetPortClockState)
+    GPIO_Init                                0x0800077d   Thumb Code   184  stm32f10x_gpio.o(.text.GPIO_Init)
+    GPIO_PinConfigure                        0x08000835   Thumb Code   112  gpio_stm32f10x.o(.text.GPIO_PinConfigure)
+    GPIO_PortClock                           0x080008a5   Thumb Code   216  gpio_stm32f10x.o(.text.GPIO_PortClock)
+    GPIO_ResetBits                           0x08000975   Thumb Code     4  stm32f10x_gpio.o(.text.GPIO_ResetBits)
+    GPIO_SetBits                             0x08000979   Thumb Code     4  stm32f10x_gpio.o(.text.GPIO_SetBits)
+    GPIO_config                              0x0800097d   Thumb Code    36  c8t6f2fucn.o(.text.GPIO_config)
+    HardFault_Handler                        0x0800099d   Thumb Code     2  stm32f10x_it.o(.text.HardFault_Handler)
+    MemManage_Handler                        0x0800099f   Thumb Code     2  stm32f10x_it.o(.text.MemManage_Handler)
+    NMI_Handler                              0x080009a1   Thumb Code     2  stm32f10x_it.o(.text.NMI_Handler)
+    NVIC_Init                                0x080009a5   Thumb Code    92  misc.o(.text.NVIC_Init)
+    NVIC_PriorityGroupConfig                 0x080009fd   Thumb Code    20  misc.o(.text.NVIC_PriorityGroupConfig)
+    PendSV_Handler                           0x08000a11   Thumb Code     2  stm32f10x_it.o(.text.PendSV_Handler)
+    RCC_APB1PeriphResetCmd                   0x08000a15   Thumb Code    24  stm32f10x_rcc.o(.text.RCC_APB1PeriphResetCmd)
+    RCC_APB2PeriphClockCmd                   0x08000a2d   Thumb Code    24  stm32f10x_rcc.o(.text.RCC_APB2PeriphClockCmd)
+    RCC_APB2PeriphResetCmd                   0x08000a45   Thumb Code    24  stm32f10x_rcc.o(.text.RCC_APB2PeriphResetCmd)
+    RCC_ClearFlag                            0x08000a5d   Thumb Code    16  stm32f10x_rcc.o(.text.RCC_ClearFlag)
+    RCC_GetClocksFreq                        0x08000a6d   Thumb Code   132  stm32f10x_rcc.o(.text.RCC_GetClocksFreq)
+    RCC_GetFlagStatus                        0x08000ae5   Thumb Code    44  stm32f10x_rcc.o(.text.RCC_GetFlagStatus)
+    Read_W5500_1Byte                         0x08000b0d   Thumb Code    68  w5500tq.o(.text.Read_W5500_1Byte)
+    SPI1_Send_Byte                           0x08000b4d   Thumb Code    32  w5500tq.o(.text.SPI1_Send_Byte)
+    SPI1_Send_Short                          0x08000b6d   Thumb Code    20  w5500tq.o(.text.SPI1_Send_Short)
+    SPI1_W5500_Init                          0x08000b81   Thumb Code   100  w5500lib_init.o(.text.SPI1_W5500_Init)
+    SPI_Cmd                                  0x08000be5   Thumb Code    18  stm32f10x_spi.o(.text.SPI_Cmd)
+    SPI_I2S_GetFlagStatus                    0x08000bf7   Thumb Code    10  stm32f10x_spi.o(.text.SPI_I2S_GetFlagStatus)
+    SPI_I2S_ReceiveData                      0x08000c01   Thumb Code     4  stm32f10x_spi.o(.text.SPI_I2S_ReceiveData)
+    SPI_I2S_SendData                         0x08000c05   Thumb Code     4  stm32f10x_spi.o(.text.SPI_I2S_SendData)
+    SPI_Init                                 0x08000c09   Thumb Code    54  stm32f10x_spi.o(.text.SPI_Init)
+    SVC_Handler                              0x08000c3f   Thumb Code     2  stm32f10x_it.o(.text.SVC_Handler)
+    SysTick_Handler                          0x08000c41   Thumb Code    68  stm32f10x_it.o(.text.SysTick_Handler)
+    SystemCoreClockUpdate                    0x08000c81   Thumb Code    84  system_stm32f10x.o(.text.SystemCoreClockUpdate)
+    SystemInit                               0x08000cd5   Thumb Code   240  system_stm32f10x.o(.text.SystemInit)
+    TIM2_IRQHandler                          0x08000dc5   Thumb Code     2  stm32f10x_it.o(.text.TIM2_IRQHandler)
+    USART1_IRQHandler                        0x08000dc9   Thumb Code    60  stm32f10x_it.o(.text.USART1_IRQHandler)
+    USART1_Init                              0x08000dfd   Thumb Code   120  uart.o(.text.USART1_Init)
+    USART2_IRQHandler                        0x08000e75   Thumb Code   100  stm32f10x_it.o(.text.USART2_IRQHandler)
+    USART_Cmd                                0x08000ed5   Thumb Code    18  stm32f10x_usart.o(.text.USART_Cmd)
+    USART_DeInit                             0x08000ee9   Thumb Code   152  stm32f10x_usart.o(.text.USART_DeInit)
+    USART_GetFlagStatus                      0x08000f7d   Thumb Code    10  stm32f10x_usart.o(.text.USART_GetFlagStatus)
+    USART_GetITStatus                        0x08000f87   Thumb Code    66  stm32f10x_usart.o(.text.USART_GetITStatus)
+    USART_ITConfig                           0x08000fc9   Thumb Code    46  stm32f10x_usart.o(.text.USART_ITConfig)
+    USART_Init                               0x08000ff9   Thumb Code   164  stm32f10x_usart.o(.text.USART_Init)
+    USART_SendData                           0x0800109d   Thumb Code     8  stm32f10x_usart.o(.text.USART_SendData)
+    USER_UART_NVIC                           0x080010a5   Thumb Code    32  uart.o(.text.USER_UART_NVIC)
+    UsageFault_Handler                       0x080010c5   Thumb Code     2  stm32f10x_it.o(.text.UsageFault_Handler)
+    W5500_GPIO_Init2                         0x080010c9   Thumb Code   148  w5500lib_init.o(.text.W5500_GPIO_Init2)
+    WIZCHIP_READ                             0x0800115d   Thumb Code    96  w5500.o(.text.WIZCHIP_READ)
+    WIZCHIP_READ_BUF                         0x080011b9   Thumb Code   112  w5500.o(.text.WIZCHIP_READ_BUF)
+    WIZCHIP_WRITE                            0x08001225   Thumb Code    96  w5500.o(.text.WIZCHIP_WRITE)
+    WIZCHIP_WRITE_BUF                        0x08001281   Thumb Code   120  w5500.o(.text.WIZCHIP_WRITE_BUF)
+    WWDG_SetCounter                          0x080012f5   Thumb Code    16  stm32f10x_wwdg.o(.text.WWDG_SetCounter)
+    close                                    0x08001305   Thumb Code   112  socket.o(.text.close)
+    cs_desel                                 0x08001371   Thumb Code    12  w5500lib_init.o(.text.cs_desel)
+    cs_sel                                   0x08001379   Thumb Code    12  w5500lib_init.o(.text.cs_sel)
+    ctlnetwork                               0x08001385   Thumb Code    76  wizchip_conf.o(.text.ctlnetwork)
+    ctlwizchip                               0x080013d1   Thumb Code   220  wizchip_conf.o(.text.ctlwizchip)
+    delay_ms                                 0x080014ad   Thumb Code    34  delay.o(.text.delay_ms)
+    disconnect                               0x080014d1   Thumb Code   128  socket.o(.text.disconnect)
+    fputc                                    0x08001551   Thumb Code    36  c8t6f2main.o(.text.fputc)
+    getSn_RX_RSR                             0x08001575   Thumb Code    68  w5500.o(.text.getSn_RX_RSR)
+    getSn_TX_FSR                             0x080015b9   Thumb Code    68  w5500.o(.text.getSn_TX_FSR)
+    hardware_init                            0x080015fd   Thumb Code   480  c8t6f2fucn.o(.text.hardware_init)
+    listen                                   0x080017dd   Thumb Code   102  socket.o(.text.listen)
+    loadNetParas                             0x08001845   Thumb Code    60  c8t6f2fucn.o(.text.loadNetParas)
+    loopback_tcps                            0x08001881   Thumb Code   368  loopback.o(.text.loopback_tcps)
+    main                                     0x080019f1   Thumb Code    16  c8t6f2main.o(.text.main)
+    recv                                     0x08001a01   Thumb Code   240  socket.o(.text.recv)
+    reg_wizchip_cs_cbfunc                    0x08001aed   Thumb Code    52  wizchip_conf.o(.text.reg_wizchip_cs_cbfunc)
+    reg_wizchip_spi_cbfunc                   0x08001b1d   Thumb Code    64  wizchip_conf.o(.text.reg_wizchip_spi_cbfunc)
+    reg_wizchip_spiburst_cbfunc              0x08001b59   Thumb Code    64  wizchip_conf.o(.text.reg_wizchip_spiburst_cbfunc)
+    send                                     0x08001b99   Thumb Code   280  socket.o(.text.send)
+    socket                                   0x08001cad   Thumb Code   280  socket.o(.text.socket)
+    spi1_rb                                  0x08001dc1   Thumb Code    52  w5500lib_init.o(.text.spi1_rb)
+    spi1_wb                                  0x08001df1   Thumb Code    32  w5500lib_init.o(.text.spi1_wb)
+    spi1burst_rb                             0x08001e0d   Thumb Code    60  w5500lib_init.o(.text.spi1burst_rb)
+    spi1burst_wb                             0x08001e49   Thumb Code    28  w5500lib_init.o(.text.spi1burst_wb)
+    tasks                                    0x08001e65   Thumb Code   156  c8t6f2fucn.o(.text.tasks)
+    w5500_lib_init                           0x08001f01   Thumb Code   204  w5500lib_init.o(.text.w5500_lib_init)
+    wiz_recv_data                            0x08001fcd   Thumb Code    84  w5500.o(.text.wiz_recv_data)
+    wiz_send_data                            0x08002021   Thumb Code    84  w5500.o(.text.wiz_send_data)
+    wizchip_bus_readdata                     0x08002075   Thumb Code     4  wizchip_conf.o(.text.wizchip_bus_readdata)
+    wizchip_bus_writedata                    0x08002079   Thumb Code     4  wizchip_conf.o(.text.wizchip_bus_writedata)
+    wizchip_clrinterrupt                     0x0800207d   Thumb Code    30  wizchip_conf.o(.text.wizchip_clrinterrupt)
+    wizchip_cris_enter                       0x0800209b   Thumb Code     2  wizchip_conf.o(.text.wizchip_cris_enter)
+    wizchip_cris_exit                        0x0800209d   Thumb Code     2  wizchip_conf.o(.text.wizchip_cris_exit)
+    wizchip_cs_deselect                      0x0800209f   Thumb Code     2  wizchip_conf.o(.text.wizchip_cs_deselect)
+    wizchip_cs_select                        0x080020a1   Thumb Code     2  wizchip_conf.o(.text.wizchip_cs_select)
+    wizchip_getinterrupt                     0x080020a3   Thumb Code    30  wizchip_conf.o(.text.wizchip_getinterrupt)
+    wizchip_getinterruptmask                 0x080020c1   Thumb Code    26  wizchip_conf.o(.text.wizchip_getinterruptmask)
+    wizchip_getnetinfo                       0x080020dd   Thumb Code    84  wizchip_conf.o(.text.wizchip_getnetinfo)
+    wizchip_getnetmode                       0x08002129   Thumb Code     6  wizchip_conf.o(.text.wizchip_getnetmode)
+    wizchip_gettimeout                       0x08002131   Thumb Code    40  wizchip_conf.o(.text.wizchip_gettimeout)
+    wizchip_init                             0x08002159   Thumb Code   124  wizchip_conf.o(.text.wizchip_init)
+    wizchip_setinterruptmask                 0x080021d5   Thumb Code    28  wizchip_conf.o(.text.wizchip_setinterruptmask)
+    wizchip_setnetinfo                       0x080021f1   Thumb Code    84  wizchip_conf.o(.text.wizchip_setnetinfo)
+    wizchip_setnetmode                       0x08002241   Thumb Code    36  wizchip_conf.o(.text.wizchip_setnetmode)
+    wizchip_settimeout                       0x08002265   Thumb Code    40  wizchip_conf.o(.text.wizchip_settimeout)
+    wizchip_spi_readburst                    0x0800228d   Thumb Code     2  wizchip_conf.o(.text.wizchip_spi_readburst)
+    wizchip_spi_readbyte                     0x0800228f   Thumb Code     4  wizchip_conf.o(.text.wizchip_spi_readbyte)
+    wizchip_spi_writeburst                   0x08002293   Thumb Code     2  wizchip_conf.o(.text.wizchip_spi_writeburst)
+    wizchip_spi_writebyte                    0x08002295   Thumb Code     2  wizchip_conf.o(.text.wizchip_spi_writebyte)
+    wizchip_sw_reset                         0x08002299   Thumb Code   128  wizchip_conf.o(.text.wizchip_sw_reset)
+    wizphy_getphyconf                        0x08002319   Thumb Code   104  wizchip_conf.o(.text.wizphy_getphyconf)
+    wizphy_getphylink                        0x08002381   Thumb Code    16  wizchip_conf.o(.text.wizphy_getphylink)
+    wizphy_getphypmode                       0x08002391   Thumb Code    24  wizchip_conf.o(.text.wizphy_getphypmode)
+    wizphy_reset                             0x080023a9   Thumb Code    46  wizchip_conf.o(.text.wizphy_reset)
+    wizphy_setphyconf                        0x080023d7   Thumb Code    76  wizchip_conf.o(.text.wizphy_setphyconf)
+    wizphy_setphypmode                       0x08002423   Thumb Code    80  wizchip_conf.o(.text.wizphy_setphypmode)
+    __0printf                                0x08002475   Thumb Code    22  printfa.o(i.__0printf)
+    __1printf                                0x08002475   Thumb Code     0  printfa.o(i.__0printf)
+    __2printf                                0x08002475   Thumb Code     0  printfa.o(i.__0printf)
+    __c89printf                              0x08002475   Thumb Code     0  printfa.o(i.__0printf)
+    printf                                   0x08002475   Thumb Code     0  printfa.o(i.__0printf)
+    __scatterload_copy                       0x08002495   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x080024a3   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x080024a5   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    puts                                     0x08002d69   Thumb Code    30  puts.o(i.puts)
+    AHBPrescTable                            0x08002d90   Data          16  system_stm32f10x.o(.rodata.AHBPrescTable)
+    RX_BUFFER_SIZE0                          0x08002db0   Data           1  stm32f10x_it.o(.rodata.RX_BUFFER_SIZE0)
+    Region$$Table$$Base                      0x08002e58   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08002e78   Number         0  anon$$obj.o(Region$$Table)
     __stdout                                 0x20000000   Data           4  stdout.o(.data)
     task1s                                   0x20000004   Data           4  stm32f10x_it.o(.data..L_MergedGlobals)
     task100ms                                0x20000008   Data           4  stm32f10x_it.o(.data..L_MergedGlobals)
@@ -3588,25 +3747,30 @@ Image Symbol Table
     u2out                                    0x20000010   Data           4  stm32f10x_it.o(.data..L_MergedGlobals)
     SystemCoreClock                          0x20000014   Data           4  system_stm32f10x.o(.data.SystemCoreClock)
     WIZCHIP                                  0x20000018   Data          44  wizchip_conf.o(.data.WIZCHIP)
-    S0_State                                 0x20000048   Data           1  w5500tq.o(.bss..L_MergedGlobals)
-    W5500_Interrupt                          0x20000049   Data           1  w5500tq.o(.bss..L_MergedGlobals)
-    S0_Data                                  0x2000004a   Data           1  w5500tq.o(.bss..L_MergedGlobals)
-    UDP_DPORT                                0x2000004b   Data           2  w5500tq.o(.bss..L_MergedGlobals)
-    S0_Port                                  0x2000004d   Data           2  w5500tq.o(.bss..L_MergedGlobals)
-    S0_DPort                                 0x2000004f   Data           2  w5500tq.o(.bss..L_MergedGlobals)
-    UDP_DIPR                                 0x20000051   Data           4  w5500tq.o(.bss..L_MergedGlobals)
-    Gateway_IP                               0x20000055   Data           4  w5500tq.o(.bss..L_MergedGlobals)
-    Sub_Mask                                 0x20000059   Data           4  w5500tq.o(.bss..L_MergedGlobals)
-    IP_Addr                                  0x2000005d   Data           4  w5500tq.o(.bss..L_MergedGlobals)
-    S0_DIP                                   0x20000061   Data           4  w5500tq.o(.bss..L_MergedGlobals)
-    Phy_Addr                                 0x20000065   Data           6  w5500tq.o(.bss..L_MergedGlobals)
-    USART1_index                             0x2000006b   Data           1  stm32f10x_it.o(.bss..L_MergedGlobals.1)
-    USART1_rx_data_buff                      0x2000006c   Data          20  stm32f10x_it.o(.bss..L_MergedGlobals.1)
-    TimingDelay                              0x20000080   Data           4  stm32f10x_it.o(.bss.TimingDelay)
-    USART2_index                             0x20000084   Data           1  uart.o(.bss.USART2_index)
-    mcu_clk                                  0x20000088   Data          20  c8t6f2fucn.o(.bss.mcu_clk)
-    rx2_data_buff                            0x2000009c   Data          10  uart.o(.bss.rx2_data_buff)
-    __initial_sp                             0x200004a8   Data           0  startup_stm32f10x_md.o(STACK)
+    tmpstr                                   0x20000048   Data           6  c8t6f2fucn.o(.bss..L_MergedGlobals)
+    MyNetInfo                                0x2000004e   Data          23  c8t6f2fucn.o(.bss..L_MergedGlobals)
+    netinfo                                  0x20000065   Data          23  c8t6f2fucn.o(.bss..L_MergedGlobals)
+    S0_State                                 0x2000007c   Data           1  w5500tq.o(.bss..L_MergedGlobals)
+    W5500_Interrupt                          0x2000007d   Data           1  w5500tq.o(.bss..L_MergedGlobals)
+    S0_Data                                  0x2000007e   Data           1  w5500tq.o(.bss..L_MergedGlobals)
+    UDP_DPORT                                0x2000007f   Data           2  w5500tq.o(.bss..L_MergedGlobals)
+    S0_Port                                  0x20000081   Data           2  w5500tq.o(.bss..L_MergedGlobals)
+    S0_DPort                                 0x20000083   Data           2  w5500tq.o(.bss..L_MergedGlobals)
+    UDP_DIPR                                 0x20000085   Data           4  w5500tq.o(.bss..L_MergedGlobals)
+    Gateway_IP                               0x20000089   Data           4  w5500tq.o(.bss..L_MergedGlobals)
+    Sub_Mask                                 0x2000008d   Data           4  w5500tq.o(.bss..L_MergedGlobals)
+    IP_Addr                                  0x20000091   Data           4  w5500tq.o(.bss..L_MergedGlobals)
+    S0_DIP                                   0x20000095   Data           4  w5500tq.o(.bss..L_MergedGlobals)
+    Phy_Addr                                 0x20000099   Data           6  w5500tq.o(.bss..L_MergedGlobals)
+    sock_pack_info                           0x200000a8   Data           8  socket.o(.bss..L_MergedGlobals)
+    USART1_index                             0x200000c0   Data           1  stm32f10x_it.o(.bss..L_MergedGlobals.1)
+    USART1_rx_data_buff                      0x200000c1   Data          20  stm32f10x_it.o(.bss..L_MergedGlobals.1)
+    TimingDelay                              0x200000d8   Data           4  stm32f10x_it.o(.bss.TimingDelay)
+    USART2_index                             0x200000dc   Data           1  uart.o(.bss.USART2_index)
+    gDATABUF                                 0x200000dd   Data        2048  c8t6f2fucn.o(.bss.gDATABUF)
+    ret                                      0x200008e0   Data           4  c8t6f2fucn.o(.bss.ret)
+    rx2_data_buff                            0x200008e4   Data          10  uart.o(.bss.rx2_data_buff)
+    __initial_sp                             0x20000cf0   Data           0  startup_stm32f10x_md.o(STACK)
 
 
 
@@ -3616,172 +3780,209 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002288, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002ec0, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002240, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002e78, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x08000000   0x000000ec   Data   RO         1798    RESET               startup_stm32f10x_md.o
-    0x080000ec   0x080000ec   0x00000000   Code   RO         1820  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x080000ec   0x080000ec   0x00000004   Code   RO         2108    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x080000f0   0x080000f0   0x00000004   Code   RO         2111    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080000f4   0x080000f4   0x00000000   Code   RO         2113    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080000f4   0x080000f4   0x00000000   Code   RO         2115    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080000f4   0x080000f4   0x00000008   Code   RO         2116    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080000fc   0x080000fc   0x00000000   Code   RO         2118    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080000fc   0x080000fc   0x00000000   Code   RO         2120    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080000fc   0x080000fc   0x00000004   Code   RO         2109    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x08000100   0x08000100   0x00000024   Code   RO         1799    .text               startup_stm32f10x_md.o
-    0x08000124   0x08000124   0x0000014e   Code   RO         2100    .text               mf_w.l(dadd.o)
-    0x08000272   0x08000272   0x000000e4   Code   RO         2102    .text               mf_w.l(dmul.o)
-    0x08000356   0x08000356   0x0000002c   Code   RO         2123    .text               mc_w.l(uidiv.o)
-    0x08000382   0x08000382   0x00000062   Code   RO         2125    .text               mc_w.l(uldiv.o)
-    0x080003e4   0x080003e4   0x0000001e   Code   RO         2127    .text               mc_w.l(llshl.o)
-    0x08000402   0x08000402   0x00000024   Code   RO         2129    .text               mc_w.l(llsshr.o)
-    0x08000426   0x08000426   0x00000000   Code   RO         2131    .text               mc_w.l(iusefp.o)
-    0x08000426   0x08000426   0x000000ba   Code   RO         2134    .text               mf_w.l(depilogue.o)
-    0x080004e0   0x080004e0   0x000000de   Code   RO         2136    .text               mf_w.l(ddiv.o)
-    0x080005be   0x080005be   0x00000030   Code   RO         2138    .text               mf_w.l(dfixul.o)
+    0x08000000   0x08000000   0x000000ec   Data   RO         1841    RESET               startup_stm32f10x_md.o
+    0x080000ec   0x080000ec   0x00000000   Code   RO         1863  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x080000ec   0x080000ec   0x00000004   Code   RO         2147    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x080000f0   0x080000f0   0x00000004   Code   RO         2150    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080000f4   0x080000f4   0x00000000   Code   RO         2152    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080000f4   0x080000f4   0x00000000   Code   RO         2154    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080000f4   0x080000f4   0x00000008   Code   RO         2155    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080000fc   0x080000fc   0x00000000   Code   RO         2157    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080000fc   0x080000fc   0x00000000   Code   RO         2159    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080000fc   0x080000fc   0x00000004   Code   RO         2148    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000100   0x08000100   0x00000024   Code   RO         1842    .text               startup_stm32f10x_md.o
+    0x08000124   0x08000124   0x0000014e   Code   RO         2139    .text               mf_w.l(dadd.o)
+    0x08000272   0x08000272   0x000000e4   Code   RO         2141    .text               mf_w.l(dmul.o)
+    0x08000356   0x08000356   0x0000002c   Code   RO         2162    .text               mc_w.l(uidiv.o)
+    0x08000382   0x08000382   0x00000062   Code   RO         2164    .text               mc_w.l(uldiv.o)
+    0x080003e4   0x080003e4   0x0000001e   Code   RO         2166    .text               mc_w.l(llshl.o)
+    0x08000402   0x08000402   0x00000024   Code   RO         2168    .text               mc_w.l(llsshr.o)
+    0x08000426   0x08000426   0x00000000   Code   RO         2170    .text               mc_w.l(iusefp.o)
+    0x08000426   0x08000426   0x000000ba   Code   RO         2173    .text               mf_w.l(depilogue.o)
+    0x080004e0   0x080004e0   0x000000de   Code   RO         2175    .text               mf_w.l(ddiv.o)
+    0x080005be   0x080005be   0x00000030   Code   RO         2177    .text               mf_w.l(dfixul.o)
     0x080005ee   0x080005ee   0x00000002   PAD
-    0x080005f0   0x080005f0   0x00000030   Code   RO         2140    .text               mf_w.l(cdrcmple.o)
-    0x08000620   0x08000620   0x00000024   Code   RO         2142    .text               mc_w.l(init.o)
-    0x08000644   0x08000644   0x00000020   Code   RO         2144    .text               mc_w.l(llushr.o)
-    0x08000664   0x08000664   0x00000002   Code   RO          138    .text.BusFault_Handler  stm32f10x_it.o
-    0x08000666   0x08000666   0x00000002   Code   RO          142    .text.DebugMon_Handler  stm32f10x_it.o
-    0x08000668   0x08000668   0x0000001c   Code   RO          431    .text.EXTI3_IRQHandler  w5500tq.o
-    0x08000684   0x08000684   0x0000000c   Code   RO          974    .text.EXTI_ClearITPendingBit  stm32f10x_exti.o
-    0x08000690   0x08000690   0x0000001c   Code   RO          972    .text.EXTI_GetITStatus  stm32f10x_exti.o
-    0x080006ac   0x080006ac   0x00000044   Code   RO         1782    .text.GPIO_GetPortClockState  gpio_stm32f10x.o
-    0x080006f0   0x080006f0   0x000000b8   Code   RO         1101    .text.GPIO_Init     stm32f10x_gpio.o
-    0x080007a8   0x080007a8   0x00000070   Code   RO         1784    .text.GPIO_PinConfigure  gpio_stm32f10x.o
-    0x08000818   0x08000818   0x000000d0   Code   RO         1780    .text.GPIO_PortClock  gpio_stm32f10x.o
-    0x080008e8   0x080008e8   0x00000004   Code   RO         1115    .text.GPIO_ResetBits  stm32f10x_gpio.o
-    0x080008ec   0x080008ec   0x00000004   Code   RO         1113    .text.GPIO_SetBits  stm32f10x_gpio.o
-    0x080008f0   0x080008f0   0x00000020   Code   RO           28    .text.GPIO_config   c8t6f2fucn.o
-    0x08000910   0x08000910   0x00000002   Code   RO          134    .text.HardFault_Handler  stm32f10x_it.o
-    0x08000912   0x08000912   0x00000002   Code   RO          136    .text.MemManage_Handler  stm32f10x_it.o
-    0x08000914   0x08000914   0x00000002   Code   RO          132    .text.NMI_Handler   stm32f10x_it.o
-    0x08000916   0x08000916   0x00000002   PAD
-    0x08000918   0x08000918   0x00000058   Code   RO          635    .text.NVIC_Init     misc.o
-    0x08000970   0x08000970   0x00000014   Code   RO          633    .text.NVIC_PriorityGroupConfig  misc.o
-    0x08000984   0x08000984   0x00000002   Code   RO          146    .text.PendSV_Handler  stm32f10x_it.o
-    0x08000986   0x08000986   0x00000002   PAD
-    0x08000988   0x08000988   0x00000018   Code   RO         1315    .text.RCC_APB1PeriphResetCmd  stm32f10x_rcc.o
-    0x080009a0   0x080009a0   0x00000018   Code   RO         1309    .text.RCC_APB2PeriphClockCmd  stm32f10x_rcc.o
-    0x080009b8   0x080009b8   0x00000018   Code   RO         1313    .text.RCC_APB2PeriphResetCmd  stm32f10x_rcc.o
-    0x080009d0   0x080009d0   0x00000010   Code   RO         1323    .text.RCC_ClearFlag  stm32f10x_rcc.o
-    0x080009e0   0x080009e0   0x00000078   Code   RO         1305    .text.RCC_GetClocksFreq  stm32f10x_rcc.o
-    0x08000a58   0x08000a58   0x00000028   Code   RO         1271    .text.RCC_GetFlagStatus  stm32f10x_rcc.o
-    0x08000a80   0x08000a80   0x00000064   Code   RO          414    .text.SPI1_Init     spi.o
-    0x08000ae4   0x08000ae4   0x00000018   Code   RO          416    .text.SPI1_SetSpeed  spi.o
-    0x08000afc   0x08000afc   0x00000012   Code   RO         1456    .text.SPI_Cmd       stm32f10x_spi.o
-    0x08000b0e   0x08000b0e   0x0000000a   Code   RO         1484    .text.SPI_I2S_GetFlagStatus  stm32f10x_spi.o
-    0x08000b18   0x08000b18   0x00000004   Code   RO         1466    .text.SPI_I2S_ReceiveData  stm32f10x_spi.o
-    0x08000b1c   0x08000b1c   0x00000004   Code   RO         1464    .text.SPI_I2S_SendData  stm32f10x_spi.o
-    0x08000b20   0x08000b20   0x00000036   Code   RO         1448    .text.SPI_Init      stm32f10x_spi.o
-    0x08000b56   0x08000b56   0x00000002   PAD
-    0x08000b58   0x08000b58   0x00000034   Code   RO            6    .text.SPI_SendReceiveByte  c8t6f2fucn.o
-    0x08000b8c   0x08000b8c   0x00000002   Code   RO          144    .text.SVC_Handler   stm32f10x_it.o
-    0x08000b8e   0x08000b8e   0x00000002   PAD
-    0x08000b90   0x08000b90   0x00000040   Code   RO          148    .text.SysTick_Handler  stm32f10x_it.o
-    0x08000bd0   0x08000bd0   0x00000054   Code   RO         1808    .text.SystemCoreClockUpdate  system_stm32f10x.o
-    0x08000c24   0x08000c24   0x000000f0   Code   RO         1806    .text.SystemInit    system_stm32f10x.o
-    0x08000d14   0x08000d14   0x00000002   Code   RO          154    .text.TIM2_IRQHandler  stm32f10x_it.o
-    0x08000d16   0x08000d16   0x00000002   PAD
-    0x08000d18   0x08000d18   0x00000034   Code   RO          150    .text.USART1_IRQHandler  stm32f10x_it.o
-    0x08000d4c   0x08000d4c   0x00000078   Code   RO          102    .text.USART1_Init   uart.o
-    0x08000dc4   0x08000dc4   0x00000020   Code   RO          106    .text.USART1_SendChar_  uart.o
-    0x08000de4   0x08000de4   0x00000014   Code   RO          108    .text.USART1_SendStr_  uart.o
-    0x08000df8   0x08000df8   0x00000060   Code   RO          152    .text.USART2_IRQHandler  stm32f10x_it.o
-    0x08000e58   0x08000e58   0x00000012   Code   RO         1698    .text.USART_Cmd     stm32f10x_usart.o
-    0x08000e6a   0x08000e6a   0x00000002   PAD
-    0x08000e6c   0x08000e6c   0x00000094   Code   RO         1688    .text.USART_DeInit  stm32f10x_usart.o
-    0x08000f00   0x08000f00   0x0000000a   Code   RO         1738    .text.USART_GetFlagStatus  stm32f10x_usart.o
-    0x08000f0a   0x08000f0a   0x00000042   Code   RO         1742    .text.USART_GetITStatus  stm32f10x_usart.o
-    0x08000f4c   0x08000f4c   0x0000002e   Code   RO         1700    .text.USART_ITConfig  stm32f10x_usart.o
-    0x08000f7a   0x08000f7a   0x00000002   PAD
-    0x08000f7c   0x08000f7c   0x000000a4   Code   RO         1690    .text.USART_Init    stm32f10x_usart.o
-    0x08001020   0x08001020   0x00000008   Code   RO         1714    .text.USART_SendData  stm32f10x_usart.o
-    0x08001028   0x08001028   0x00000020   Code   RO          104    .text.USER_UART_NVIC  uart.o
-    0x08001048   0x08001048   0x00000002   Code   RO          140    .text.UsageFault_Handler  stm32f10x_it.o
-    0x0800104a   0x0800104a   0x00000002   PAD
-    0x0800104c   0x0800104c   0x0000005c   Code   RO          606    .text.WIZCHIP_READ  w5500_1.o
-    0x080010a8   0x080010a8   0x0000006c   Code   RO          610    .text.WIZCHIP_READ_BUF  w5500_1.o
-    0x08001114   0x08001114   0x0000005c   Code   RO          608    .text.WIZCHIP_WRITE  w5500_1.o
-    0x08001170   0x08001170   0x00000074   Code   RO          612    .text.WIZCHIP_WRITE_BUF  w5500_1.o
-    0x080011e4   0x080011e4   0x00000010   Code   RO         1763    .text.WWDG_SetCounter  stm32f10x_wwdg.o
-    0x080011f4   0x080011f4   0x00000008   Code   RO            4    .text.chip_off      c8t6f2fucn.o
-    0x080011fc   0x080011fc   0x0000000c   Code   RO            2    .text.chip_on       c8t6f2fucn.o
-    0x08001208   0x08001208   0x000000dc   Code   RO          518    .text.ctlwizchip    wizchip_conf.o
-    0x080012e4   0x080012e4   0x00000022   Code   RO           61    .text.delay_ms      delay.o
-    0x08001306   0x08001306   0x00000002   PAD
-    0x08001308   0x08001308   0x00000024   Code   RO           45    .text.fputc         c8t6f2main.o
-    0x0800132c   0x0800132c   0x00000100   Code   RO           32    .text.hardware_init  c8t6f2fucn.o
-    0x0800142c   0x0800142c   0x00000010   Code   RO           47    .text.main          c8t6f2main.o
-    0x0800143c   0x0800143c   0x00000034   Code   RO          510    .text.reg_wizchip_cs_cbfunc  wizchip_conf.o
-    0x08001470   0x08001470   0x00000040   Code   RO          514    .text.reg_wizchip_spi_cbfunc  wizchip_conf.o
-    0x080014b0   0x080014b0   0x00000034   Code   RO            8    .text.senddata      c8t6f2fucn.o
-    0x080014e4   0x080014e4   0x00000064   Code   RO           30    .text.tasks         c8t6f2fucn.o
-    0x08001548   0x08001548   0x000000b8   Code   RO           10    .text.w5500_ini     c8t6f2fucn.o
-    0x08001600   0x08001600   0x00000004   Code   RO          496    .text.wizchip_bus_readdata  wizchip_conf.o
-    0x08001604   0x08001604   0x00000004   Code   RO          498    .text.wizchip_bus_writedata  wizchip_conf.o
-    0x08001608   0x08001608   0x0000001e   Code   RO          524    .text.wizchip_clrinterrupt  wizchip_conf.o
-    0x08001626   0x08001626   0x00000002   Code   RO          488    .text.wizchip_cris_enter  wizchip_conf.o
-    0x08001628   0x08001628   0x00000002   Code   RO          490    .text.wizchip_cris_exit  wizchip_conf.o
-    0x0800162a   0x0800162a   0x00000002   Code   RO          494    .text.wizchip_cs_deselect  wizchip_conf.o
-    0x0800162c   0x0800162c   0x00000002   Code   RO          492    .text.wizchip_cs_select  wizchip_conf.o
-    0x0800162e   0x0800162e   0x0000001e   Code   RO          526    .text.wizchip_getinterrupt  wizchip_conf.o
-    0x0800164c   0x0800164c   0x0000001a   Code   RO          530    .text.wizchip_getinterruptmask  wizchip_conf.o
-    0x08001666   0x08001666   0x0000007c   Code   RO          522    .text.wizchip_init  wizchip_conf.o
-    0x080016e2   0x080016e2   0x0000001c   Code   RO          528    .text.wizchip_setinterruptmask  wizchip_conf.o
-    0x080016fe   0x080016fe   0x00000004   Code   RO          500    .text.wizchip_spi_readbyte  wizchip_conf.o
-    0x08001702   0x08001702   0x00000002   Code   RO          502    .text.wizchip_spi_writebyte  wizchip_conf.o
-    0x08001704   0x08001704   0x00000080   Code   RO          520    .text.wizchip_sw_reset  wizchip_conf.o
-    0x08001784   0x08001784   0x00000068   Code   RO          536    .text.wizphy_getphyconf  wizchip_conf.o
-    0x080017ec   0x080017ec   0x00000010   Code   RO          542    .text.wizphy_getphylink  wizchip_conf.o
-    0x080017fc   0x080017fc   0x00000018   Code   RO          540    .text.wizphy_getphypmode  wizchip_conf.o
-    0x08001814   0x08001814   0x0000002e   Code   RO          532    .text.wizphy_reset  wizchip_conf.o
-    0x08001842   0x08001842   0x0000004c   Code   RO          534    .text.wizphy_setphyconf  wizchip_conf.o
-    0x0800188e   0x0800188e   0x00000050   Code   RO          538    .text.wizphy_setphypmode  wizchip_conf.o
-    0x080018de   0x080018de   0x00000002   PAD
-    0x080018e0   0x080018e0   0x00000020   Code   RO         2066    i.__0printf         mc_w.l(printfa.o)
-    0x08001900   0x08001900   0x0000000e   Code   RO         2148    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0800190e   0x0800190e   0x00000002   Code   RO         2149    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08001910   0x08001910   0x0000000e   Code   RO         2150    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0800191e   0x0800191e   0x00000002   PAD
-    0x08001920   0x08001920   0x00000184   Code   RO         2073    i._fp_digits        mc_w.l(printfa.o)
-    0x08001aa4   0x08001aa4   0x000006dc   Code   RO         2074    i._printf_core      mc_w.l(printfa.o)
-    0x08002180   0x08002180   0x00000024   Code   RO         2075    i._printf_post_padding  mc_w.l(printfa.o)
-    0x080021a4   0x080021a4   0x0000002e   Code   RO         2076    i._printf_pre_padding  mc_w.l(printfa.o)
-    0x080021d2   0x080021d2   0x00000002   PAD
-    0x080021d4   0x080021d4   0x00000024   Code   RO         1823    i.puts              mc_w.l(puts.o)
-    0x080021f8   0x080021f8   0x00000004   Data   RO         1330    .rodata.ADCPrescTable  stm32f10x_rcc.o
-    0x080021fc   0x080021fc   0x00000010   Data   RO         1811    .rodata.AHBPrescTable  system_stm32f10x.o
-    0x0800220c   0x0800220c   0x00000010   Data   RO         1329    .rodata.APBAHBPrescTable  stm32f10x_rcc.o
-    0x0800221c   0x0800221c   0x00000001   Data   RO          157    .rodata.RX_BUFFER_SIZE0  stm32f10x_it.o
-    0x0800221d   0x0800221d   0x00000003   PAD
-    0x08002220   0x08002220   0x00000020   Data   RO         2147    Region$$Table       anon$$obj.o
+    0x080005f0   0x080005f0   0x00000030   Code   RO         2179    .text               mf_w.l(cdrcmple.o)
+    0x08000620   0x08000620   0x00000024   Code   RO         2181    .text               mc_w.l(init.o)
+    0x08000644   0x08000644   0x00000020   Code   RO         2183    .text               mc_w.l(llushr.o)
+    0x08000664   0x08000664   0x00000002   Code   RO          140    .text.BusFault_Handler  stm32f10x_it.o
+    0x08000666   0x08000666   0x00000002   Code   RO          144    .text.DebugMon_Handler  stm32f10x_it.o
+    0x08000668   0x08000668   0x0000001c   Code   RO          433    .text.EXTI3_IRQHandler  w5500tq.o
+    0x08000684   0x08000684   0x0000000c   Code   RO         1017    .text.EXTI_ClearITPendingBit  stm32f10x_exti.o
+    0x08000690   0x08000690   0x00000018   Code   RO         1015    .text.EXTI_GetITStatus  stm32f10x_exti.o
+    0x080006a8   0x080006a8   0x00000064   Code   RO         1005    .text.EXTI_Init     stm32f10x_exti.o
+    0x0800070c   0x0800070c   0x0000002c   Code   RO         1172    .text.GPIO_EXTILineConfig  stm32f10x_gpio.o
+    0x08000738   0x08000738   0x00000044   Code   RO         1825    .text.GPIO_GetPortClockState  gpio_stm32f10x.o
+    0x0800077c   0x0800077c   0x000000b8   Code   RO         1144    .text.GPIO_Init     stm32f10x_gpio.o
+    0x08000834   0x08000834   0x00000070   Code   RO         1827    .text.GPIO_PinConfigure  gpio_stm32f10x.o
+    0x080008a4   0x080008a4   0x000000d0   Code   RO         1823    .text.GPIO_PortClock  gpio_stm32f10x.o
+    0x08000974   0x08000974   0x00000004   Code   RO         1158    .text.GPIO_ResetBits  stm32f10x_gpio.o
+    0x08000978   0x08000978   0x00000004   Code   RO         1156    .text.GPIO_SetBits  stm32f10x_gpio.o
+    0x0800097c   0x0800097c   0x00000020   Code   RO           10    .text.GPIO_config   c8t6f2fucn.o
+    0x0800099c   0x0800099c   0x00000002   Code   RO          136    .text.HardFault_Handler  stm32f10x_it.o
+    0x0800099e   0x0800099e   0x00000002   Code   RO          138    .text.MemManage_Handler  stm32f10x_it.o
+    0x080009a0   0x080009a0   0x00000002   Code   RO          134    .text.NMI_Handler   stm32f10x_it.o
+    0x080009a2   0x080009a2   0x00000002   PAD
+    0x080009a4   0x080009a4   0x00000058   Code   RO          678    .text.NVIC_Init     misc.o
+    0x080009fc   0x080009fc   0x00000014   Code   RO          676    .text.NVIC_PriorityGroupConfig  misc.o
+    0x08000a10   0x08000a10   0x00000002   Code   RO          148    .text.PendSV_Handler  stm32f10x_it.o
+    0x08000a12   0x08000a12   0x00000002   PAD
+    0x08000a14   0x08000a14   0x00000018   Code   RO         1358    .text.RCC_APB1PeriphResetCmd  stm32f10x_rcc.o
+    0x08000a2c   0x08000a2c   0x00000018   Code   RO         1352    .text.RCC_APB2PeriphClockCmd  stm32f10x_rcc.o
+    0x08000a44   0x08000a44   0x00000018   Code   RO         1356    .text.RCC_APB2PeriphResetCmd  stm32f10x_rcc.o
+    0x08000a5c   0x08000a5c   0x00000010   Code   RO         1366    .text.RCC_ClearFlag  stm32f10x_rcc.o
+    0x08000a6c   0x08000a6c   0x00000078   Code   RO         1348    .text.RCC_GetClocksFreq  stm32f10x_rcc.o
+    0x08000ae4   0x08000ae4   0x00000028   Code   RO         1314    .text.RCC_GetFlagStatus  stm32f10x_rcc.o
+    0x08000b0c   0x08000b0c   0x00000040   Code   RO          453    .text.Read_W5500_1Byte  w5500tq.o
+    0x08000b4c   0x08000b4c   0x00000020   Code   RO          435    .text.SPI1_Send_Byte  w5500tq.o
+    0x08000b6c   0x08000b6c   0x00000014   Code   RO          437    .text.SPI1_Send_Short  w5500tq.o
+    0x08000b80   0x08000b80   0x00000064   Code   RO          655    .text.SPI1_W5500_Init  w5500lib_init.o
+    0x08000be4   0x08000be4   0x00000012   Code   RO         1499    .text.SPI_Cmd       stm32f10x_spi.o
+    0x08000bf6   0x08000bf6   0x0000000a   Code   RO         1527    .text.SPI_I2S_GetFlagStatus  stm32f10x_spi.o
+    0x08000c00   0x08000c00   0x00000004   Code   RO         1509    .text.SPI_I2S_ReceiveData  stm32f10x_spi.o
+    0x08000c04   0x08000c04   0x00000004   Code   RO         1507    .text.SPI_I2S_SendData  stm32f10x_spi.o
+    0x08000c08   0x08000c08   0x00000036   Code   RO         1491    .text.SPI_Init      stm32f10x_spi.o
+    0x08000c3e   0x08000c3e   0x00000002   Code   RO          146    .text.SVC_Handler   stm32f10x_it.o
+    0x08000c40   0x08000c40   0x00000040   Code   RO          150    .text.SysTick_Handler  stm32f10x_it.o
+    0x08000c80   0x08000c80   0x00000054   Code   RO         1851    .text.SystemCoreClockUpdate  system_stm32f10x.o
+    0x08000cd4   0x08000cd4   0x000000f0   Code   RO         1849    .text.SystemInit    system_stm32f10x.o
+    0x08000dc4   0x08000dc4   0x00000002   Code   RO          156    .text.TIM2_IRQHandler  stm32f10x_it.o
+    0x08000dc6   0x08000dc6   0x00000002   PAD
+    0x08000dc8   0x08000dc8   0x00000034   Code   RO          152    .text.USART1_IRQHandler  stm32f10x_it.o
+    0x08000dfc   0x08000dfc   0x00000078   Code   RO          104    .text.USART1_Init   uart.o
+    0x08000e74   0x08000e74   0x00000060   Code   RO          154    .text.USART2_IRQHandler  stm32f10x_it.o
+    0x08000ed4   0x08000ed4   0x00000012   Code   RO         1741    .text.USART_Cmd     stm32f10x_usart.o
+    0x08000ee6   0x08000ee6   0x00000002   PAD
+    0x08000ee8   0x08000ee8   0x00000094   Code   RO         1731    .text.USART_DeInit  stm32f10x_usart.o
+    0x08000f7c   0x08000f7c   0x0000000a   Code   RO         1781    .text.USART_GetFlagStatus  stm32f10x_usart.o
+    0x08000f86   0x08000f86   0x00000042   Code   RO         1785    .text.USART_GetITStatus  stm32f10x_usart.o
+    0x08000fc8   0x08000fc8   0x0000002e   Code   RO         1743    .text.USART_ITConfig  stm32f10x_usart.o
+    0x08000ff6   0x08000ff6   0x00000002   PAD
+    0x08000ff8   0x08000ff8   0x000000a4   Code   RO         1733    .text.USART_Init    stm32f10x_usart.o
+    0x0800109c   0x0800109c   0x00000008   Code   RO         1757    .text.USART_SendData  stm32f10x_usart.o
+    0x080010a4   0x080010a4   0x00000020   Code   RO          106    .text.USER_UART_NVIC  uart.o
+    0x080010c4   0x080010c4   0x00000002   Code   RO          142    .text.UsageFault_Handler  stm32f10x_it.o
+    0x080010c6   0x080010c6   0x00000002   PAD
+    0x080010c8   0x080010c8   0x00000094   Code   RO          653    .text.W5500_GPIO_Init2  w5500lib_init.o
+    0x0800115c   0x0800115c   0x0000005c   Code   RO          610    .text.WIZCHIP_READ  w5500.o
+    0x080011b8   0x080011b8   0x0000006c   Code   RO          614    .text.WIZCHIP_READ_BUF  w5500.o
+    0x08001224   0x08001224   0x0000005c   Code   RO          612    .text.WIZCHIP_WRITE  w5500.o
+    0x08001280   0x08001280   0x00000074   Code   RO          616    .text.WIZCHIP_WRITE_BUF  w5500.o
+    0x080012f4   0x080012f4   0x00000010   Code   RO         1806    .text.WWDG_SetCounter  stm32f10x_wwdg.o
+    0x08001304   0x08001304   0x0000006c   Code   RO          577    .text.close         socket.o
+    0x08001370   0x08001370   0x00000008   Code   RO          643    .text.cs_desel      w5500lib_init.o
+    0x08001378   0x08001378   0x0000000c   Code   RO          641    .text.cs_sel        w5500lib_init.o
+    0x08001384   0x08001384   0x0000004c   Code   RO          548    .text.ctlnetwork    wizchip_conf.o
+    0x080013d0   0x080013d0   0x000000dc   Code   RO          522    .text.ctlwizchip    wizchip_conf.o
+    0x080014ac   0x080014ac   0x00000022   Code   RO           63    .text.delay_ms      delay.o
+    0x080014ce   0x080014ce   0x00000002   PAD
+    0x080014d0   0x080014d0   0x00000080   Code   RO          583    .text.disconnect    socket.o
+    0x08001550   0x08001550   0x00000024   Code   RO           30    .text.fputc         c8t6f2main.o
+    0x08001574   0x08001574   0x00000044   Code   RO          620    .text.getSn_RX_RSR  w5500.o
+    0x080015b8   0x080015b8   0x00000044   Code   RO          618    .text.getSn_TX_FSR  w5500.o
+    0x080015fc   0x080015fc   0x000001e0   Code   RO           14    .text.hardware_init  c8t6f2fucn.o
+    0x080017dc   0x080017dc   0x00000066   Code   RO          579    .text.listen        socket.o
+    0x08001842   0x08001842   0x00000002   PAD
+    0x08001844   0x08001844   0x0000003c   Code   RO            2    .text.loadNetParas  c8t6f2fucn.o
+    0x08001880   0x08001880   0x00000170   Code   RO           44    .text.loopback_tcps  loopback.o
+    0x080019f0   0x080019f0   0x00000010   Code   RO           32    .text.main          c8t6f2main.o
+    0x08001a00   0x08001a00   0x000000ec   Code   RO          587    .text.recv          socket.o
+    0x08001aec   0x08001aec   0x00000030   Code   RO          514    .text.reg_wizchip_cs_cbfunc  wizchip_conf.o
+    0x08001b1c   0x08001b1c   0x0000003c   Code   RO          518    .text.reg_wizchip_spi_cbfunc  wizchip_conf.o
+    0x08001b58   0x08001b58   0x00000040   Code   RO          520    .text.reg_wizchip_spiburst_cbfunc  wizchip_conf.o
+    0x08001b98   0x08001b98   0x00000114   Code   RO          585    .text.send          socket.o
+    0x08001cac   0x08001cac   0x00000114   Code   RO          575    .text.socket        socket.o
+    0x08001dc0   0x08001dc0   0x00000030   Code   RO          639    .text.spi1_rb       w5500lib_init.o
+    0x08001df0   0x08001df0   0x0000001c   Code   RO          637    .text.spi1_wb       w5500lib_init.o
+    0x08001e0c   0x08001e0c   0x0000003c   Code   RO          647    .text.spi1burst_rb  w5500lib_init.o
+    0x08001e48   0x08001e48   0x0000001c   Code   RO          645    .text.spi1burst_wb  w5500lib_init.o
+    0x08001e64   0x08001e64   0x0000009c   Code   RO           12    .text.tasks         c8t6f2fucn.o
+    0x08001f00   0x08001f00   0x000000cc   Code   RO          665    .text.w5500_lib_init  w5500lib_init.o
+    0x08001fcc   0x08001fcc   0x00000054   Code   RO          624    .text.wiz_recv_data  w5500.o
+    0x08002020   0x08002020   0x00000054   Code   RO          622    .text.wiz_send_data  w5500.o
+    0x08002074   0x08002074   0x00000004   Code   RO          500    .text.wizchip_bus_readdata  wizchip_conf.o
+    0x08002078   0x08002078   0x00000004   Code   RO          502    .text.wizchip_bus_writedata  wizchip_conf.o
+    0x0800207c   0x0800207c   0x0000001e   Code   RO          528    .text.wizchip_clrinterrupt  wizchip_conf.o
+    0x0800209a   0x0800209a   0x00000002   Code   RO          492    .text.wizchip_cris_enter  wizchip_conf.o
+    0x0800209c   0x0800209c   0x00000002   Code   RO          494    .text.wizchip_cris_exit  wizchip_conf.o
+    0x0800209e   0x0800209e   0x00000002   Code   RO          498    .text.wizchip_cs_deselect  wizchip_conf.o
+    0x080020a0   0x080020a0   0x00000002   Code   RO          496    .text.wizchip_cs_select  wizchip_conf.o
+    0x080020a2   0x080020a2   0x0000001e   Code   RO          530    .text.wizchip_getinterrupt  wizchip_conf.o
+    0x080020c0   0x080020c0   0x0000001a   Code   RO          534    .text.wizchip_getinterruptmask  wizchip_conf.o
+    0x080020da   0x080020da   0x00000002   PAD
+    0x080020dc   0x080020dc   0x0000004c   Code   RO          552    .text.wizchip_getnetinfo  wizchip_conf.o
+    0x08002128   0x08002128   0x00000006   Code   RO          556    .text.wizchip_getnetmode  wizchip_conf.o
+    0x0800212e   0x0800212e   0x00000002   PAD
+    0x08002130   0x08002130   0x00000028   Code   RO          560    .text.wizchip_gettimeout  wizchip_conf.o
+    0x08002158   0x08002158   0x0000007c   Code   RO          526    .text.wizchip_init  wizchip_conf.o
+    0x080021d4   0x080021d4   0x0000001c   Code   RO          532    .text.wizchip_setinterruptmask  wizchip_conf.o
+    0x080021f0   0x080021f0   0x00000050   Code   RO          550    .text.wizchip_setnetinfo  wizchip_conf.o
+    0x08002240   0x08002240   0x00000024   Code   RO          554    .text.wizchip_setnetmode  wizchip_conf.o
+    0x08002264   0x08002264   0x00000028   Code   RO          558    .text.wizchip_settimeout  wizchip_conf.o
+    0x0800228c   0x0800228c   0x00000002   Code   RO          508    .text.wizchip_spi_readburst  wizchip_conf.o
+    0x0800228e   0x0800228e   0x00000004   Code   RO          504    .text.wizchip_spi_readbyte  wizchip_conf.o
+    0x08002292   0x08002292   0x00000002   Code   RO          510    .text.wizchip_spi_writeburst  wizchip_conf.o
+    0x08002294   0x08002294   0x00000002   Code   RO          506    .text.wizchip_spi_writebyte  wizchip_conf.o
+    0x08002296   0x08002296   0x00000002   PAD
+    0x08002298   0x08002298   0x00000080   Code   RO          524    .text.wizchip_sw_reset  wizchip_conf.o
+    0x08002318   0x08002318   0x00000068   Code   RO          540    .text.wizphy_getphyconf  wizchip_conf.o
+    0x08002380   0x08002380   0x00000010   Code   RO          546    .text.wizphy_getphylink  wizchip_conf.o
+    0x08002390   0x08002390   0x00000018   Code   RO          544    .text.wizphy_getphypmode  wizchip_conf.o
+    0x080023a8   0x080023a8   0x0000002e   Code   RO          536    .text.wizphy_reset  wizchip_conf.o
+    0x080023d6   0x080023d6   0x0000004c   Code   RO          538    .text.wizphy_setphyconf  wizchip_conf.o
+    0x08002422   0x08002422   0x00000050   Code   RO          542    .text.wizphy_setphypmode  wizchip_conf.o
+    0x08002472   0x08002472   0x00000002   PAD
+    0x08002474   0x08002474   0x00000020   Code   RO         2105    i.__0printf         mc_w.l(printfa.o)
+    0x08002494   0x08002494   0x0000000e   Code   RO         2187    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x080024a2   0x080024a2   0x00000002   Code   RO         2188    i.__scatterload_null  mc_w.l(handlers.o)
+    0x080024a4   0x080024a4   0x0000000e   Code   RO         2189    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x080024b2   0x080024b2   0x00000002   PAD
+    0x080024b4   0x080024b4   0x00000184   Code   RO         2112    i._fp_digits        mc_w.l(printfa.o)
+    0x08002638   0x08002638   0x000006dc   Code   RO         2113    i._printf_core      mc_w.l(printfa.o)
+    0x08002d14   0x08002d14   0x00000024   Code   RO         2114    i._printf_post_padding  mc_w.l(printfa.o)
+    0x08002d38   0x08002d38   0x0000002e   Code   RO         2115    i._printf_pre_padding  mc_w.l(printfa.o)
+    0x08002d66   0x08002d66   0x00000002   PAD
+    0x08002d68   0x08002d68   0x00000024   Code   RO         1866    i.puts              mc_w.l(puts.o)
+    0x08002d8c   0x08002d8c   0x00000004   Data   RO         1373    .rodata.ADCPrescTable  stm32f10x_rcc.o
+    0x08002d90   0x08002d90   0x00000010   Data   RO         1854    .rodata.AHBPrescTable  system_stm32f10x.o
+    0x08002da0   0x08002da0   0x00000010   Data   RO         1372    .rodata.APBAHBPrescTable  stm32f10x_rcc.o
+    0x08002db0   0x08002db0   0x00000001   Data   RO          159    .rodata.RX_BUFFER_SIZE0  stm32f10x_it.o
+    0x08002db1   0x08002db1   0x00000092   Data   RO           18    .rodata.str1.1      c8t6f2fucn.o
+    0x08002e43   0x08002e43   0x00000013   Data   RO           50    .rodata.str1.1      loopback.o
+    0x08002e56   0x08002e56   0x00000002   PAD
+    0x08002e58   0x08002e58   0x00000020   Data   RO         2186    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002240, Size: 0x000004a8, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002e78, Size: 0x00000cf0, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08002240   0x00000004   Data   RW         2122    .data               mc_w.l(stdout.o)
-    0x20000004   0x08002244   0x00000010   Data   RW          158    .data..L_MergedGlobals  stm32f10x_it.o
-    0x20000014   0x08002254   0x00000004   Data   RW         1810    .data.SystemCoreClock  system_stm32f10x.o
-    0x20000018   0x08002258   0x0000002c   Data   RW          560    .data.WIZCHIP       wizchip_conf.o
-    0x20000044   0x08002284   0x00000004   PAD
-    0x20000048        -       0x00000023   Zero   RW          478    .bss..L_MergedGlobals  w5500tq.o
-    0x2000006b        -       0x00000015   Zero   RW          159    .bss..L_MergedGlobals.1  stm32f10x_it.o
-    0x20000080        -       0x00000004   Zero   RW          156    .bss.TimingDelay    stm32f10x_it.o
-    0x20000084        -       0x00000001   Zero   RW          120    .bss.USART2_index   uart.o
-    0x20000085   0x08002284   0x00000003   PAD
-    0x20000088        -       0x00000014   Zero   RW           35    .bss.mcu_clk        c8t6f2fucn.o
-    0x2000009c        -       0x0000000a   Zero   RW          122    .bss.rx2_data_buff  uart.o
-    0x200000a6   0x08002284   0x00000002   PAD
-    0x200000a8        -       0x00000400   Zero   RW         1796    STACK               startup_stm32f10x_md.o
+    0x20000000   0x08002e78   0x00000004   Data   RW         2161    .data               mc_w.l(stdout.o)
+    0x20000004   0x08002e7c   0x00000010   Data   RW          160    .data..L_MergedGlobals  stm32f10x_it.o
+    0x20000014   0x08002e8c   0x00000004   Data   RW         1853    .data.SystemCoreClock  system_stm32f10x.o
+    0x20000018   0x08002e90   0x0000002c   Data   RW          564    .data.WIZCHIP       wizchip_conf.o
+    0x20000044   0x08002ebc   0x00000002   Data   RW          599    .data.sock_any_port  socket.o
+    0x20000046   0x08002ebe   0x00000002   PAD
+    0x20000048        -       0x00000034   Zero   RW           20    .bss..L_MergedGlobals  c8t6f2fucn.o
+    0x2000007c        -       0x00000023   Zero   RW          482    .bss..L_MergedGlobals  w5500tq.o
+    0x2000009f        -       0x00000005   Zero   RW          565    .bss..L_MergedGlobals  wizchip_conf.o
+    0x200000a4        -       0x0000001c   Zero   RW          600    .bss..L_MergedGlobals  socket.o
+    0x200000c0        -       0x00000015   Zero   RW          161    .bss..L_MergedGlobals.1  stm32f10x_it.o
+    0x200000d5   0x08002ebe   0x00000003   PAD
+    0x200000d8        -       0x00000004   Zero   RW          158    .bss.TimingDelay    stm32f10x_it.o
+    0x200000dc        -       0x00000001   Zero   RW          122    .bss.USART2_index   uart.o
+    0x200000dd        -       0x00000800   Zero   RW           17    .bss.gDATABUF       c8t6f2fucn.o
+    0x200008dd   0x08002ebe   0x00000003   PAD
+    0x200008e0        -       0x00000004   Zero   RW           16    .bss.ret            c8t6f2fucn.o
+    0x200008e4        -       0x0000000a   Zero   RW          124    .bss.rx2_data_buff  uart.o
+    0x200008ee   0x08002ebe   0x00000002   PAD
+    0x200008f0        -       0x00000400   Zero   RW         1839    STACK               startup_stm32f10x_md.o
 
 
 ==============================================================================
@@ -3791,30 +3992,32 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       696        240          0          0         20       8021   c8t6f2fucn.o
-        52          4          0          0          0       1605   c8t6f2main.o
-        34          0          0          0          0        846   delay.o
-       388         48          0          0          0       5111   gpio_stm32f10x.o
-       108         12          0          0          0       3418   misc.o
-       124         12          0          0          0       2906   spi.o
-        36          8        236          0       1024        828   startup_stm32f10x_md.o
-        40          8          0          0          0       2923   stm32f10x_exti.o
-       192          0          0          0          0       5743   stm32f10x_gpio.o
-       230         20          1         16         25       2703   stm32f10x_it.o
-       248         24         20          0          0       7923   stm32f10x_rcc.o
-        90          0          0          0          0       6746   stm32f10x_spi.o
-       460         20          0          0          0       7599   stm32f10x_usart.o
-        16          4          0          0          0       2080   stm32f10x_wwdg.o
-       324         40         16          4          0       2707   system_stm32f10x.o
-       204          4          0          0         11       5880   uart.o
-       408          0          0          0          0       3798   w5500_1.o
-        28          4          0          0         35      10245   w5500tq.o
-      1070         60          0         44          0      10229   wizchip_conf.o
+       728        260        146          0       2104       6977   c8t6f2fucn.o
+        52          4          0          0          0       1610   c8t6f2main.o
+        34          0          0          0          0        851   delay.o
+       388         48          0          0          0       5116   gpio_stm32f10x.o
+       368         84         19          0          0       2604   loopback.o
+       108         12          0          0          0       3423   misc.o
+      1126         12          0          2         28       7678   socket.o
+        36          8        236          0       1024        832   startup_stm32f10x_md.o
+       136          8          0          0          0       2928   stm32f10x_exti.o
+       236          4          0          0          0       5748   stm32f10x_gpio.o
+       230         20          1         16         25       2708   stm32f10x_it.o
+       248         24         20          0          0       7928   stm32f10x_rcc.o
+        90          0          0          0          0       6751   stm32f10x_spi.o
+       460         20          0          0          0       7604   stm32f10x_usart.o
+        16          4          0          0          0       2085   stm32f10x_wwdg.o
+       324         40         16          4          0       2712   system_stm32f10x.o
+       152          4          0          0         11       5885   uart.o
+       712          0          0          0          0       3803   w5500.o
+       636        136          0          0          0       7191   w5500lib_init.o
+       144          8          0          0         35      10590   w5500tq.o
+      1484         82          0         44          5      10234   wizchip_conf.o
 
     ----------------------------------------------------------------------
-      4768        508        308         64       1124      91311   Object Totals
+      7732        778        472         68       3240     105258   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        20          0          3          0          9          0   (incl. Padding)
+        24          0          2          2          8          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -3867,15 +4070,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      8460        620        308         68       1124      91991   Grand Totals
-      8460        620        308         68       1124      91991   ELF Image Totals
-      8460        620        308         68          0          0   ROM Totals
+     11424        890        472         72       3240     105906   Grand Totals
+     11424        890        472         72       3240     105906   ELF Image Totals
+     11424        890        472         72          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 8768 (   8.56kB)
-    Total RW  Size (RW Data + ZI Data)              1192 (   1.16kB)
-    Total ROM Size (Code + RO Data + RW Data)       8836 (   8.63kB)
+    Total RO  Size (Code + RO Data)                11896 (  11.62kB)
+    Total RW  Size (RW Data + ZI Data)              3312 (   3.23kB)
+    Total ROM Size (Code + RO Data + RW Data)      11968 (  11.69kB)
 
 ==============================================================================
 
