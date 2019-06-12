@@ -217,6 +217,7 @@ void get_seconds_from_ntp_server(uint8_t *buf, uint16_t idx)
 
 void SNTP_init(uint8_t s, uint8_t *ntp_server, uint8_t tz, uint8_t *buf)
 {
+	uint8_t i;
 	NTP_SOCKET = s;
 
 	NTPformat.dstaddr[0] = ntp_server[0];
@@ -245,23 +246,51 @@ void SNTP_init(uint8_t s, uint8_t *ntp_server, uint8_t tz, uint8_t *buf)
 
 	Flag = (NTPformat.leap<<6)+(NTPformat.version<<3)+NTPformat.mode; //one byte Flag
 	memcpy(ntpmessage,(void const*)(&Flag),1);
+	/*
+	printf("NTP server: %d:%d:%d:%d my message :",NTPformat.dstaddr[0],NTPformat.dstaddr[1],NTPformat.dstaddr[2],NTPformat.dstaddr[3]);
+	for(i=0;i<48;i++)
+	{
+		printf("%d ",*(ntpmessage+i));
+	
+	}*/
+	// Initialize values needed to form NTP request
+	  // (see URL above for details on the packets)
+	  //ntpmessage[0] = 0b11100011;   // LI, Version, Mode
+	  ntpmessage[1] = 0;     // Stratum, or type of clock
+	  ntpmessage[2] = 6;     // Polling Interval
+	  ntpmessage[3] = 0xEC;  // Peer Clock Precision
+	  // 8 bytes of zero for Root Delay & Root Dispersion
+	  ntpmessage[12]  = 49;
+	  ntpmessage[13]  = 0x4E;
+	  ntpmessage[14]  = 49;
+	  ntpmessage[15]  = 52;
 }
 
 int8_t SNTP_run(datetime *time)
 {
+	uint32_t ret;
 	uint16_t RSR_len;
 	uint32_t destip = 0;
 	uint16_t destport;
 	uint16_t startindex = 40; //last 8-byte of data_buf[size is 48 byte] is xmt, so the startindex should be 40
-
+	int8_t i;
 	switch(getSn_SR(NTP_SOCKET))
 	{
 	case SOCK_UDP:
 		if ((RSR_len = getSn_RX_RSR(NTP_SOCKET)) > 0)
 		{
+			//printf("\r\n RSR_len:%d\r\n",RSR_len);
 			if (RSR_len > MAX_SNTP_BUF_SIZE) RSR_len = MAX_SNTP_BUF_SIZE;	// if Rx data size is lager than TX_RX_MAX_BUF_SIZE
 			recvfrom(NTP_SOCKET, data_buf, RSR_len, (uint8_t *)&destip, &destport);
-
+			
+			//printf("NTP server: %d:%d:%d:%d my message :",(uint8_t *)&destip,(uint8_t *)&(destip+1),(uint8_t *)&(destip+2),(uint8_t *)&(destip+3));
+			/*
+			for(i=0;i<48;i++)
+				{
+					printf("%02x ",*(data_buf+i));
+				
+				}
+			*/	
 			get_seconds_from_ntp_server(data_buf,startindex);
 			time->yy = Nowdatetime.yy;
 			time->mo = Nowdatetime.mo;
@@ -269,7 +298,7 @@ int8_t SNTP_run(datetime *time)
 			time->hh = Nowdatetime.hh;
 			time->mm = Nowdatetime.mm;
 			time->ss = Nowdatetime.ss;
-
+			printf("Year: %d, month: %d, day: %d, %d:%d:%d\r\n",Nowdatetime.yy,Nowdatetime.mo,Nowdatetime.dd,Nowdatetime.hh,Nowdatetime.mm,Nowdatetime.ss);
 			ntp_retry_cnt=0;
 			close(NTP_SOCKET);
 
@@ -281,19 +310,29 @@ int8_t SNTP_run(datetime *time)
 			if(ntp_retry_cnt==0)//first send request, no need to wait
 			{
 				sendto(NTP_SOCKET,ntpmessage,sizeof(ntpmessage),NTPformat.dstaddr,ntp_port);
-				ntp_retry_cnt++;
+				//ntp_retry_cnt++;
+				/*
+				printf("first send request over s%d, ntp_port %d \r\n",NTP_SOCKET,ntp_port);
+				printf("NTP server: %d:%d:%d:%d my message :",NTPformat.dstaddr[0],NTPformat.dstaddr[1],NTPformat.dstaddr[2],NTPformat.dstaddr[3]);
+				for(i=0;i<48;i++)
+				{
+					printf("%d ",*(ntpmessage+i));
+				
+				}*/
 			}
 			else // send request again? it should wait for a while
 			{
-				if((ntp_retry_cnt % 0xFFF) == 0) //wait time
+				if((ntp_retry_cnt % 0xF) == 0) //wait time
 				{
 					sendto(NTP_SOCKET,ntpmessage,sizeof(ntpmessage),NTPformat.dstaddr,ntp_port);
 #ifdef _SNTP_DEBUG_
 					printf("ntp retry: %d\r\n", ntp_retry_cnt);
 #endif
-					ntp_retry_cnt++;
+					//ntp_retry_cnt++;
+					printf("send request again? it should wait for a while \r\n");
 				}
 			}
+			ntp_retry_cnt++;
 		}
 		else //ntp retry fail
 		{
@@ -305,7 +344,11 @@ int8_t SNTP_run(datetime *time)
 		}
 		break;
 	case SOCK_CLOSED:
-		socket(NTP_SOCKET,Sn_MR_UDP,ntp_port,0);
+	    printf("%d:SNTP client try to start at port %d\r\n",NTP_SOCKET,sntp_port);
+		//socket(NTP_SOCKET,Sn_MR_UDP,sntp_port,0);
+		if((ret=socket(NTP_SOCKET,Sn_MR_UDP,sntp_port,0x00)) != NTP_SOCKET)
+            return ret;
+		printf("%d:Opened, port [%d]\r\n",NTP_SOCKET, sntp_port);
 		break;
 	}
 	// Return value

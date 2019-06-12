@@ -3,139 +3,60 @@
 #include "time.h"
 #include "socket.h"
 #include "w5500lib_init.h"
+#include "sntp.h"
+#include "ntp.h"
+#include "snmp.h"
 
-/*
-Description
-Returns the number of microseconds since the Arduino board began running the current program. 
-This number will overflow (go back to zero), after approximately 70 minutes. 
-On 16 MHz Arduino boards (e.g. Duemilanove and Nano), this function has a resolution of four microseconds 
-(i.e. the value returned is always a multiple of four). On 8 MHz Arduino boards (e.g. the LilyPad),
-this function has a resolution of eight microseconds.
-*/
-uint32_t micros()
-{
-return 1;
-}
-uint32_t getns(void);
-void resetns(void);
-
-// Time Server Port
-#define NTP_PORT 123
-static const int NTP_PACKET_SIZE = 48;
-/* SNTP Packet array */
-uint8_t serverPacket[NTP_PACKET_SIZE] = {0};
-uint8_t clientPacket[100] = {0};
-uint32_t micros_recv = 0;
-uint32_t micros_offset;
-uint32_t micros_transmit = 0;
-/* Shifts usecs in unixToNtpTime */
-//??? ko hieu nhung dung! 
-#ifndef USECSHIFT
-#define USECSHIFT (1LL << 32) * 1.0e-6
-#endif
-#define STARTOFTIME 2208988800UL
-
-#ifndef UTIL_H
-#define UTIL_H
-
-#define htons(x) ( ((x)<< 8 & 0xFF00) | \
-                   ((x)>> 8 & 0x00FF) )
-#define ntohs(x) htons(x)
-
-#define htonl(x) ( ((x)<<24 & 0xFF000000UL) | \
-                   ((x)<< 8 & 0x00FF0000UL) | \
-                   ((x)>> 8 & 0x0000FF00UL) | \
-                   ((x)>>24 & 0x000000FFUL) )
-#define ntohl(x) htonl(x)
-#endif
+/***********************************************************************************************************************************/
 /////////////////////////////////////////
 // SOCKET NUMBER DEFINION for Examples //
 /////////////////////////////////////////
 #define SOCK_TCPS        1
 #define SOCK_UDPS        0
+#define SOCK_SNTP        2
+#define SOCK_agent			 3
+#define SOCK_trap				 4
+/////////////////////////////////////////
+time_t timerun;
+time_t unixTime_last_sync = 1559640302;// lan chuan gio gan nhat 
+/***********************************************************************************************************************************/
+uint8_t managerIP[4] ={192, 168, 1, 13};
+uint8_t agentIP[4]   ={192, 168, 1, 246};
+
+uint32_t getns(void);
+void resetns(void);
+
+
+/* SNTP Packet array */
+uint8_t serverPacket[NTP_PACKET_SIZE] = {0};
+uint8_t clientPacket[NTP_PACKET_RAWSIZE] = {0};
+time_t micros_recv = 0;
+time_t micros_offset;
+time_t transmitTime;
+time_t micros_transmit;
+time_t recvTime;
+
+
 ////////////////////////////////////////////////
 // Shared Buffer Definition for LOOPBACK TEST //
 ////////////////////////////////////////////////
 #define DATA_BUF_SIZE   100
 uint8_t gDATABUF[DATA_BUF_SIZE];
-/* Ban tin chuan server time.nist.gov 48 bytes (https://www.cisco.com/c/en/us/about/press/internet-protocol-journal/back-issues/table-contents-58/154-ntp.html)
-00.01.02.03: 1C.01.0D.E3 [LI][VN][Mode].[Stratum].[Poll].[Precision]
-04.05.06.07: 00.00.00.10 [Root delay]:The total round-trip delay from the server to the primary reference sourced. The value is a 32-bit signed fixed-point number in units of seconds, with the fraction point between bits 15 and 16. This field is significant only in server messages.
-08.09.10.11: 00.00.00.20 [Root Dispersion]: The maximum error due to clock frequency tolerance. The value is a 32-bit signed fixed-point number in units of seconds, with the fraction point between bits 15 and 16. This field is significant only in server messages.
-12.13.14.15: 4E.49.53.54 [Reference Identifier]: Name of sender: NIST. For stratum 1 servers this value is a four-character ASCII code that describes the external reference source (refer to Figure 2). For secondary servers this value is the 32-bit IPv4 address of the synchronization source, or the first 32 bits of the Message Digest Algorithm 5 (MD5) hash of the IPv6 address of the synchronization source.
-16.17.18.19: E0.28.BA.7F [Reference Timestamp]: unsigned 32-bit seconds value
-20.21.22.23: 00.00.00.00       						32-bit fractional
-24.25.26.27: 00.00.00.00 [Originate Timestamp, T1]: unsigned 32-bit seconds value
-28.29.30.31: 00.00.00.00         					32-bit fractional
-32.33.34.35: E0.28.C5.79 [Receive Timestamp, T2]: unsigned 32-bit seconds value
-36.37.38.39: E5.7A.55.F6      						32-bit fractional
-40.41.42.43: E0.28.C5.79 [Transmit Timestamp, T3]: unsigned 32-bit seconds value
-44.45.46.47: E5.7A.5F.93      						32-bit fractional
 
-
-The next four fields use a 64-bit time-stamp value. This value is an unsigned 32-bit seconds value, and a 32-bit fractional part. In this notation the value 2.5 would be represented by the 64-bit string:
-
-0000|0000|0000|0000|0000|0000|0000|0010.|1000|0000|0000|0000|0000|0000|0000|0000
-
-The unit of time is in seconds, and the epoch is 1 January 1900, meaning that the NTP time will cycle in the year 2036 (two years before the 32-bit Unix time cycle event in 2038).
-
-The smallest time fraction that can be represented in this format is 232 picoseconds.
-
-Reference Timestamp   	This field is the time the system clock was last set or corrected, in 64-bit time-stamp format.
-
-Originate Timestamp   	This value is the time at which the request departed the client for the server, in 64-bit time-stamp format. Th?i di?m b?n tin di t? th?ng h?i
-
-Receive Timestamp	This value is the time at which the client request arrived at the server in 64-bit time-stamp format. Th?i di?m th?ng server nh?n du?c
-
-Transmit Timestamp	This value is the time at which the server reply departed the server, in 64-bit time-stamp format. th?i di?m ph?n h?i t? server
-*/
 /**
  * @ingroup DATA_TYPE
  *  Network Information for WIZCHIP
  */
-typedef struct ntp_Info_t
-{
-   //uint8_t LI;  			///[LI][VN][Mode]
-   //uint8_t Vers;   		///< 
-   //uint8_t Mode;   		///<  Mask 
-	 uint8_t LiVeMod;  			///[LI][VN][Mode]
-   uint8_t stratum;   ///[Stratum] 
-   uint8_t polling;  	///[Poll]
-   uint8_t precision; ///[Precision]
-	 int32_t rootDelay; //[Root delay]:The total round-trip delay from the server to the primary reference sourced.
-	 int32_t rootDisper;//[Root Dispersion]: The maximum error due to clock frequency tolerance. The value is a 32-bit signed fixed-point number in units of seconds, with the fraction point between bits 15 and 16. This field is significant only in server messages.
-	 uint8_t refID[4];  //[Reference Identifier]: Name of sender: NIST. For stratum 1 servers this value is a four-character ASCII code that describes the external reference source (refer to Figure 2). For secondary servers this value is the 32-bit IPv4 address of the synchronization source, or the first 32 bits of the Message Digest Algorithm 5 (MD5) hash of the IPv6 address of the synchronization source.
-	 uint32_t refTime ; //[Reference Timestamp]: unsigned 32-bit seconds value
-	 uint32_t refTimeFrac; //[Reference Timestamp]: unsigned 32-bit 32-bit fractional
-	 uint32_t OrigTime; //[Originate Timestamp, T1]: unsigned 32-bit seconds value
-	 uint32_t OrigTimeFrac; //[Originate Timestamp, T1]: unsigned 32-bit fractional
-	 uint32_t RecTime; //[Receive Timestamp, T2]: unsigned 32-bit seconds value
-	 uint32_t RecTimeFrac; //[Receive Timestamp, T2]: unsigned 32-bit fractional
-	 uint32_t TransTime; //[Transmit Timestamp, T3]: unsigned 32-bit seconds value
-	 uint32_t TransTimeFrac; //[Transmit Timestamp, T3]: unsigned 32-bit fractional
-}ntp_server;
-ntp_server myNtpServer = {
-													.LiVeMod = 0b11100011,    // LI, Version, Mode
-													.stratum = 0,							// Stratum, or type of clock
-													.polling = 6,// Polling Interval
-													.precision =0xEC,  // Peer Clock Precision
-													.rootDelay =1,
-													.rootDisper =1,
-													.refID ="GPS ",
-													.refTime =1,
-													.refTimeFrac =1,
-													.OrigTime =1,
-													.OrigTimeFrac =1,
-													.RecTime =1, 
-													.RecTimeFrac =1,
-													.TransTime =1,
-													.TransTimeFrac =1
-};
+ //uint8_t sntp_ip[4] ={192, 168, 1, 14};
+ uint8_t sntp_ip[4] ={202, 108, 6, 95};
+ uint8_t sntp_buf[56];
+ datetime sntp;
+
 ///////////////////////////////////
 // Default Network Configuration //
 ///////////////////////////////////
 wiz_NetInfo gWIZNETINFO = { .mac = {0x0c, 0x29, 0x34,0x7c, 0xab, 0xcd},
-                            .ip = {192, 168, 1, 3},
+                            .ip = {192, 168, 1, 246},
                             .sn = {255,255,255,0},
                             .gw = {192, 168, 1, 1},
                             .dns = {8,8,8,8},
@@ -151,7 +72,7 @@ void loadNetParas(void);
 void network_init(void);								// Initialize Network information and display it
 int32_t loopback_tcps(uint8_t, uint8_t*, uint16_t);		// Loopback TCP server
 int32_t loopback_udps(uint8_t, uint8_t*, uint16_t);		// Loopback UDP server
-int32_t NTPUDP(uint8_t sn, uint8_t* buf);//UDP NTP server
+int32_t NTPUDP(uint8_t sn);//UDP NTP server
 void wzn_event_handle(void);
 /*******************************************************************************/
 /**
@@ -210,50 +131,7 @@ unsigned char HEXInStringToDec(unsigned char data)
 						else return 0;
       }		
 
-#ifdef USE_EMU_EEPROM // Dung flash cua stm32 lam eeprom
-/**
-  * @brief  test_eeprom
-  * @param  Call this fuction for test store data to eeprom
-  * @retval  
-  */	
-void test_eeprom(void)
-{
-	uint16_t a,b,c,d,e,f; 
-	EE_ReadVariable(0,&a);
-	EE_ReadVariable(1,&b);
-	EE_ReadVariable(2,&c);
-	EE_ReadVariable(3,&d);
-	EE_ReadVariable(4,&e);
-	EE_ReadVariable(5,&f);
-	if(a != 'E')
-	{
-	EE_WriteVariable(0,'E');
-	EE_WriteVariable(1,'E');
-	EE_WriteVariable(2,'P');
-	EE_WriteVariable(3,'R');
-	EE_WriteVariable(4,'0');
-	EE_WriteVariable(5,'m');
-	EE_WriteVariable(6,178);
-	printf("EEPROM Error, save agian!\r\n");
-	}
-	else printf("EEPROM OK:%c%c%c%c%c%c",a,b,c,d,e,f);
 
-}	
-/**
-  * @brief  sw_eeprom_stm32
-  * @param  make some flash blocks come eeprom for store data
-  * @retval  just call this fuction
-  */	
-void sw_eeprom_stm32(void)
-{
-		/* Unlock the Flash Program Erase controller */
-  FLASH_Unlock();
-
-  /* EEPROM Init */
-  if(EE_Init() == FLASH_COMPLETE) printf("EEPROM STM32 ready !\r\n");
-	
-}		
-#endif
 
 /**
 * @brief  GPIO_config cho kit C8T6 china : LED PA1
@@ -263,50 +141,10 @@ void sw_eeprom_stm32(void)
 void GPIO_config(void)
 {
   //LED PA1 : cho kit C8T6 china : LED PA1
-	GPIO_PortClock   (GPIOA, true);
-	GPIO_PinConfigure(GPIOA, 1, GPIO_OUT_PUSH_PULL, GPIO_MODE_OUT10MHZ);
-	GPIO_PinWrite(GPIOA, 1, 0);
+	//GPIO_PortClock   (GPIOA, true);
+	//GPIO_PinConfigure(GPIOA, 1, GPIO_OUT_PUSH_PULL, GPIO_MODE_OUT10MHZ);
+	//GPIO_PinWrite(GPIOA, 1, 0);
 }
-/**
-  * @brief  TEST_24C32
-  * @param  Kiem tra giao tiep voi 24C32
-  * @retval  
-  */
-#ifdef TEST_24C32 // Kiem tra giao tiep voi 24C32
-void E24C32Test (void)
-{
-	uint8_t i;
-	uint8_t data[11]={10,110,12,150,20,4,2,50,30,6,4};
-	//EEPROM_WriteReg(0,1);
-	//EEPROM_W_Regs(1,10,data);
-	//printf("Write:%d\r\n",EEPROM_W_Regs(1,12,"Ngo Quy TUan"));
-//	for(i=0;i<30;i++)
-//	{
-//		EEPROM_WriteReg(i,4);
-//		delay_ms(3);
-//	}
-	EEPROM_W_Regs(0,14,".STM32........");
-	for(i=0;i<15;i++)
-	{
-		printf("MEM %d: %c\r\n",i,EEPROM_ReadReg(i));
-	}
-//	printf("EEPROM_WriteReg(0x01,11):%d\r\n",EEPROM_WriteReg(0x01,0));
-//	printf("EEPROM_WriteReg(0x01,11):%d\r\n",EEPROM_WriteReg(0x02,0));
-//	printf("EEPROM_WriteReg(0x01,11):%d\r\n",EEPROM_WriteReg(0x03,0));
-//	printf("EEPROM_WriteReg(0x01,11):%d\r\n",EEPROM_WriteReg(0x04,0));
-//	printf("EEPROM_WriteReg(0x01,11):%d\r\n",EEPROM_WriteReg(0x05,0));
-//	printf("EEPROM_WriteReg(0x01,11):%d\r\n",EEPROM_WriteReg(0x06,0));
-//	printf("Write:%d\r\n",EEPROM_W_Regs(1,12,"Ngo Quy TUan"));
-//	printf("EEPROM 0x00: %d\r\n",EEPROM_ReadReg(0));
-//	printf("EEPROM 0x01: %d\r\n",EEPROM_ReadReg(1));
-//	printf("EEPROM 0x02: %d\r\n",EEPROM_ReadReg(2));
-//	printf("EEPROM 0x03: %d\r\n",EEPROM_ReadReg(3));
-//	printf("EEPROM 0x04: %d\r\n",EEPROM_ReadReg(4));
-//	printf("EEPROM 0x05: %d\r\n",EEPROM_ReadReg(5));
-//	printf("EEPROM 0x06: %d\r\n",EEPROM_ReadReg(6));
-//	printf("EEPROM 0x07: %d\r\n",EEPROM_ReadReg(7));
-}	
-#endif
 
 /**
   * @brief  tasks
@@ -315,38 +153,19 @@ void E24C32Test (void)
   */
 void tasks(void)
 {
-	int16_t adc0, adc1, adc2, adc3;  	
+	 	
 	int32_t ret = 0;
 	
 		
-			#ifdef USE_INTERNAL_RTC
-				/* If 1s has been elapsed */
-				if (TimeDisplay == 1)
-				{
-					TimeDisplay = 0;
-					//printf("ADC!\r\n");
-					//adc0 = readADC_SingleEnded(0);
-					//adc1 = readADC_SingleEnded(1);
-					//adc2 = readADC_SingleEnded(2);
-					//adc3 = readADC_SingleEnded(3);
-					//printf("ADS:%d,%d,%d,%d\r\n",(adc0),adc1,adc2,adc3);
-					#ifdef TEST_INTERNAL_RTC
-					/* Display current time */
-					//Time_Display(RTC_GetCounter());
-					#endif
-				}
-			#endif
-		if(task100ms == ONTIME)
-		{
-			task100ms = 100;
-			//printf("Kiem tra 100ms\r\n");
-			#ifdef TEST_ADC
-				u = ADCConvertedValue;
-				u_kalman = updateEstimate(u);
-				printf("%2.1f,%2.1f\r\n",u,u_kalman);
-			#endif
-			
+	// NTP UDP server chay dau tien cho nhanh
+		
+		if( (ret = NTPUDP(SOCK_UDPS)) < 0) {
+			printf("SOCKET ERROR : %d\r\n", ret);
 		}
+		//SNMPv1 example
+		//Run SNMP Agent Fucntion
+		snmpd_run();	
+		
 		#ifdef USE_UART1 // Xu ly U1 buffer
 			//UART1 RX process
 			if(u1out == ONTIME)
@@ -403,6 +222,7 @@ void tasks(void)
   
 		
 /* Loopback Test */
+
     	// TCP server loopback test
     	if( (ret = loopback_tcps(SOCK_TCPS, gDATABUF, 5000)) < 0) {
 			printf("SOCKET ERROR : %d\r\n", ret);
@@ -410,28 +230,25 @@ void tasks(void)
 			
 		/*
     	// UDP server loopback test
-		if( (ret = loopback_udps(SOCK_UDPS, clientPacket, 1234)) < 0) {
+		if( (ret = loopback_udps(SOCK_UDPS, clientPacket, 123)) < 0) {
 			printf("SOCKET ERROR : %d\r\n", ret);
-		}*/
-		// NTP UDP server test
+		}
+		*/
 		
-		/*
-		if( (ret = NTPUDP(SOCK_UDPS, clientPacket)) < 0) {
-			printf("SOCKET ERROR : %d\r\n", ret);
-		}*/
-/*
+
 		// UDP ngat
+		
 		if(W5500RecInt == 1)
 		{
 			W5500RecInt = 0;
-			//printf("Co' nga't : %d\r\n", ret);
 			wzn_event_handle();
 		}
-		*/
+		
 
-		if(TimingDelay>5000) 
+		if(TimingDelay>999) 
 		{
 			TimingDelay = 0;
+			timerun++;
 			//printf("Get ns :%d\r\n",getns());
 			//resetns();
 			//count1ms = 0;
@@ -441,6 +258,14 @@ void tasks(void)
 			//printf("micros_transmit :%d-",micros_transmit);
 			//micros_transmit = (micros_transmit + 1) * USECSHIFT;
 			//printf("htonl(micros_transmit) :%u\r\n",micros_transmit);
+			//Time_Display(RTC_GetCounter());
+			//printf("\r\nmakeTime :%u\r\n",timerun);
+			
+			//if( (ret = SNTP_run(&sntp)) == 0) {
+			//printf("SNTP ERR : %d\r\n", ret);
+		//}
+			//printf("getSNMPTimeTick : %u ms\r\n", getSNMPTimeTick());
+			
 		}
 		
 }
@@ -565,33 +390,37 @@ void hardware_init(void)
 		tim_ex();
 	#endif
 
-
-	/* Initialize the I2C EEPROM driver ----------------------------------------*/ 
-	#ifdef USE_I2C
-		if(I2C_Config()==0) printf("I2C init failed!\r\n");
-		
-		#ifdef USE_24C32
-		if(EEPROM_init()==0) printf("EEPROM init failed!\r\n");
-			#ifdef TEST_24C32
-				E24C32Test();
-			#endif
-		
-		#endif
-		
-		//if(ADS1115_init() ==1) printf("ADS1115 init done!\r\n");;
-		
-	#endif
-	
-	  TIM_init();
+	  //RTC_Configuration();
+	  
 		
 		//W5500_GPIO_Init2();
 		w5500_lib_init();
     printf("\r\nLoad W5500 config!\r\n");
-
+    
     /* Network initialization */
     network_init();
-	
 		//micros_offset = micros()%1000000;
+		//timerun = makeTime(tmm);
+		timerun = 1560066942;
+		printf("\r\nmakeTime :%u\r\n",timerun);
+		resetns();
+		/****************************************************************************************/
+		TIM_init();
+		//Phan co dinh cua ban tin NTP
+		serverPacket[0] = 0x24;   // LI, Version, Mode // Set version number and mode
+		serverPacket[1] = 1; // Stratum, or type of clock
+		serverPacket[2] = 0;     // Polling Interval
+		serverPacket[3] = -12;  // Peer Clock Precision
+		serverPacket[12] = 'G';
+		serverPacket[13] = 'P';
+		serverPacket[14] = 'S';
+		//[Reference Timestamp]: unsigned 32-bit seconds value : Lan lay chuan gan nhat la bao gio
+		memcpy(&serverPacket[16], &unixTime_last_sync, 4);
+		/****************************************************************************************/				
+		//SNTT
+		//SNTP_init(SOCK_SNTP,sntp_ip,11,sntp_buf);
+		
+		snmpd_init(managerIP,agentIP,SOCK_agent,SOCK_trap);				
 }
 
 
@@ -767,6 +596,8 @@ void EXTI3_IRQHandler(void)
 {
 	if(EXTI_GetITStatus(EXTI_Line3) != RESET)
 	{
+		micros_recv = getns();
+		recvTime = (timerun + STARTOFTIME);//gio luc nhan dc ban tin
 		EXTI_ClearITPendingBit(EXTI_Line3);	//Clear interrupt line
 		W5500RecInt=1;
 	}
@@ -783,7 +614,7 @@ void wzn_event_handle(void)
 		printf("Cannot get ir...");
 	}
 	
-	if (ir & IK_SOCK_1) {
+	if (ir & IK_SOCK_0) {
 		sir = getSn_IR(SOCK_UDPS);
 		
 	
@@ -799,7 +630,11 @@ void wzn_event_handle(void)
 		if ((sir & Sn_IR_RECV) > 0) {
 			//len = getSn_RX_RSR(SOCK_UDPS);
 			//recv(SOCK_UDPS, wzn_rx_buf, len);
-			printf("UDP packet received!\r\n");
+			//printf("UDP packet received!\r\n");
+			//printf("recvTime: %u, micros_recv:%u\r\n",recvTime,micros_recv);
+			//transmitTime = (timerun + STARTOFTIME);//gio luc tryen ban tin
+			//micros_transmit = getns();
+			//printf("transmitTime: %u, micros_transmit:%u\r\n",transmitTime,micros_transmit);
 			/* Clear Sn_IR_RECV flag. */
 			setSn_IR(SOCK_UDPS, Sn_IR_RECV);
 			
@@ -809,43 +644,44 @@ void wzn_event_handle(void)
 }
 
 
-/*
-int32_t NTPUDP(uint8_t sn, uint8_t* buf)
+
+int32_t NTPUDP(uint8_t sn)
 {
    int32_t  ret;
    uint16_t size, sentsize;
    uint8_t  destip[4];
    uint16_t destport;
 	 uint8_t i;
-	 uint32_t unixTime_last_sync = 1559640302;
-	 uint32_t transmitTime = 0;
-	 uint32_t recvTime = htonl(1559640303 + STARTOFTIME);//gio luc nhan dc ban tin
-   //uint8_t  packinfo = 0;
+	 
 	// Ban tin NTP co size = 56 ( ca header : IP[4],port[2],length[2], tru di header chi con 48
    switch(getSn_SR(sn))
    {
       case SOCK_UDP :
          if((size = getSn_RX_RSR(sn)) > 0)
          {
-					  
-					  if(size > DATA_BUF_SIZE) size = DATA_BUF_SIZE;
-            ret = recvfrom(sn,buf,size,destip,(uint16_t*)&destport);
-					  printf("\r\nsize:%d, ret:%d, NTP: ",size,ret);
+					  ret = recvfrom(sn,clientPacket,size,destip,(uint16_t*)&destport);
+					//if(size > DATA_BUF_SIZE) size = DATA_BUF_SIZE;//56 là max voi ban tin NTP
+					 if(size != NTP_PACKET_RAWSIZE) return 0;// ban tin NTP raw size phai la 56
+            
+					  //printf("\r\nsize:%d, ret:%d, NTP: ",size,ret);
             if(ret <= 0)
             {
                printf("%d: recvfrom error. %d\r\n",sn,ret);
                return ret;
             }
-            size = (uint16_t) ret;
+            //size = (uint16_t) ret;
+						//size = NTP_PACKET_SIZE;//fix luon
             sentsize = 0;
 						
 						//in ra ban tin
+						/*
 						for(i=0;i<48;i++)
 						{
 						   printf("%x ",*(buf+i));
 						}
-						
+						*/
 						//Tao ban tin NTP
+						/*
 						serverPacket[0] = 0x24;   // LI, Version, Mode // Set version number and mode
 						serverPacket[1] = 1; // Stratum, or type of clock
 						serverPacket[2] = 0;     // Polling Interval
@@ -855,15 +691,32 @@ int32_t NTPUDP(uint8_t sn, uint8_t* buf)
 						serverPacket[14] = 'S';
 						//[Reference Timestamp]: unsigned 32-bit seconds value : Lan lay chuan gan nhat la bao gio
 						memcpy(&serverPacket[16], &unixTime_last_sync, 4);
-						micros_transmit = (((micros() - micros_offset)%1000000) + 1) * USECSHIFT;
-						micros_transmit = htonl(micros_transmit);
-						micros_recv = htonl(micros_recv);
-						transmitTime = htonl( 1559640308 + STARTOFTIME);// gio luc truyen
-						memcpy(&serverPacket[40], &transmitTime, 4);
-						memcpy(&serverPacket[24], &buf[40], 4);
-						memcpy(&serverPacket[28], &buf[44], 4);
+						*/
+						//Transmit Timestamp, T3 from client, copy and return! 
+						memcpy(&serverPacket[24], &clientPacket[40], 4);
+						memcpy(&serverPacket[28], &clientPacket[44], 4);
+						
+						//Thoi gian nhan dc ban tin
+						//printf("recvTime: %u, micros_recv:%u\r\n",recvTime,micros_recv);
+						recvTime = htonl(recvTime);
 						memcpy(&serverPacket[32], &recvTime, 4);
+						//phan thap phan
+						micros_recv = (micros_recv + 1) * USECSHIFT;
+						micros_recv = htonl(micros_recv);
 						memcpy(&serverPacket[36], &micros_recv, 4);
+						
+						transmitTime = (timerun + STARTOFTIME);//gio luc tryen ban tin
+						micros_transmit = getns();
+						//printf("tranTime: %u, micros_tran:%u\r\n",transmitTime,micros_transmit);
+						
+						transmitTime = htonl(transmitTime);// gio luc truyen
+						memcpy(&serverPacket[40], &transmitTime, 4);
+						
+						
+						//Tinh toan phan thap phan cua thoi diem truyen tin
+						micros_transmit = getns();
+						micros_transmit = (micros_transmit + 1) * USECSHIFT;
+						micros_transmit = htonl(micros_transmit);//Ko hieu lam gi nhi, nhung dung!
 						memcpy(&serverPacket[44], &micros_transmit, 4);
 						//Gui tra ban tin NTP
 						while(sentsize != NTP_PACKET_SIZE)
@@ -891,5 +744,5 @@ int32_t NTPUDP(uint8_t sn, uint8_t* buf)
    }
    return 1;
 }
-*/
+
 

@@ -9,6 +9,7 @@
  *  	+ Etc.
  *
  *********************************************************************************************/
+#include "stm32f10x.h"                  // Device header
 #include "snmp_custom.h"
 
 #ifdef _USE_WIZNET_W5500_EVB_

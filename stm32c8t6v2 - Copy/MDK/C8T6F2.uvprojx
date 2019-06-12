@@ -10,7 +10,6 @@
       <TargetName>C8T6F2</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pArmCC>6120000::V6.12::.\ARMCLANG</pArmCC>
       <pCCUsed>6120000::V6.12::.\ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
@@ -339,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_MD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER\delay;..\USER\uart;..\USER\rtc;..\USER\eeprom;..\USER\filter;..\USER\adcdma;..\USER\it;..\USER\lcd16x2;..\USER\crc16;..\USER\tim;..\USER\i2c;..\USER;..\USER\w5500g\Ethernet\W5500;..\USER\w5500g\Ethernet;..\USER\ntp;..\USER\spi</IncludePath>
+              <IncludePath>..\USER\delay;..\USER\uart;..\USER\rtc;..\USER\eeprom;..\USER\filter;..\USER\adcdma;..\USER\it;..\USER\lcd16x2;..\USER\crc16;..\USER\tim;..\USER\i2c;..\USER;..\USER\w5500g\Ethernet\W5500;..\USER\w5500g\Ethernet;..\USER\w5500g\Internet\SNTP;..\USER\spi;..\USER\w5500g\Internet\SNMP</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -561,7 +560,29 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>NTP</GroupName>
+          <GroupName>SNTP</GroupName>
+          <Files>
+            <File>
+              <FileName>sntp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\w5500g\Internet\SNTP\sntp.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>SMNP</GroupName>
+          <Files>
+            <File>
+              <FileName>snmp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\w5500g\Internet\SNMP\snmp.c</FilePath>
+            </File>
+            <File>
+              <FileName>snmp_custom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\w5500g\Internet\SNMP\snmp_custom.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

@@ -24,6 +24,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
 #include "GPIO_STM32F10x.h"             // Keil::Device:GPIO
+#include "snmp.h"
 #define ONTIME 1
 #define STOP   0
 /** @addtogroup STM32F10x_StdPeriph_Examples
@@ -156,6 +157,7 @@ void SysTick_Handler(void)
 	if (u1out > ONTIME) u1out--;
 	if (u2out > ONTIME) u2out--;
 	if (task100ms > ONTIME) task100ms--;
+	SNMP_time_handler();
 }
 
 // USART Receiver buffer

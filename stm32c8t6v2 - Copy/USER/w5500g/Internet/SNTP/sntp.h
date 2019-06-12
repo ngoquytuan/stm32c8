@@ -18,7 +18,7 @@ extern "C" {
  * @brief Define it for Debug & Monitor DNS processing.
  * @note If defined, it dependens on <stdio.h>
  */
-//#define _SNTP_DEBUG_
+#define _SNTP_DEBUG_
 
 #define	MAX_SNTP_BUF_SIZE	sizeof(ntpformat)		///< maximum size of DNS buffer. */
 
@@ -58,9 +58,10 @@ typedef struct _datetime
 	uint8_t ss;
 } datetime;
 
+#define sntp_port 1234 //my sntp port, cho de gui ban ti ve
 #define ntp_port		123                     //ntp server port number
 #define SECS_PERDAY		86400UL             	// seconds in a day = 60*60*24
-#define UTC_ADJ_HRS		9              	        // SEOUL : GMT+9
+#define UTC_ADJ_HRS		7              	        // Vietnam : GMT+7
 #define EPOCH			1900                    // NTP start year
 
 void get_seconds_from_ntp_server(uint8_t *buf, uint16_t idx);

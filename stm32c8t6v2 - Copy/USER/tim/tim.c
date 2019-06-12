@@ -191,7 +191,7 @@ void tim_irq_fuc(void)
 }
 
 
-
+//Dung TIM tao bo dem tu 0-999 ket hop voi SysTick_Handler tao ra bo dem tu 0-999999ns
 void TIM_init(void)
 {
 	TIM_TimeBaseInitTypeDef TIMx_Init;

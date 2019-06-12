@@ -38,14 +38,6 @@ uint8_t spi1_rb(void)
 	return rb;
 }
 /****************************************************************************************************************/
-//===========================================================================//
-void cs_sel(void){
-  GPIO_ResetBits(GPIOA, GPIO_Pin_0); 
-}
-//===========================================================================//
-void cs_desel(void){
-  GPIO_SetBits(GPIOA, GPIO_Pin_0); 
-}
 /****************************************************************************************************************/
 /***************************************************************************************************************/
 	void spi1burst_wb(uint8_t *pBuf, uint16_t len)
@@ -74,14 +66,6 @@ void cs_desel(void){
 /***************************************************************************************************************/
 
 //define of CS pin PA.0
-//===========================================================================//
-void chip_on(void){
-  GPIO_ResetBits(GPIOA, GPIO_Pin_0); 
-}
-//===========================================================================//
-void chip_off(void){
-  GPIO_SetBits(GPIOA, GPIO_Pin_0); 
-}
 /***************************************************************************************************************/
 //W5500 Port initialization and configuration interrupt mode
 //The corresponding configuration instructions:
@@ -188,46 +172,30 @@ void SPI1_W5500_Init(void)
  
 
 }
-/***************************************************************************************************************/
-//============================================================================//
-uint8_t SPI_SendReceiveByte(void)
-{
-  while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
-  SPI_I2S_SendData(SPI1, 0xFF);
-  while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET) ;
-  return SPI_I2S_ReceiveData(SPI1);
-}
-/***************************************************************************************************************/
-//===========================================================================//
-void senddata(uint8_t data){	
-while(SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
-SPI_I2S_SendData(SPI1, data);
-while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET) ;
-SPI_I2S_ReceiveData(SPI1);	
-	}
+
 /***************************************************************************************************************/
 	void spiburst_wb(uint8_t *pBuf, uint16_t len)
 {
 	u16 i;
-	chip_on();//CS chip selection W5500
+	wizchip_select();//CS chip selection W5500
 	for(i=0;i<len;i++)//The loop writes the size bytes of the buffer to the W5500.
 	{
-		senddata(*pBuf++);//Write a byte of data
+		spi1_wb(*pBuf++);//Write a byte of data
 	}
-	chip_off();//Pull high CS to cancel the chip selection
+	wizchip_deselect();//Pull high CS to cancel the chip selection
 
 }
 /***************************************************************************************************************/
 	void spiburst_rb(uint8_t *pBuf, uint16_t len)
 {
 	u16 i;
-	chip_on();//CS chip selection W5500
+	wizchip_select();//CS chip selection W5500
 	for(i=0;i<len;i++)//The loop writes the size bytes of the buffer to the W5500.
 	{
 		while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET) ;
 		*pBuf++ = SPI_I2S_ReceiveData(SPI1);
 	}
-	chip_off();//Pull high CS to cancel the chip selection
+	wizchip_deselect();//Pull high CS to cancel the chip selection
 
 }
 //////////
@@ -262,6 +230,10 @@ uint8_t wizchip_read()
 	return (unsigned char)SPI_I2S_ReceiveData(SPI1);
 }
 //////////////////////////////////////////////////////////////////////////
+void delay_cnt(volatile unsigned int nCount)
+{
+	for(; nCount!= 0;nCount--);
+}
 /***************************************************************************************************************/
 void w5500_lib_init(void){
 
@@ -271,28 +243,22 @@ void w5500_lib_init(void){
 		
 		W5500_GPIO_Init2();
 		GPIO_ResetBits(W5500_RST_GPIO, W5500_RST);
+		delay_cnt(5000);
 		//////////
    // TODO //
    ////////////////////////////////////////////////////////////////////////////////////////////////////
    // First of all, Should register SPI callback functions implemented by user for accessing WIZCHIP //
    ////////////////////////////////////////////////////////////////////////////////////////////////////
-   /* Critical section callback - No use in this example */
-   //reg_wizchip_cris_cbfunc(0, 0);
-   /* Chip selection call back */
-		#if   _WIZCHIP_IO_MODE_ == _WIZCHIP_IO_MODE_SPI_VDM_
-				reg_wizchip_cs_cbfunc(wizchip_select, wizchip_deselect);
-		#elif _WIZCHIP_IO_MODE_ == _WIZCHIP_IO_MODE_SPI_FDM_
-				reg_wizchip_cs_cbfunc(wizchip_select, wizchip_select);  // CS must be tried with LOW.
-		#else
-			 #if (_WIZCHIP_IO_MODE_ & _WIZCHIP_IO_MODE_SIP_) != _WIZCHIP_IO_MODE_SIP_
-					#error "Unknown _WIZCHIP_IO_MODE_"
-			 #else
-					reg_wizchip_cs_cbfunc(wizchip_select, wizchip_deselect);
-			 #endif
-		#endif
+   
+		/* Critical section callback - No use in this example */
+		//reg_wizchip_cris_cbfunc(0, 0);
+			
+    /* Chip selection call back */
+		reg_wizchip_cs_cbfunc(wizchip_select, wizchip_deselect);
 		/* SPI Read & Write callback function */
     reg_wizchip_spi_cbfunc(wizchip_read, wizchip_write);
 		GPIO_SetBits(W5500_RST_GPIO, W5500_RST);//RST High to run
+		delay_cnt(10000);
     ////////////////////////////////////////////////////////////////////////
 		/* WIZCHIP SOCKET Buffer initialize */
 		//Initializes to WIZCHIP with SOCKET buffer size 2 or 1 dimension array typed uint8_t
@@ -311,7 +277,7 @@ void w5500_lib_init(void){
           printf("Unknown PHY Link stauts.\r\n");
     }while(tmp == PHY_LINK_OFF);
 		
-		temp = IK_SOCK_1;
+		temp = IK_SOCK_0;
 		if(ctlwizchip(CW_SET_INTRMASK, &temp) == WZN_ERR)
 		{
 			printf("Cannot set imr...\r\n");
@@ -326,5 +292,40 @@ void w5500_lib_init(void){
 
 		
 
+}
+
+void Display_Net_Conf()
+{
+	uint8_t tmpstr[6] = {0,};
+	wiz_NetInfo gWIZNETINFO;
+
+	ctlnetwork(CN_GET_NETINFO, (void*) &gWIZNETINFO);
+	ctlwizchip(CW_GET_ID,(void*)tmpstr);
+
+	// Display Network Information
+	if(gWIZNETINFO.dhcp == NETINFO_DHCP) printf("\r\n===== %s NET CONF : DHCP =====\r\n",(char*)tmpstr);
+		else printf("\r\n===== %s NET CONF : Static =====\r\n",(char*)tmpstr);
+
+	printf("\r\nMAC: %02X:%02X:%02X:%02X:%02X:%02X\r\n", gWIZNETINFO.mac[0], gWIZNETINFO.mac[1], gWIZNETINFO.mac[2], gWIZNETINFO.mac[3], gWIZNETINFO.mac[4], gWIZNETINFO.mac[5]);
+	printf("IP: %d.%d.%d.%d\r\n", gWIZNETINFO.ip[0], gWIZNETINFO.ip[1], gWIZNETINFO.ip[2], gWIZNETINFO.ip[3]);
+	printf("GW: %d.%d.%d.%d\r\n", gWIZNETINFO.gw[0], gWIZNETINFO.gw[1], gWIZNETINFO.gw[2], gWIZNETINFO.gw[3]);
+	printf("SN: %d.%d.%d.%d\r\n", gWIZNETINFO.sn[0], gWIZNETINFO.sn[1], gWIZNETINFO.sn[2], gWIZNETINFO.sn[3]);
+	printf("DNS: %d.%d.%d.%d\r\n", gWIZNETINFO.dns[0], gWIZNETINFO.dns[1], gWIZNETINFO.dns[2], gWIZNETINFO.dns[3]);
+}
+
+void Net_Conf(wiz_NetInfo netinfo)
+{
+	/*
+	wiz_NetInfo gWIZNETINFO = {
+		{ 0x00, 0x08, 0xDC, 0x44, 0x55, 0x66 },				// Mac address
+		{ 192, 168, 1, 91 },								// IP address
+		{ 255, 255, 255, 0},								// Subnet mask
+		{ 192, 168, 1, 1},									// Gateway
+		{ 8, 8, 8, 8},										// DNS Server
+	};
+	*/
+	ctlnetwork(CN_SET_NETINFO, (void*) &netinfo);
+
+	//display_net_info();
 }
 /***************************************************************************************************************/

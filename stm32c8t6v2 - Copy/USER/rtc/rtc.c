@@ -1,13 +1,15 @@
 #include "rtc.h"
 #include <stdio.h>
 
+//#define RTC_INT
+
 //extern __IO uint32_t TimeDisplay;
 uint32_t TimeDisplay;
 //__IO uint32_t TimeDisplay;
 #define RTCClockOutput_Enable  /* RTC Clock/64 is output on tamper pin(PC.13) */
 void RTC_Init(void)
 {
-	
+	#ifdef RTC_INT
 	NVIC_InitTypeDef NVIC_InitStructure;
 
   /* Configure one bit for preemption priority */
@@ -19,6 +21,7 @@ void RTC_Init(void)
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
+	#endif
 	
 	#ifdef RTCClockOutput_Enable
   /* Enable PWR and BKP clocks */
@@ -32,7 +35,8 @@ void RTC_Init(void)
                                  functionality must be disabled */
 
   /* Enable RTC Clock Output on Tamper Pin */
-  BKP_RTCOutputConfig(BKP_RTCOutputSource_CalibClock);
+	BKP_RTCOutputConfig(BKP_RTCOutputSource_None);
+  //BKP_RTCOutputConfig(BKP_RTCOutputSource_CalibClock);
   #endif
 	
 if (BKP_ReadBackupRegister(BKP_DR1) != 0xA5A5)
@@ -40,7 +44,7 @@ if (BKP_ReadBackupRegister(BKP_DR1) != 0xA5A5)
     /* Backup data register value is not correct or not yet programmed (when
        the first time the program is executed) */
 
-    printf("\r\n\n RTC not yet configured....");
+    printf("\r\n\n RTC not yet configured.");
 
     /* RTC Configuration */
     RTC_Configuration();
@@ -68,16 +72,19 @@ if (BKP_ReadBackupRegister(BKP_DR1) != 0xA5A5)
     printf("\r\n No need to configure RTC....");
     /* Wait for RTC registers synchronization */
     RTC_WaitForSynchro();
-    
+		
+    #ifdef RTC_INT
     /* Enable the RTC Second */
     RTC_ITConfig(RTC_IT_SEC, ENABLE);
+		#endif
+		
     /* Wait until last write operation on RTC registers has finished */
     RTC_WaitForLastTask();
   }
   /* Clear reset flags */
   RCC_ClearFlag();
 	//Time_Adjust();
-  printf("\r\n RTC Good\r\n");
+  printf("\r\n RTC Start\r\n");
 }
 /**
   * @brief  Configures the RTC.
@@ -112,10 +119,10 @@ void RTC_Configuration(void)
 
   /* Wait until last write operation on RTC registers has finished */
   RTC_WaitForLastTask();
-
+  #ifdef RTC_INT
   /* Enable the RTC Second */
   RTC_ITConfig(RTC_IT_SEC, ENABLE);
-
+  #endif
   /* Wait until last write operation on RTC registers has finished */
   RTC_WaitForLastTask();
 

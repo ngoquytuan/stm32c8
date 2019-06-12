@@ -1,3 +1,5 @@
+#include "stm32f10x.h"                  // Device header
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -47,7 +49,8 @@ struct messageStruct response_msg;
 
 // SNMP Time counter
 static time_t startTime = 0;
-volatile uint32_t snmp_tick_10ms = 0; //volatile uint32_t snmp_tick_1ms = 0;
+//volatile uint32_t snmp_tick_10ms = 0; 
+volatile uint32_t snmp_tick_1ms = 0;
 
 // SNMP Sockets
 static uint8_t SOCK_SNMP_AGENT;
@@ -64,21 +67,21 @@ void currentUptime(void *ptr, uint8_t *len)
 {
 	time_t curTime = getSNMPTimeTick();
 
-	//*(uint32_t *)ptr = (uint32_t)(curTime - startTime) / 10; // calculation for 1ms tick
-	*(uint32_t *)ptr = (uint32_t)(curTime - startTime); // calculation for 10ms tick
+	*(uint32_t *)ptr = (uint32_t)(curTime - startTime) / 10; // calculation for 1ms tick
+	//*(uint32_t *)ptr = (uint32_t)(curTime - startTime); // calculation for 10ms tick
 	*len = 4;
 }
 
 void SNMP_time_handler(void)
 {
-	//snmp_tick_1ms++;
-	snmp_tick_10ms++;
+	snmp_tick_1ms++;
+	//snmp_tick_10ms++;
 }
 
 uint32_t getSNMPTimeTick(void)
 {
-	//return snmp_tick_1ms;
-	return snmp_tick_10ms;
+	return snmp_tick_1ms;
+	//return snmp_tick_10ms;
 }
 
 
