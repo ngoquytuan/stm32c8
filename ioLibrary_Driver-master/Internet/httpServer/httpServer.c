@@ -527,7 +527,7 @@ static void http_process_handler(uint8_t s, st_http_request * p_http_request)
 			printf("> HTTPSocket[%d] : Request URI = %s\r\n", s, uri_name);
 #endif
 
-			if(p_http_request->TYPE == PTYPE_CGI)
+			if(p_http_request->TYPE == PTYPE_CGI)//https://en.wikipedia.org/wiki/Common_Gateway_Interface
 			{
 				content_found = http_get_cgi_handler(uri_name, pHTTP_TX, &file_len);
 				if(content_found && (file_len <= (DATA_BUF_SIZE-(strlen(RES_CGIHEAD_OK)+8))))

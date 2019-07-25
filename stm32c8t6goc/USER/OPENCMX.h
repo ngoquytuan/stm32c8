@@ -18,8 +18,8 @@ void hardware_init(void);
 #define USE_UART1
 //#define USE_UART2
 #define TEST_UART
-//#define USE_EMU_EEPROM
-//#define TEST_EMU_EEPROM
+#define USE_EMU_EEPROM
+#define TEST_EMU_EEPROM
 //#define USE_LCD16x2 // MUST CONFIG GPIO MAP WITH LCD
 //#define TEST_LCD16x2
 //#define USE_INTERNAL_RTC 
