@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_MD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER\delay;..\USER\uart;..\USER\rtc;..\USER\eeprom;..\USER\filter;..\USER\adcdma;..\USER\it;..\USER\lcd16x2;..\USER\crc16;..\USER\tim;..\USER\i2c;..\USER;..\USER\w5500g\Ethernet\W5500;..\USER\w5500g\Ethernet;..\USER\w5500g\Internet\SNTP;..\USER\spi;..\USER\w5500g\Internet\SNMP;..\USER\w5500g\Internet\httpServer</IncludePath>
+              <IncludePath>..\USER\delay;..\USER\uart;..\USER\rtc;..\USER\eeprom;..\USER\filter;..\USER\adcdma;..\USER\it;..\USER\lcd16x2;..\USER\crc16;..\USER\tim;..\USER\i2c;..\USER;..\USER\w5500g\Ethernet\W5500;..\USER\w5500g\Ethernet;..\USER\w5500g\Internet\SNTP;..\USER\spi;..\USER\w5500g\Internet\SNMP;..\USER\w5500g\Internet\httpServer;..\USER\FatFs;..\USER\util</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -573,6 +573,12 @@
               <FilePath>..\USER\eeprom\eeprom_stm.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>FatFs</GroupName>
+        </Group>
+        <Group>
+          <GroupName>util</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

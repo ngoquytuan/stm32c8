@@ -13,7 +13,6 @@
 #define W5500_INT_GPIO	GPIOA
 
 void SPI1_W5500_Init(void);
-void W5500_GPIO_Init2(void);
 void w5500_lib_init(void);
 void Net_Conf(wiz_NetInfo netinfo);
 ///////////////////////////////////

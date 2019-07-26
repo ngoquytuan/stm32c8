@@ -10,50 +10,20 @@
 #include "sntp.h"
 #include "ntp.h"
 #include "snmp.h"
-#include "snmp.h"
-//#include "httpUtil.h"
 #include "httpServer.h"
 #include "webpage.h"
-//#include "httpParser.h"
-/***********************************************************************************************************************************/
-/////////////////////////////////////////
-// SOCKET NUMBER DEFINION for Examples //
-/////////////////////////////////////////
-#define SOCK_TCPS        1
-#define SOCK_UDPS        0
-#define SOCK_SNTP        2
-#define SOCK_agent			 3
-#define SOCK_trap				 4
-#define SOCK_WEBSERVER   5
-#define PORT_WEBSERVER  80
-#define MAX_HTTPSOCK	3
-uint8_t socknumlist[] = {5, 6, 7};
-uint8_t HTTPSockket_num = 1;
 
-//////////////////////////////
-// Shared Buffer Definition //
-//////////////////////////////
-#define DATA_BUF_SIZEHTTP   2048
-
-uint8_t RX_BUF[DATA_BUF_SIZEHTTP];
-uint8_t TX_BUF[DATA_BUF_SIZEHTTP];
-
-int32_t WebServer(uint8_t sn, uint8_t* buf, uint16_t port);
-uint8_t send_dat[1024]={0,};
-/* for Web Server test debug message printout enable */
-#define _WEBSERVER_DEBUG_
-#define WEBSERVER
-#define WEBSERVER_EX    1 // mode setting
-/////////////////////////////////////////
-////////////////////////////////////////////////
-// Shared Buffer Definition for LOOPBACK TEST //
-////////////////////////////////////////////////
-#define DATA_BUF_SIZE   1000
-uint8_t gDATABUF[DATA_BUF_SIZE];
-////////////////////////////////////////////////
-///////////////////////////////////
-// Default Network Configuration //
-///////////////////////////////////
+#define _USE_SDCARD_
+#ifdef _USE_SDCARD_
+#include "ff.h"
+#include "mmcHandler.h"
+#include "ffconf.h"
+#endif
+int g_mkfs_done = 0;
+int g_sdcard_done = 0;
+//////////////////////////////////////////////////////////////////////
+// Default Network Configuration /////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 
 wiz_NetInfo gWIZNETINFO = { .mac = {0x0c, 0x29, 0x34,0x7c, 0xab, 0xcd},
                             .ip = {192, 168, 1, 245},
@@ -61,20 +31,52 @@ wiz_NetInfo gWIZNETINFO = { .mac = {0x0c, 0x29, 0x34,0x7c, 0xab, 0xcd},
                             .gw = {193, 168, 0, 4},
                             .dns = {8,8,8,8},
                             .dhcp = NETINFO_STATIC };
+//////////////////////////////////////////////////////////////////////
+//for snmp
+uint8_t managerIP[4] ={192, 168, 1, 6};
+uint8_t agentIP[4]   ={192, 168, 1, 246};
+//////////////////////////////////////////////////////////////////////
 
-wiz_NetInfo netinfo;
+
+//////////////////////////////////////////////////////////////////////
+// SOCKET NUMBER DEFINION  ///////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+#define SOCK_TCPS        1
+#define SOCK_UDPS        0
+#define SOCK_SNTP        2
+#define SOCK_agent			 3
+#define SOCK_trap				 4
+#define SOCK_WEBSERVER   5
+#define PORT_WEBSERVER  80
+#define MAX_HTTPSOCK		 3
+
+//////////////////////////////////////////////////////////////////////
+// Shared Buffer Definition WEB server////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+#define DATA_BUF_SIZEHTTP   2048
+uint8_t RX_BUF[DATA_BUF_SIZEHTTP];
+uint8_t TX_BUF[DATA_BUF_SIZEHTTP];
+uint8_t socknumlist[] = {5, 6, 7};
+
+
+
+///////////////////////////////////////////////////////////////////////
+// Shared Buffer Definition for LOOPBACK TEST /////////////////////////
+///////////////////////////////////////////////////////////////////////
+#define DATA_BUF_SIZE   1000
+uint8_t gDATABUF[DATA_BUF_SIZE];
+///////////////////////////////////////////////////////////////////////
+
 
 /////////////////////
 // PHYStatus check //
 /////////////////////
-#define SEC_PHYSTATUS_CHECK 		1		// sec
+#define SEC_PHYSTATUS_CHECK 		1000		// msec
 bool PHYStatus_check_enable = false;
 
 
 /***********************************************************************************************************************************/
-//for snmp
-uint8_t managerIP[4] ={192, 168, 1, 6};
-uint8_t agentIP[4]   ={192, 168, 1, 246};
+
 
 
 //for NTP server
@@ -88,10 +90,6 @@ time_t micros_offset;
 time_t transmitTime;
 time_t micros_transmit;
 time_t recvTime;
-void ntpserverdefaultconfig(void);
-uint32_t getns(void);
-void resetns(void);
-
 
 //for NTP client
  //uint8_t sntp_ip[4] ={192, 168, 1, 14};
@@ -99,85 +97,13 @@ void resetns(void);
  uint8_t sntp_buf[56];
  datetime sntp;
 
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////
 														
-//////////////////////////////////
-// For example of ioLibrary_BSD //
-//////////////////////////////////
 
-int32_t loopback_tcps(uint8_t, uint8_t*, uint16_t);		// Loopback TCP server
-int32_t loopback_udps(uint8_t, uint8_t*, uint16_t);		// Loopback UDP server
-int32_t NTPUDP(uint8_t sn);//UDP NTP server
-void wzn_event_handle(void);
+
 /*******************************************************************************/
-/**
-  * @brief  Watch D0G
-  * @param  None
-  * @retval  Dong nay o cuoi cung ko thi ko chay : RCC_APB1PeriphClockCmd(RCC_APB1Periph_WWDG, ENABLE);
-  */
-  void WWDG_Init(void)
-  {
-	  /* On Value line devices, WWDG clock counter = (PCLK1 (24MHz)/4096)/8 = 732 Hz (~1366 us)  */
-	/* On other devices, WWDG clock counter = (PCLK1(36MHz)/4096)/8 = 1099 Hz (~910 us)  */
-	  WWDG_SetPrescaler(WWDG_Prescaler_8);
-
-	  /* Set Window value to 80; WWDG counter should be refreshed only when the counter
-		is below 80 (and greater than 64) otherwise a reset will be generated */
-	  WWDG_SetWindowValue(80);
-
-	  /* - On Value line devices,
-		Enable WWDG and set counter value to 127, WWDG timeout = ~1366 us * 64 = 87.42 ms 
-		In this case the refresh window is: ~1366us * (127-80) = 64.20 ms < refresh window < ~1366us * 64 = 87.42ms
-		 - On other devices
-		Enable WWDG and set counter value to 127, WWDG timeout = ~910 us * 64 = 58.25 ms 
-		In this case the refresh window is: ~910 us * (127-80) = 42.77 ms < refresh window < ~910 us * 64 = 58.25ms     
-	  */
-		/* Enable WWDG clock */
-	  RCC_APB1PeriphClockCmd(RCC_APB1Periph_WWDG, ENABLE);
-	  WWDG_Enable(127);
-  }
-  
 
 
-
-
-
-
-/**
-* @brief  GPIO_config cho kit C8T6 china : LED PA1
-  * @param  None
-  * @retval  
-  */
-void GPIO_config(void)
-{
-  //LED PA1 : cho kit C8T6 china : LED PA1
-	GPIO_PortClock   (GPIOA, true);
-	GPIO_PinConfigure(GPIOA, 1, GPIO_OUT_PUSH_PULL, GPIO_MODE_OUT10MHZ);
-	GPIO_PinWrite(GPIOA, 1, 0);
-}
-void PHYStatus_Check(void)
-{
-	uint8_t tmp;
-	//static bool LED_status_backup;
-
-	////LED_status_backup = RGBLED_enable;
-		ctlwizchip(CW_GET_PHYLINK, (void*) &tmp);
-
-		// Error indicator: LED Green ON when no PHY link detected
-		if(tmp == PHY_LINK_OFF)
-		{
-			/* Turn on LED1 */
-			GPIO_PinWrite(GPIOA, 1, 0);
-		}
-		else{
-		/* Turn off LED1 */
-    GPIO_PinWrite(GPIOA, 1, 1);
-		}
-
-	//RGBLED_enable = LED_status_backup;
-}
 /**
   * @brief  tasks
   * @param  Tat ca cac chuong trinh con se duoc goi tu day!
@@ -188,17 +114,18 @@ void tasks(void)
 	 	
 	int32_t ret = 0;
 	
-		
+	
 	// NTP UDP server chay dau tien cho nhanh
 		
 		if( (ret = NTPUDP(SOCK_UDPS)) < 0) {
 			printf("SOCKET ERROR : %d\r\n", ret);
 		}
-		//SNMPv1 example
-		//Run SNMP Agent Fucntion
-		/* SNMP Agent Handler */
-		//SMI Network Management Private Enterprise Codes: : moi cong ty phai dang ky 1 so rieng, tham khao : https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers
-		// Vi du Arduino : 36582
+		{	//SNMPv1 run
+			//Run SNMP Agent Fucntion
+			/* SNMP Agent Handler */
+			//SMI Network Management Private Enterprise Codes: : moi cong ty phai dang ky 1 so rieng, 
+			//tham khao : https://www.iana.org/assignments/enterprise-numbers/enterprise-numbers
+			// Vi du Arduino : 36582
     	// SNMP Agent daemon process : User can add the OID and OID mapped functions to snmpData[] array in snmprun.c/.h
 			// [net-snmp version 5.7 package for windows] is used for this demo.
 			// * Command example
@@ -207,18 +134,21 @@ void tasks(void)
     	// [Command] Get-Next: 	snmpwalk -v 1 -c public 192.168.1.246 .1.3.6.1
 			// [Command] Set: 			snmpset -v 1 -c public 192.168.1.246 .1.3.6.1.4.1.6.2.0 i 1			// (Custom, LED 'On')
     	// [Command] Set: 			snmpset -v 1 -c public 192.168.1.246 .1.3.6.1.4.1.6.2.0 i 0			// (Custom, LED 'Off')
-		snmpd_run();	
+			snmpd_run();	
+		}
 		
-
-    // TCP server loopback test
+    {// TCP server loopback test
     	if( (ret = loopback_tcps(SOCK_TCPS, gDATABUF, 5000)) < 0) {
 			printf("SOCKET ERROR : %d\r\n", ret);
 		}
-		// web server 
-		//WebServer(SOCK_WEBSERVER, gDATABUF, PORT_WEBSERVER);	
-		httpServer_run(0);
-		httpServer_run(1);
-		httpServer_run(2);
+		}
+		
+		{	// web server 	
+			httpServer_run(0);
+			httpServer_run(1);
+			httpServer_run(2);
+		}
+		
 		#ifdef USE_UART1 // Xu ly U1 buffer
 			//UART1 RX process
 			if(u1out == ONTIME)
@@ -276,23 +206,17 @@ void tasks(void)
 		
 
 			
-		/*
-    	// UDP server loopback test
-		if( (ret = loopback_udps(SOCK_UDPS, clientPacket, 123)) < 0) {
-			printf("SOCKET ERROR : %d\r\n", ret);
-		}
-		*/
+		
 		
 
 		// UDP ngat
-		
 		if(W5500RecInt == 1)
 		{
 			W5500RecInt = 0;
 			wzn_event_handle();
 		}
 		
-
+		//1s
 		if(TimingDelay>999) 
 		{
 			TimingDelay = 0;
@@ -314,130 +238,25 @@ void tasks(void)
 		//}
 			//printf("getSNMPTimeTick : %u ms\r\n", getSNMPTimeTick());
 			
-			////////////////////////////////////////////////////////
-			// SHOULD BE Added HTTP Server Time Handler to your 1s tick timer
-			httpServer_time_handler(); 	// for HTTP server time counter
-			////////////////////////////////////////////////////////
-			
 		}
-		// PHY status check counter
-	if(PHYStatus_check_enable)
-	{
-		if (phystatus_check_cnt > (1000 * SEC_PHYSTATUS_CHECK))
-		{
-			PHYStatus_Check();
-			phystatus_check_cnt = 0;
-			//printf("PHYStatus_Check\r\n");
+		{// PHY status check counter
+			if(PHYStatus_check_enable)
+			{
+				if (phystatus_check_cnt > (SEC_PHYSTATUS_CHECK))
+				{
+					PHYStatus_Check();
+					phystatus_check_cnt = 0;
+					//printf("PHYStatus_Check\r\n");
+				}
+			}
+			else
+			{
+				phystatus_check_cnt = 0;
+			}
 		}
-	}
-	else
-	{
-		phystatus_check_cnt = 0;
-	}
-		
 }
 
-/**
-  * @brief  tra ve ns bang sysstick vs TIM3
-  * @param  None
-  * @retval  
-  */
-uint32_t getns(void)
-{
- return 1000*count1ms+TIM_GetCounter(TIM3);
-}
-void resetns(void)
-{
-	count1ms = 0;
-	TIM_SetCounter(TIM3,0);
-}	
-/**
-  * @brief  sw_eeprom_stm32
-  * @param  make some flash blocks come eeprom for store data
-  * @retval  just call this fuction
-  */	
-void sw_eeprom_stm32(void)
-{
-		/* Unlock the Flash Program Erase controller */
-  FLASH_Unlock();
-  /* EEPROM Init */
-  if(EE_Init() == FLASH_COMPLETE) printf("Emu EEPROM STM32 ready !\r\n");
-}
-
-/**
-  * @brief  test_eeprom
-  * @param  Call this fuction for test store data to eeprom
-  * @retval  
-  */	
-void test_eeprom(void)
-{
-	uint16_t a,b,c,d,e,f; 
-	uint16_t confirm[3];
 	
-	//Kiem tra confirm xem dung ko, neu sai thi du lieu bi sai => reset factory setting
-	// Neu dung thi load config
-	
-	EE_ReadVariable(0,&confirm[0]);
-	EE_ReadVariable(1,&confirm[1]);
-	EE_ReadVariable(2,&confirm[2]);	
-	
-	if( (confirm[0] == 123) && (confirm[1] == 456) && (confirm[2] == 789))
-	{
-		printf("Right eeprom data, load configs now\r\n");
-		//Load IP
-		EE_ReadVariable(4,&a);
-		EE_ReadVariable(5,&b);
-		EE_ReadVariable(6,&c);
-		EE_ReadVariable(7,&d);
-		gWIZNETINFO.ip[0] = a;
-		gWIZNETINFO.ip[1] = b;
-		gWIZNETINFO.ip[2] = c;
-		gWIZNETINFO.ip[3] = d;
-		//printf("Load ip: %d.%d.%d.%d",gWIZNETINFO.ip[0],gWIZNETINFO.ip[1],gWIZNETINFO.ip[2],gWIZNETINFO.ip[3]);
-		//Load GW
-		EE_ReadVariable(8,&a);
-		EE_ReadVariable(9,&b);
-		EE_ReadVariable(10,&c);
-		EE_ReadVariable(11,&d);
-		gWIZNETINFO.gw[0] = a;
-		gWIZNETINFO.gw[1] = b;
-		gWIZNETINFO.gw[2] = c;
-		gWIZNETINFO.gw[3] = d;
-		//Load SN
-		EE_ReadVariable(12,&a);
-		EE_ReadVariable(13,&b);
-		EE_ReadVariable(14,&c);
-		EE_ReadVariable(15,&d);
-		gWIZNETINFO.sn[0] = a;
-		gWIZNETINFO.sn[1] = b;
-		gWIZNETINFO.sn[2] = c;
-		gWIZNETINFO.sn[3] = d;
-	}
-	else
-	{
-		printf("Wrong eeprom data\r\n");
-		EE_WriteVariable(0,123);
-		EE_WriteVariable(1,456);
-		EE_WriteVariable(2,789);
-		//IP 192.168.1.246
-		EE_WriteVariable(4,192);
-		EE_WriteVariable(5,168);
-		EE_WriteVariable(6,1);
-		EE_WriteVariable(7,246);
-		//GW: 192.168.1.1
-		EE_WriteVariable(8,192);
-		EE_WriteVariable(9,168);
-		EE_WriteVariable(10,1);
-		EE_WriteVariable(11,1);
-		//SN 255.255.255.0
-		EE_WriteVariable(12,255);
-		EE_WriteVariable(13,255);
-		EE_WriteVariable(14,255);
-		EE_WriteVariable(15,0);
-	}
-		
-
-}	
 
 /**
   * @brief  hardware_init
@@ -478,10 +297,8 @@ void hardware_init(void)
     GPIO_PinWrite(GPIOA, 1, 1);
   }
 	
-  
-	#ifdef USE_UART1
-		USART1_Init();
-	#endif
+	USART1_Init();
+	
 	#ifdef USE_UART2
 		#ifdef USE_USART2_DMA
 			USART2_DMAInit();
@@ -506,15 +323,16 @@ void hardware_init(void)
 	
 	
   
-	/* WWDG configuration */
-  //WWDG_Init();
+	
+	
 	//using stm32's flash to store data
 	//EEPROM STM32 init
 	sw_eeprom_stm32();
 	test_eeprom();
 	delay_ms(1);
 	 
-		
+	//SPI
+	SPI1_W5500_Init();	
     
     /* Network initialization */
     w5500_lib_init();
@@ -534,8 +352,17 @@ void hardware_init(void)
 		snmpd_init(managerIP,agentIP,SOCK_agent,SOCK_trap);	
 		PHYStatus_check_enable = true;		
 		
-		{//Lien quan den webserver
-		reg_httpServer_cbfunc(NVIC_SystemReset, NULL); 
+		loadwebpages();
+		/* WWDG configuration */
+		// IWDG Initialization: STM32 Independent WatchDog
+		IWDG_configuration();
+}
+
+void loadwebpages()
+{
+		//Lien quan den webserver
+		//reg_httpServer_cbfunc(NVIC_SystemReset, NULL); 
+		reg_httpServer_cbfunc(NVIC_SystemReset, IWDG_ReloadCounter); // Callback: STM32 MCU Reset / WDT Reset (IWDG)
 		/* HTTP Server Initialization  */
 		httpServer_init(TX_BUF, RX_BUF, MAX_HTTPSOCK, socknumlist);
 		reg_httpServer_webContent((uint8_t *)"index.html", (uint8_t *)index_page);				// index.html 		: Main page example
@@ -563,24 +390,8 @@ void hardware_init(void)
 		//config page
 		reg_httpServer_webContent((uint8_t *)"config.html", (uint8_t *)configpage);			// config.html
 		display_reg_webContent_list();
-		}
 }
 
-
-void ntpserverdefaultconfig(void)
-{
-		TIM_init();
-		//Phan co dinh cua ban tin NTP
-		serverPacket[0] = 0x24;   // LI, Version, Mode // Set version number and mode
-		serverPacket[1] = 1; // Stratum, or type of clock
-		serverPacket[2] = 0;     // Polling Interval
-		serverPacket[3] = -12;  // Peer Clock Precision
-		serverPacket[12] = 'G';
-		serverPacket[13] = 'P';
-		serverPacket[14] = 'S';
-		//[Reference Timestamp]: unsigned 32-bit seconds value : Lan lay chuan gan nhat la bao gio
-		memcpy(&serverPacket[16], &unixTime_last_sync, 4);
-}	
 
 
 
@@ -705,48 +516,9 @@ void EXTI3_IRQHandler(void)
 	}
 }
 
-void wzn_event_handle(void)
-{
-	uint16_t ir = 0;
-	uint8_t sir = 0;
-	uint16_t len = 0;
-	static const int8_t WZN_ERR = -1;
-	static uint8_t wzn_rx_buf[256];
-	
-	if (ctlwizchip(CW_GET_INTERRUPT, &ir) == WZN_ERR) {
-		printf("Cannot get ir...");
-	}
-	
-	if (ir & IK_SOCK_0) {
-		sir = getSn_IR(SOCK_UDPS);
-		
-	
-		//printf("IK_SOCK_1");
-		
-		if ((sir & Sn_IR_SENDOK) > 0) {
-			/* Clear Sn_IR_SENDOK flag. */
-			setSn_IR(SOCK_UDPS, Sn_IR_SENDOK);
-			printf("app_sent();\r\n");
-			//app_sent();
-		}
-		
-		if ((sir & Sn_IR_RECV) > 0) {
-			//len = getSn_RX_RSR(SOCK_UDPS);
-			//recv(SOCK_UDPS, wzn_rx_buf, len);
-			//printf("UDP packet received!\r\n");
-			//printf("recvTime: %u, micros_recv:%u\r\n",recvTime,micros_recv);
-			//transmitTime = (timerun + STARTOFTIME);//gio luc tryen ban tin
-			//micros_transmit = getns();
-			//printf("transmitTime: %u, micros_transmit:%u\r\n",transmitTime,micros_transmit);
-			/* Clear Sn_IR_RECV flag. */
-			setSn_IR(SOCK_UDPS, Sn_IR_RECV);
-			
-			//app_received(wzn_rx_buf, len);
-		}
-	}
-}
 
 
+	
 int32_t NTPUDP(uint8_t sn)
 {
    int32_t  ret;
@@ -783,6 +555,7 @@ int32_t NTPUDP(uint8_t sn)
 						}
 						*/
 						//Tao ban tin NTP
+						//ntpserverdefaultconfig();
 						/*
 						serverPacket[0] = 0x24;   // LI, Version, Mode // Set version number and mode
 						serverPacket[1] = 1; // Stratum, or type of clock
@@ -847,9 +620,245 @@ int32_t NTPUDP(uint8_t sn)
    return 1;
 }
 
+void wzn_event_handle(void)
+{
+	uint16_t ir = 0;
+	uint8_t sir = 0;
+	uint16_t len = 0;
+	static const int8_t WZN_ERR = -1;
+	
+	
+	if (ctlwizchip(CW_GET_INTERRUPT, &ir) == WZN_ERR) {
+		printf("Cannot get ir...");
+	}
+	
+	if (ir & IK_SOCK_0) {
+		sir = getSn_IR(SOCK_UDPS);
+		
+	
+		//printf("IK_SOCK_1");
+		
+		if ((sir & Sn_IR_SENDOK) > 0) {
+			/* Clear Sn_IR_SENDOK flag. */
+			setSn_IR(SOCK_UDPS, Sn_IR_SENDOK);
+			printf("app_sent();\r\n");
+			//app_sent();
+		}
+		
+		if ((sir & Sn_IR_RECV) > 0) {
+			//len = getSn_RX_RSR(SOCK_UDPS);
+			//printf("UDP packet received!\r\n");
+			//printf("recvTime: %u, micros_recv:%u\r\n",recvTime,micros_recv);
+			//transmitTime = (timerun + STARTOFTIME);//gio luc tryen ban tin
+			//micros_transmit = getns();
+			//printf("transmitTime: %u, micros_transmit:%u\r\n",transmitTime,micros_transmit);
+			/* Clear Sn_IR_RECV flag. */
+			setSn_IR(SOCK_UDPS, Sn_IR_RECV);
+			
+		}
+	}
+}
 /********************************************************************************************************************/
+void ntpserverdefaultconfig(void)
+{
+		TIM_init();
+		//Phan co dinh cua ban tin NTP
+		serverPacket[0] = 0x24;   // LI, Version, Mode // Set version number and mode
+		serverPacket[1] = 1; // Stratum, or type of clock
+		serverPacket[2] = 0;     // Polling Interval
+		serverPacket[3] = -12;  // Peer Clock Precision
+		serverPacket[12] = 'G';
+		serverPacket[13] = 'P';
+		serverPacket[14] = 'S';
+		//[Reference Timestamp]: unsigned 32-bit seconds value : Lan lay chuan gan nhat la bao gio
+		memcpy(&serverPacket[16], &unixTime_last_sync, 4);
+}
+/**
+  * @brief  tra ve ns bang sysstick vs TIM3
+  * @param  None
+  * @retval  
+  */
+uint32_t getns(void)
+{
+ return 1000*count1ms+TIM_GetCounter(TIM3);
+}
+void resetns(void)
+{
+	count1ms = 0;
+	TIM_SetCounter(TIM3,0);
+}	
+/**
+  * @brief  sw_eeprom_stm32
+  * @param  make some flash blocks come eeprom for store data
+  * @retval  just call this fuction
+  */	
+void sw_eeprom_stm32(void)
+{
+		/* Unlock the Flash Program Erase controller */
+  FLASH_Unlock();
+  /* EEPROM Init */
+  if(EE_Init() == FLASH_COMPLETE) printf("Emu EEPROM STM32 ready !\r\n");
+}
 
+/**
+  * @brief  test_eeprom
+  * @param  Call this fuction for test store data to eeprom
+  * @retval  
+  */	
+void test_eeprom(void)
+{
+	uint16_t a,b,c,d,e,f; 
+	uint16_t confirm[3];
+	
+	//Kiem tra confirm xem dung ko, neu sai thi du lieu bi sai => reset factory setting
+	// Neu dung thi load config
+	
+	EE_ReadVariable(0,&confirm[0]);
+	EE_ReadVariable(1,&confirm[1]);
+	EE_ReadVariable(2,&confirm[2]);	
+	
+	if( (confirm[0] == 123) && (confirm[1] == 456) && (confirm[2] == 789))
+	{
+		printf("Right eeprom data, load configs now\r\n");
+		//Load IP
+		EE_ReadVariable(4,&a);
+		EE_ReadVariable(5,&b);
+		EE_ReadVariable(6,&c);
+		EE_ReadVariable(7,&d);
+		gWIZNETINFO.ip[0] = a;
+		gWIZNETINFO.ip[1] = b;
+		gWIZNETINFO.ip[2] = c;
+		gWIZNETINFO.ip[3] = d;
+		//printf("Load ip: %d.%d.%d.%d",gWIZNETINFO.ip[0],gWIZNETINFO.ip[1],gWIZNETINFO.ip[2],gWIZNETINFO.ip[3]);
+		//Load GW
+		EE_ReadVariable(8,&a);
+		EE_ReadVariable(9,&b);
+		EE_ReadVariable(10,&c);
+		EE_ReadVariable(11,&d);
+		gWIZNETINFO.gw[0] = a;
+		gWIZNETINFO.gw[1] = b;
+		gWIZNETINFO.gw[2] = c;
+		gWIZNETINFO.gw[3] = d;
+		//Load SN
+		EE_ReadVariable(12,&a);
+		EE_ReadVariable(13,&b);
+		EE_ReadVariable(14,&c);
+		EE_ReadVariable(15,&d);
+		gWIZNETINFO.sn[0] = a;
+		gWIZNETINFO.sn[1] = b;
+		gWIZNETINFO.sn[2] = c;
+		gWIZNETINFO.sn[3] = d;
+	}
+	else
+	{
+		printf("Wrong eeprom data\r\n");
+		EE_WriteVariable(0,123);
+		EE_WriteVariable(1,456);
+		EE_WriteVariable(2,789);
+		//IP 192.168.1.246
+		EE_WriteVariable(4,192);
+		EE_WriteVariable(5,168);
+		EE_WriteVariable(6,1);
+		EE_WriteVariable(7,246);
+		//GW: 192.168.1.1
+		EE_WriteVariable(8,192);
+		EE_WriteVariable(9,168);
+		EE_WriteVariable(10,1);
+		EE_WriteVariable(11,1);
+		//SN 255.255.255.0
+		EE_WriteVariable(12,255);
+		EE_WriteVariable(13,255);
+		EE_WriteVariable(14,255);
+		EE_WriteVariable(15,0);
+	}
+		
 
+}
+//Kiem tra xem day mang co cam hay k?
+void PHYStatus_Check(void)
+{
+	uint8_t tmp;
+	//static bool LED_status_backup;
+
+	////LED_status_backup = RGBLED_enable;
+		ctlwizchip(CW_GET_PHYLINK, (void*) &tmp);
+
+		// Error indicator: LED Green ON when no PHY link detected
+		if(tmp == PHY_LINK_OFF)
+		{
+			/* Turn on LED1 */
+			GPIO_PinWrite(GPIOA, 1, 0);
+		}
+		else{
+		/* Turn off LED1 */
+    GPIO_PinWrite(GPIOA, 1, 1);
+		}
+
+	//RGBLED_enable = LED_status_backup;
+}
+
+// IWDG: STM32 Independent Watchdog Initialization
+void IWDG_configuration(void)
+{
+	//RCC_LSICmd(ENABLE); //open LSI
+	//while(RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET);
+	if(RCC_GetFlagStatus(RCC_FLAG_IWDGRST) != RESET)
+	{
+		RCC_ClearFlag();
+	}
+
+	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+	IWDG_SetPrescaler(IWDG_Prescaler_128); // 40Khz / 128 = 0.31KHz; 1 / 0.31KHz = 3.22ms
+	//IWDG_SetReload(1250); // 1s, max 0xfff
+	IWDG_SetReload(0xfff); // 4095 * 3.22ms = 13185.9ms = 13 seconds; it means if IWDG was not reloaded, MCU will reset!
+
+	//IWDG_ReloadCounter();
+	IWDG_Enable();
+}
+
+/**
+  * @brief  Watch D0G
+  * @param  None
+  * @retval  Dong nay o cuoi cung ko thi ko chay : RCC_APB1PeriphClockCmd(RCC_APB1Periph_WWDG, ENABLE);
+  */
+void WWDG_Init(void)
+  {
+	  /* On Value line devices, WWDG clock counter = (PCLK1 (24MHz)/4096)/8 = 732 Hz (~1366 us)  */
+	/* On other devices, WWDG clock counter = (PCLK1(36MHz)/4096)/8 = 1099 Hz (~910 us)  */
+	  WWDG_SetPrescaler(WWDG_Prescaler_8);
+
+	  /* Set Window value to 80; WWDG counter should be refreshed only when the counter
+		is below 80 (and greater than 64) otherwise a reset will be generated */
+	  WWDG_SetWindowValue(80);
+
+	  /* - On Value line devices,
+		Enable WWDG and set counter value to 127, WWDG timeout = ~1366 us * 64 = 87.42 ms 
+		In this case the refresh window is: ~1366us * (127-80) = 64.20 ms < refresh window < ~1366us * 64 = 87.42ms
+		 - On other devices
+		Enable WWDG and set counter value to 127, WWDG timeout = ~910 us * 64 = 58.25 ms 
+		In this case the refresh window is: ~910 us * (127-80) = 42.77 ms < refresh window < ~910 us * 64 = 58.25ms     
+	  */
+		/* Enable WWDG clock */
+	  RCC_APB1PeriphClockCmd(RCC_APB1Periph_WWDG, ENABLE);
+	  WWDG_Enable(127);
+  }
+/**
+* @brief  GPIO_config cho kit C8T6 china : LED PA1
+  * @param  None
+  * @retval  
+  */
+void GPIO_config(void)
+{
+  //LED PA1 : cho kit C8T6 china : LED PA1
+	GPIO_PortClock   (GPIOA, true);
+	GPIO_PinConfigure(GPIOA, 1, GPIO_OUT_PUSH_PULL, GPIO_MODE_OUT10MHZ);
+	GPIO_PinWrite(GPIOA, 1, 0);
+	
+	//LED PA4 : cho kit C8T6 china : CS SD
+	GPIO_PortClock   (GPIOA, true);
+	GPIO_PinConfigure(GPIOA, 4, GPIO_OUT_PUSH_PULL, GPIO_MODE_OUT10MHZ);
+	GPIO_PinWrite(GPIOA, 4, 1);
+}
 
 
 /********************************************************************************************************************/

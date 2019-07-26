@@ -6,7 +6,7 @@ extern "C" {
 #endif
 
 // SNMP Debug Message (dump) Enable
-#define _SNMP_DEBUG_
+//#define _SNMP_DEBUG_
 
 #define PORT_SNMP_AGENT				161
 #define PORT_SNMP_TRAP				162

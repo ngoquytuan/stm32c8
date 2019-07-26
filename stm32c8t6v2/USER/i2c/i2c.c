@@ -1,5 +1,6 @@
 #include "i2c.h"
 #include "delay.h"
+#include <stdio.h>
 /*I2C_Config*/
 /** 
   * @Author Tuan - 19/10/2014 

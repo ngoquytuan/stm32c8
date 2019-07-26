@@ -7,7 +7,7 @@
 
 
 #include <string.h>
-
+#include <stdio.h>
 #include "sntp.h"
 #include "socket.h"
 

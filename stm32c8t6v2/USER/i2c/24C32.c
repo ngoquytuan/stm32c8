@@ -1,6 +1,6 @@
 #include "i2c.h"
 #include "delay.h"
-
+#include <stdio.h>
 uint8_t EEPROM_init(void)
 {
 	uint16_t timeOut = 0xffff;
@@ -11,7 +11,7 @@ uint8_t EEPROM_init(void)
 		if(timeOut-- == 0) 
 			{
 				#ifdef DEBUG
-				printf("I2C connection error\r\n");
+				//printf("I2C connection error\r\n");
 				#endif
 				return 0;
 			}

@@ -343,7 +343,7 @@ static void send_http_response_body(uint8_t s, uint8_t * uri_name, uint8_t * buf
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifdef _HTTPSERVER_DEBUG_
-			printf("> HTTPSocket[%d] : HTTP Response body - file len [ %ld ]byte\r\n", s, file_len);
+			printf("> HTTPSocket[%d] : HTTP Response body - file len [ %u ]byte\r\n", s, file_len);
 #endif
 		}
 		else
@@ -352,7 +352,7 @@ static void send_http_response_body(uint8_t s, uint8_t * uri_name, uint8_t * buf
 			send_len = file_len;
 
 #ifdef _HTTPSERVER_DEBUG_
-			printf("> HTTPSocket[%d] : HTTP Response end - file len [ %ld ]byte\r\n", s, send_len);
+			printf("> HTTPSocket[%d] : HTTP Response end - file len [ %u ]byte\r\n", s, send_len);
 #endif
 		}
 #ifdef _USE_FLASH_

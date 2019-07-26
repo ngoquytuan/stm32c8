@@ -7,7 +7,8 @@
 //define how to put a character to uart
 void uart_putc(char c)
 {
-while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET); // wait for "Transmission Complete" flag cleared
+while (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET)
+	; // wait for "Transmission Complete" flag cleared
 		USART_SendData(USART2,c);
 }
 uint8_t modbus_serial_new = 0;

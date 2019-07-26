@@ -2,6 +2,7 @@
 #include "stm32f10x_rcc.h"
 #include "stm32f10x_spi.h"
 #include "w5500lib_init.h"
+#include <stdio.h>
 unsigned char W5500RecInt = 0;
 static const int8_t WZN_ERR = -1;
 /****************************************************************************************************************/
@@ -15,9 +16,8 @@ void  wizchip_select(void);
 void  wizchip_deselect(void);
 void  wizchip_write(uint8_t wb);
 uint8_t wizchip_read();
+
 //Send a byte via SPI1
-//dat Byte sent
-//No return
 void spi1_wb(uint8_t wb)
 {
 	while (  SPI_I2S_GetFlagStatus(SPI1 , SPI_I2S_FLAG_TXE) == RESET );  // sending data Wait
@@ -30,7 +30,8 @@ uint8_t spi1_rb(void)
 {
 	uint8_t rb;
 	
-	while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET);
+	while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_TXE) == RESET)
+		;
   SPI_I2S_SendData(SPI1, 0xFF);
   while (SPI_I2S_GetFlagStatus(SPI1, SPI_I2S_FLAG_BSY) == SET) ;
   rb = SPI_I2S_ReceiveData(SPI1);
@@ -131,8 +132,7 @@ void W5500_GPIO_Init2(void)
 	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStructure);
 	
-	//SPI
-	SPI1_W5500_Init();
+	
   
 }
 /***************************************************************************************************************/
@@ -160,13 +160,15 @@ void SPI1_W5500_Init(void)
 	SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;		//The idle state of the serial synchronous clock is high
 	SPI_InitStructure.SPI_CPHA = SPI_CPHA_2Edge;	    //The second transition edge (rising or falling) of the serial synchronous clock is sampled
 	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;		    //NSS signal is managed by hardware (NSS pin) or software (using SSI bit): internal NSS signal has SSI bit control
-	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_4;//Configure SPI1 speed to be the highest
+	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;//Configure SPI1 speed to be the highest
 	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;	//Specify whether the data transfer starts from the MSB bit or the LSB bit: data transfer starts from the MSB bit
 	SPI_InitStructure.SPI_CRCPolynomial = 7;	//CRC Polynomial of value calculation
 	SPI_Init(SPI1, &SPI_InitStructure); 
 	
 	SPI_Cmd(SPI1, ENABLE); //Enable SPI peripherals
 	
+	/* enable DMA clock */
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 //	SPI1_ReadWriteByte(0xff);//Start transfer		 
  
 

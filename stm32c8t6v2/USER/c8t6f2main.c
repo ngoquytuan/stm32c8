@@ -40,7 +40,8 @@ http://www.keil.com/arm/microlib.asp
 //http://www.keil.com/support/man/docs/armlib/armlib_chr1358938931411.htm
 int fputc(int ch, FILE *f)
 {      
-	while(USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET); 
+	while(USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET)
+		; 
     USART_SendData(USART1,(char)ch);   
 	return ch;
 }
@@ -62,7 +63,8 @@ int main(void)
 	while(1)
 	{
 		/* Update WWDG counter */
-		WWDG_SetCounter(127);
+		//WWDG_SetCounter(127);
+		IWDG_ReloadCounter(); // Feed IWDG
     tasks();		
 		//modbus_slave_exe();
 		
